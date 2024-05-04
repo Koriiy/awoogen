@@ -7,7 +7,7 @@ from configparser import ConfigParser
 from platformdirs import user_data_dir
 logger = logging.getLogger(__name__)
 
-VERSION_NAME = "Seaside v2.0"
+VERSION_NAME = "Seaside v2.1"
 # This is saved in the Pack save-file, and is used for save-file converstion.
 SAVE_VERSION_NUMBER = 3
 
