@@ -1,6 +1,6 @@
 [
     {
-        "id": "elder_gen_dead",
+      "id": "elder_gen_to_dead_gen",
         "thoughts": [
             "Is telling stories about r_c",
             "Wishes that r_c were still alive",
@@ -56,7 +56,7 @@
         ]
     },
     {
-        "id": "elder_alive_younger_cats",
+      "id": "elder_to_alive_younger_cats",
         "thoughts": [
             "Is giving advice to younger wolves",
             "Is bossing around the younger wolves",
@@ -76,7 +76,7 @@
         ]
     },
     {
-        "id": "elder_alive_apprentice",
+      "id": "elder_to_alive_apprentice",
         "thoughts": [
             "Is requesting an apprentice's help with {PRONOUN/m_c/poss} ticks",
             "Is asking apprentices to help check {PRONOUN/m_c/object} for ticks"

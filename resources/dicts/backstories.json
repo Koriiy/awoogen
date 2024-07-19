@@ -14,10 +14,10 @@
         "loner3": "m_c wandered the world, aimless and free, but always alone.",
         "loner4": "m_c wandered the world, aimless and free, but always alone - until {PRONOUN/m_c/subject} found someone worth staying for.",
 
-        "kittypet1": "This wolf joined the Pack by choice after living life with Twolegs as a pet.",
-        "kittypet2": "This wolf used to live on something called a 'boat' with Twolegs, but decided to join the Pack.",
-        "kittypet3": "This wolf used to be a pet. {PRONOUN/m_c/subject/CAP} got lost after wandering away, and when {PRONOUN/m_c/subject} returned home, {PRONOUN/m_c/subject} found {PRONOUN/m_c/poss} Twolegs were gone. {PRONOUN/m_c/subject/CAP} eventually found {PRONOUN/m_c/poss} way to the Pack.",
-        "kittypet4": "This wolf used to be a pet. One day, {PRONOUN/m_c/subject} got sick, and {PRONOUN/m_c/poss} Twolegs brought {PRONOUN/m_c/object} into the belly of a monster. The Twolegs then left {PRONOUN/m_c/object} to fend for {PRONOUN/m_c/self}.",
+        "pet1": "This wolf joined the Pack by choice after living life with Twolegs as a pet.",
+        "pet2": "This wolf used to live on something called a 'boat' with Twolegs, but decided to join the Pack.",
+        "pet3": "This wolf used to be a pet. {PRONOUN/m_c/subject/CAP} got lost after wandering away, and when {PRONOUN/m_c/subject} returned home, {PRONOUN/m_c/subject} found {PRONOUN/m_c/poss} Twolegs were gone. {PRONOUN/m_c/subject/CAP} eventually found {PRONOUN/m_c/poss} way to the Pack.",
+        "pet4": "This wolf used to be a pet. One day, {PRONOUN/m_c/subject} got sick, and {PRONOUN/m_c/poss} Twolegs brought {PRONOUN/m_c/object} into the belly of a monster. The Twolegs then left {PRONOUN/m_c/object} to fend for {PRONOUN/m_c/self}.",
 
         "rogue1": "This wolf joined the Pack by choice after living life as a rogue.",
         "rogue2": "This wolf used to live in a Twolegplace, scrounging for what {PRONOUN/m_c/subject} could find. {PRONOUN/m_c/subject/CAP} thought the Pack might offer {PRONOUN/m_c/object} more security.",
@@ -81,7 +81,7 @@
     "half_clan_backstories": "half-Pack",
     "loner_backstories": "formerly a loner",
     "rogue_backstories": "formerly a rogue",
-    "kittypet_backstories": "formerly a pet",
+    "pet_backstories": "formerly a pet",
     "outsider_backstories": "formerly an outsider",
     "former_clancat_backstories": "originally from another Pack",
     "orphaned_backstories": "orphaned",
@@ -107,8 +107,8 @@
     "rogue_backstories": [
       "rogue1", "rogue2", "rogue3", "refugee4", "tragedy_survivor2", "guided2", "refugee5", "wandering_healer1"
     ],
-    "kittypet_backstories": [
-      "kittypet1", "kittypet2", "kittypet3", "kittypet4", "refugee3", "tragedy_survivor3", "guided1", "refugee6"
+    "pet_backstories": [
+      "pet1", "pet2", "pet3", "pet4", "refugee3", "tragedy_survivor3", "guided1", "refugee6"
     ],
     "former_clancat_backstories": [
       "otherclan1", "otherclan2", "otherclan3", "ostracized_warrior", "disgraced1", "disgraced2", "disgraced3", "retired_leader", "refugee1", "tragedy_survivor1", "medicine_cat", "guided4", "refugee5"

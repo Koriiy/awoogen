@@ -3,12 +3,13 @@
      {
         "colours": {
           "dark_bg": "#2c2341",
+          "hovered_bg": "#433663",
           "normal_border": "#2c2341"
         },
          "misc":
          {
             "enable_arrow_buttons": "1",
-            "border_width": "0"
+            "border_width": "4"
          }
      },
      "vertical_scroll_bar.#sliding_button":
@@ -18,12 +19,16 @@
             "normal_bg": "#4f4664",
             "hovered_bg": "#5b5270",
             "selected_bg": "#e8dffd",
-            "active_bg": "#e8dffd"
+            "active_bg": "#e8dffd",
+           "normal_border": "#4f4664",
+           "hovered_border": "#4f4664",
+           "selected_border": "#4f4664",
+           "active_border": "#4f4664"
          },
          "misc":
          {
-           "border_width": "0",
-           "shadow_width": "1"
+           "border_width": "4",
+           "shadow_width": "4"
          }
      },
      "vertical_scroll_bar.#top_button":
@@ -38,7 +43,7 @@
          "misc":
          {
            "border_width": "0",
-           "shadow_width": "1"
+           "shadow_width": "0"
          }
     },
     "vertical_scroll_bar.#bottom_button":
@@ -53,7 +58,7 @@
          "misc":
          {
            "border_width": "0",
-           "shadow_width": "1"
+           "shadow_width": "0"
          }
     }
  }

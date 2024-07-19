@@ -956,11 +956,11 @@
         "min_max_status": {},
         "weight": 20,
         "intro_text": "r_c catches the scent of a bear - but is it brown, or black? Tracking it, {PRONOUN/r_c/subject} {VERB/r_c/find/finds} a brown bear feeding on a deer carcass.",
-        "decline_text": "Your patrol decides not to quarrel with the bear and to find prey elsewhere.",
+        "decline_text": "The patrol decides not to quarrel with the bear and to find prey elsewhere.",
         "chance_of_success": 40,
         "success_outcomes": [
             {
-                "text": "Your wolves are smaller but they outnumber the bear, if only by a little, and it's a prize they're willing to fight for. With a prayer to StarPack they throw themselves into battle, and the bear, already half full of venison and unwilling to lose blood over it, is driven off from the kill.",
+                "text": "The wolves are smaller but they outnumber the bear, if only by a little, and it's a prize they're willing to fight for. With a prayer to StarPack they throw themselves into battle, and the bear, already half full of venison and unwilling to lose blood over it, is driven off from the kill.",
                 "exp": 20,
                 "weight": 20,
                 "prey": ["medium"],
@@ -996,7 +996,6 @@
                 "weight": 20,
                 "stat_trait": [
                     "adventurous",
-                    "altruistic",
                     "ambitious",
                     "confident",
                     "daring",
@@ -1018,7 +1017,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "Your patrol fails to drive away the bear, which keeps possession of the food. However, there were no injuries.",
+                "text": "The patrol fails to drive away the bear, which keeps possession of the food. However, there were no injuries.",
                 "exp": 0,
                 "weight": 20,
                 "relationships": [
@@ -1058,7 +1057,7 @@
                 "prey": ["very_small"]
             },
             {
-                "text": "s_c means well, but {PRONOUN/s_c/subject}{VERB/s_c/'re/'s} overconfident in {PRONOUN/s_c/poss} attack and the bear manages to sink their teeth into {PRONOUN/s_c/object}. The patrol is forced to retreat, forming a defensive ring around the hurt s_c.",
+                "text": "s_c means well, but {PRONOUN/s_c/subject}{VERB/s_c/'re/'s} overconfident in {PRONOUN/s_c/poss} attack and the bear manages to sink their teeth into {PRONOUN/s_c/object}. The patrol is forced to retreat, forming a defensive ring around the wounded s_c.",
                 "exp": 0,
                 "weight": 10,
                 "stat_trait": [
@@ -1101,12 +1100,12 @@
         "max_cats": 6,
         "min_max_status": {},
         "weight": 20,
-        "intro_text": "Your patrol catches the scent of a bear - but is it brown, or black? Tracking it, they find a brown bear feeding on a deer carcass.",
-        "decline_text": "Your patrol decides not to quarrel with the bear and to find prey elsewhere.",
+        "intro_text": "The patrol catches the scent of a bear - but is it brown, or black? Tracking it, they find a brown bear feeding on a deer carcass.",
+        "decline_text": "The patrol decides not to quarrel with the bear and to find prey elsewhere.",
         "chance_of_success": 20,
         "success_outcomes": [
             {
-                "text": "Your wolves are smaller but heavily outnumber the bear, and it's a prize they're willing to fight for. With a prayer to StarPack they throw themselves into battle, and the bear, already half full of venison and unwilling to lose blood over it, is driven off from the kill.",
+                "text": "The wolves are smaller but heavily outnumber the bear, and it's a prize they're willing to fight for. With a prayer to StarPack they throw themselves into battle, and the bear, already half full of venison and unwilling to lose blood over it, is driven off from the kill.",
                 "exp": 20,
                 "weight": 20,
                 "prey": ["medium"],
@@ -1121,7 +1120,7 @@
                 ]
             },
             {
-                "text": "s_c shows their strength, leading the fight against the bear. By working together and keeping it distracted, the wolves harry and harass the bear until s_c lands a crucial blow, snapping a tendon in one of the bear's hindlegs. The bear runs, but there's no way it'll live long with such a crippling injury.",
+                "text": "s_c shows their strength, leading the fight against the bear. By working together and keeping it distracted, the wolves harry and harass the bear until s_c lands a crucial blow, snapping a tendon in one of the bear's hindlegs. The bear runs, but there's no way it'll live long with such a debilitating injury.",
                 "exp": 20,
                 "weight": 20,
                 "stat_skill": ["FIGHTER,1"],
@@ -1142,7 +1141,6 @@
                 "weight": 20,
                 "stat_trait": [
                     "adventurous",
-                    "altruistic",
                     "ambitious",
                     "confident",
                     "daring",
@@ -1164,7 +1162,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "Your patrol fails to drive away the bear, which keeps possession of the food. However, with so many wolves to protect each other, there were no injuries.",
+                "text": "The patrol fails to drive away the bear, which keeps possession of the food. However, with so many wolves to protect each other, there were no injuries.",
                 "exp": 0,
                 "weight": 20,
                 "relationships": [
@@ -1204,7 +1202,7 @@
                 "prey": ["very_small"]
             },
             {
-                "text": "s_c means well, but {PRONOUN/s_c/subject}{VERB/s_c/'re/'s} overconfident in {PRONOUN/s_c/poss} attack and the bear manages to sink their teeth into {PRONOUN/s_c/object}. The patrol is forced to retreat, forming a defensive ring around the hurt s_c.",
+                "text": "s_c means well, but {PRONOUN/s_c/subject}{VERB/s_c/'re/'s} overconfident in {PRONOUN/s_c/poss} attack and the bear manages to sink their teeth into {PRONOUN/s_c/object}. The patrol is forced to retreat, forming a defensive ring around the wounded s_c.",
                 "exp": 0,
                 "weight": 10,
                 "stat_trait": [
@@ -1288,7 +1286,6 @@
                 "weight": 20,
                 "stat_trait": [
                     "adventurous",
-                    "altruistic",
                     "ambitious",
                     "confident",
                     "daring",
@@ -1310,7 +1307,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "Your patrol fails to drive away the bear, which keeps possession of the food. However, there were no injuries.",
+                "text": "The patrol fails to drive away the bear, which keeps possession of the food. However, there were no injuries.",
                 "exp": 0,
                 "weight": 20,
                 "relationships": [
@@ -1417,8 +1414,8 @@
         "max_cats": 3,
         "min_max_status": {},
         "weight": 20,
-        "intro_text": "Your patrol catches the scent of a bear - but is it brown, or black? Tracking it, they find a black bear feeding on a deer carcass. A black bear is unlikely to have killed a deer on its own.",
-        "decline_text": "Your patrol decides not to quarrel with the bear and to find prey elsewhere.",
+        "intro_text": "The patrol catches the scent of a bear - but is it brown, or black? Tracking it, they find a black bear feeding on a deer carcass. A black bear is unlikely to have killed a deer on its own.",
+        "decline_text": "The patrol decides not to quarrel with the bear and to find prey elsewhere.",
         "chance_of_success": 70,
         "success_outcomes": [
             {
@@ -1458,7 +1455,6 @@
                 "weight": 20,
                 "stat_trait": [
                     "adventurous",
-                    "altruistic",
                     "ambitious",
                     "confident",
                     "daring",
@@ -1480,7 +1476,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "Your patrol fails to drive away the bear, which keeps possession of the food. However, there were no injuries.",
+                "text": "The patrol fails to drive away the bear, which keeps possession of the food. However, there were no injuries.",
                 "exp": 0,
                 "weight": 20,
                 "relationships": [
@@ -1516,7 +1512,7 @@
                 "prey": ["very_small"]
             },
             {
-                "text": "s_c means well, but {PRONOUN/s_c/subject}{VERB/s_c/'re/'s} overconfident in {PRONOUN/s_c/poss} attack and the bear manages to sink their claws into {PRONOUN/s_c/object}. The patrol is forced to retreat, forming a defensive ring around the hurt s_c.",
+                "text": "s_c means well, but {PRONOUN/s_c/subject}{VERB/s_c/'re/'s} overconfident in {PRONOUN/s_c/poss} attack and the bear manages to sink their claws into {PRONOUN/s_c/object}. The patrol is forced to retreat, forming a defensive ring around the wounded s_c.",
                 "exp": 0,
                 "weight": 10,
                 "stat_trait": [
@@ -1560,12 +1556,12 @@
         "max_cats": 6,
         "min_max_status": {},
         "weight": 20,
-        "intro_text": "Your patrol catches the scent of a bear - but is it brown, or black? Tracking it, they find a black bear feeding on a deer carcass. A black bear is unlikely to have killed a deer on its own.",
-        "decline_text": "Your patrol decides not to quarrel with the bear and to find prey elsewhere.",
+        "intro_text": "The patrol catches the scent of a bear - but is it brown, or black? Tracking it, they find a black bear feeding on a deer carcass. A black bear is unlikely to have killed a deer on its own.",
+        "decline_text": "The patrol decides not to quarrel with the bear and to find prey elsewhere.",
         "chance_of_success": 30,
         "success_outcomes": [
             {
-                "text": "Your wolves are only just smaller and heavily outnumber the bear, and it's a prize they're willing to fight for. With a prayer to StarPack they throw themselves into battle, and the bear, already half full of venison and unwilling to lose blood over it, is driven off from the kill.",
+                "text": "The wolves are only just smaller and heavily outnumber the bear, and it's a prize they're willing to fight for. With a prayer to StarPack they throw themselves into battle, and the bear, already half full of venison and unwilling to lose blood over it, is driven off from the kill.",
                 "exp": 20,
                 "weight": 20,
                 "prey": ["medium"],
@@ -1580,7 +1576,7 @@
                 ]
             },
             {
-                "text": "s_c shows their strength, leading the fight against the bear. By working together and keeping it distracted, the wolves harry and harass the bear until s_c lands a crucial blow, snapping a tendon in one of the bear's hindlegs. The bear runs, but there's no way it'll live long with such a crippling injury.",
+                "text": "s_c shows their strength, leading the fight against the bear. By working together and keeping it distracted, the wolves harry and harass the bear until s_c lands a crucial blow, snapping a tendon in one of the bear's hindlegs. The bear runs, but there's no way it'll live long with such a debilitating injury.",
                 "exp": 20,
                 "weight": 20,
                 "stat_skill": ["FIGHTER,1"],
@@ -1601,7 +1597,6 @@
                 "weight": 20,
                 "stat_trait": [
                     "adventurous",
-                    "altruistic",
                     "ambitious",
                     "confident",
                     "daring",
@@ -1623,7 +1618,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "Your patrol fails to drive away the bear, which keeps possession of the food. However, with so many wolves to protect each other, there were no injuries.",
+                "text": "The patrol fails to drive away the bear, which keeps possession of the food. However, with so many wolves to protect each other, there were no injuries.",
                 "exp": 0,
                 "weight": 20,
                 "relationships": [
@@ -1713,7 +1708,6 @@
                 "weight": 20,
                 "stat_trait": [
                     "adventurous",
-                    "altruistic",
                     "ambitious",
                     "confident",
                     "daring",
@@ -1735,7 +1729,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "Your patrol fails to drive away the bear, which keeps possession of the food. However, there were no injuries.",
+                "text": "The patrol fails to drive away the bear, which keeps possession of the food. However, there were no injuries.",
                 "exp": 0,
                 "weight": 20,
                 "relationships": [
@@ -1843,7 +1837,7 @@
         "max_cats": 3,
         "min_max_status": {},
         "weight": 20,
-        "intro_text": "Your patrol catches the scent of a feline - but what kind?",
+        "intro_text": "The patrol catches the scent of a feline - but what kind?",
         "decline_text": "The patrol decides not to pursue the feline.",
         "chance_of_success": 30,
         "success_outcomes": [
@@ -1862,7 +1856,7 @@
                 ]
             },
             {
-                "text": "Your patrol drives away the cougar, and seeks out her den, but her leaf-fall cubs are near full-grown and scatter into the wilderness. Hopefully leaf-bare takes care of them.",
+                "text": "The patrol drives away the cougar, and seeks out her den, but her leaf-fall cubs are near full-grown and scatter into the wilderness. Hopefully leaf-bare takes care of them.",
                 "exp": 30,
                 "weight": 5,
                 "relationships": [
@@ -1896,7 +1890,6 @@
                 "weight": 20,
                 "stat_trait": [
                     "adventurous",
-                    "altruistic",
                     "ambitious",
                     "bloodthirsty",
                     "bold",
@@ -2020,8 +2013,8 @@
         "max_cats": 6,
         "min_max_status": {},
         "weight": 20,
-        "intro_text": "Your patrol catches the scent of a feline - but what kind?",
-        "decline_text": "Your patrol decides not to pursue the feline.",
+        "intro_text": "The patrol catches the scent of a feline - but what kind?",
+        "decline_text": "The patrol decides not to pursue the feline.",
         "chance_of_success": 10,
         "success_outcomes": [
             {
@@ -2073,7 +2066,6 @@
                 "weight": 20,
                 "stat_trait": [
                     "adventurous",
-                    "altruistic",
                     "ambitious",
                     "bloodthirsty",
                     "bold",
@@ -2175,8 +2167,8 @@
         "max_cats": 1,
         "min_max_status": {},
         "weight": 20,
-        "intro_text": "Your patrol catches the scent of a feline - but what kind?",
-        "decline_text": "Your patrol decides not to pursue the feline.",
+        "intro_text": "The patrol catches the scent of a feline - but what kind?",
+        "decline_text": "The patrol decides not to pursue the feline.",
         "chance_of_success": 20,
         "success_outcomes": [
             {
@@ -2214,7 +2206,6 @@
                 "weight": 20,
                 "stat_trait": [
                     "adventurous",
-                    "altruistic",
                     "ambitious",
                     "bloodthirsty",
                     "bold",
@@ -2324,8 +2315,8 @@
         "max_cats": 3,
         "min_max_status": {},
         "weight": 20,
-        "intro_text": "Your patrol catches the scent of a feline - but what kind?",
-        "decline_text": "Your patrol decides not to pursue the feline.",
+        "intro_text": "The patrol catches the scent of a feline - but what kind?",
+        "decline_text": "The patrol decides not to pursue the feline.",
         "chance_of_success": 60,
         "success_outcomes": [
             {
@@ -2343,7 +2334,7 @@
                 ]
             },
             {
-                "text": "Your patrol drives away the bobcat, and seeks out her den, but her leaf-fall cubs are near full-grown and scatter into the wilderness. Hopefully leaf-bare takes care of them, but if c_n spots them, they won't hesitate.",
+                "text": "The patrol drives away the bobcat, and seeks out her den, but her leaf-fall cubs are near full-grown and scatter into the wilderness. Hopefully leaf-bare takes care of them, but if c_n spots them, they won't hesitate.",
                 "exp": 30,
                 "weight": 5,
                 "relationships": [
@@ -2377,7 +2368,6 @@
                 "weight": 20,
                 "stat_trait": [
                     "adventurous",
-                    "altruistic",
                     "ambitious",
                     "bloodthirsty",
                     "bold",
@@ -2492,8 +2482,8 @@
         "max_cats": 6,
         "min_max_status": {},
         "weight": 20,
-        "intro_text": "Your patrol catches the scent of a feline - but what kind?",
-        "decline_text": "Your patrol decides not to pursue the feline.",
+        "intro_text": "The patrol catches the scent of a feline - but what kind?",
+        "decline_text": "The patrol decides not to pursue the feline.",
         "chance_of_success": 30,
         "success_outcomes": [
             {
@@ -2545,7 +2535,6 @@
                 "weight": 20,
                 "stat_trait": [
                     "adventurous",
-                    "altruistic",
                     "ambitious",
                     "bloodthirsty",
                     "bold",
@@ -2660,8 +2649,8 @@
         "max_cats": 1,
         "min_max_status": {},
         "weight": 20,
-        "intro_text": "Your patrol catches the scent of a feline - but what kind?",
-        "decline_text": "Your patrol decides not to pursue the bobcat.",
+        "intro_text": "The patrol catches the scent of a feline - but what kind?",
+        "decline_text": "The patrol decides not to pursue the bobcat.",
         "chance_of_success": 40,
         "success_outcomes": [
             {
@@ -2713,7 +2702,6 @@
                 "weight": 20,
                 "stat_trait": [
                     "adventurous",
-                    "altruistic",
                     "ambitious",
                     "bloodthirsty",
                     "bold",
@@ -2831,7 +2819,7 @@
         },
         "weight": 20,
         "intro_text": "r_c catches scent of a rabbit nearby. It'll be fat in preparation for leaf bare, and if r_c can only avoid the leaves crunching under their paws it's as good as caught.",
-        "decline_text": "Your patrol ignores the rabbit.",
+        "decline_text": "The patrol ignores the rabbit.",
         "chance_of_success": 50,
         "success_outcomes": [
             {
@@ -2877,7 +2865,7 @@
         },
         "weight": 20,
         "intro_text": "app1 catches scent of a rabbit nearby. They look at the leaf litter on the ground - are they good enough to stalk without being heard?",
-        "decline_text": "Your patrol ignores the rabbit.",
+        "decline_text": "The patrol ignores the rabbit.",
         "chance_of_success": 30,
         "success_outcomes": [
             {
@@ -2895,7 +2883,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "Your patrol narrowly misses the rabbit.",
+                "text": "The patrol narrowly misses the rabbit.",
                 "exp": 0,
                 "weight": 20,
                 "prey": ["very_small"]
@@ -2917,7 +2905,7 @@
         },
         "weight": 20,
         "intro_text": "app1 catches scent of a rabbit nearby. p_l nods, and asks them if app1 remembers their tips on stalking on leaf-fall's, well, fallen leaves.",
-        "decline_text": "Your patrol ignores the rabbit.",
+        "decline_text": "The patrol ignores the rabbit.",
         "chance_of_success": 50,
         "success_outcomes": [
             {
@@ -3092,7 +3080,7 @@
                 ]
             },
             {
-                "text": "Your wolves sneak into the hunting grounds, ears rotating as different spots catch their interest. r_c's suggestion proves to be a fruitful hunting ground, one that c_n hasn't used for a while and whose creatures (as predicted, nearly all rabbits) have lost their edge of wariness. It's a good hunt.",
+                "text": "The wolves sneak into the hunting grounds, ears rotating as different spots catch their interest. r_c's suggestion proves to be a fruitful hunting ground, one that c_n hasn't used for a while and whose creatures (as predicted, nearly all rabbits) have lost their edge of wariness. It's a good hunt.",
                 "exp": 20,
                 "weight": 5,
                 "prey": ["large"],
@@ -3125,7 +3113,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "Ah. r_c's suggested hunting grounds don't work out, not that anyone blames them for it.",
+                "text": "Ah. r_c's suggested hunting grounds don't work out, not that anyone blames {PRONOUN/r_c/object} for it.",
                 "exp": 0,
                 "weight": 20,
                 "relationships": [
@@ -3159,7 +3147,7 @@
         "chance_of_success": 50,
         "success_outcomes": [
             {
-                "text": "You've got to take your opportunities as you can find them, so even though the static in the air makes {PRONOUN/r_c/poss} whiskers feel quivery, r_c heads out. {PRONOUN/r_c/subject/CAP} {VERB/r_c/find/finds} a small f_tp_s and pin a f_mp_s down under an oak tree painted with leaf-fall's brilliant colors, heading back to camp well before the storm breaks.",
+                "text": "You've got to take The opportunities as you can find them, so even though the static in the air makes {PRONOUN/r_c/poss} whiskers feel quivery, r_c heads out. {PRONOUN/r_c/subject/CAP} {VERB/r_c/find/finds} a small f_tp_s and pin a f_mp_s down under an oak tree painted with leaf-fall's brilliant colors, heading back to camp well before the storm breaks.",
                 "exp": 15,
                 "weight": 20,
                 "prey": ["medium"]
@@ -3356,7 +3344,7 @@
                 ]
             },
             {
-                "text": "s_c catches a great f_mp_s, and two f_tp_p! But {PRONOUN/s_c/poss} sibling comes up empty pawed. s_c offers to let {PRONOUN/r_c/object} claim the smaller prey as {PRONOUN/r_c/poss} own, but the insulting suggestion just causes a massive argument.",
+                "text": "s_c catches a great f_mp_s, and two f_tp_p! But {PRONOUN/s_c/poss} sibling comes up empty-pawed. s_c offers to let {PRONOUN/r_c/object} claim the smaller prey as {PRONOUN/r_c/poss} own, but the insulting suggestion just causes a massive argument.",
                 "exp": 20,
                 "weight": 20,
                 "prey": ["medium"],
@@ -3568,7 +3556,7 @@
                 ]
             },
             {
-                "text": "s_c catches a great f_mp_s, and two f_tp_p! But their siblings come up empty pawed. s_c offers to let them claim the smaller prey as their own, but the insulting suggestion just causes a massive argument.",
+                "text": "s_c catches a great f_mp_s, and two f_tp_p! But their siblings come up empty-pawed. s_c offers to let them claim the smaller prey as their own, but the insulting suggestion just causes a massive argument.",
                 "exp": 30,
                 "weight": 20,
                 "stat_skill": ["HUNTER,0"],
@@ -3779,7 +3767,7 @@
                 ]
             },
             {
-                "text": "s_c catches a great f_mp_s, and two f_tp_p! But their siblings come up empty pawed. s_c offers to let them claim the smaller prey as their own, but the insulting suggestion just causes a massive argument.",
+                "text": "s_c catches a great f_mp_s, and two f_tp_p! But their siblings come up empty-pawed. s_c offers to let them claim the smaller prey as their own, but the insulting suggestion just causes a massive argument.",
                 "exp": 30,
                 "weight": 20,
                 "stat_skill": ["HUNTER,0"],
@@ -3990,7 +3978,7 @@
                 ]
             },
             {
-                "text": "s_c catches a great f_mp_s, and two f_tp_p! But their siblings come up empty pawed. s_c offers to let them claim the smaller prey as their own, but the insulting suggestion just causes a massive argument.",
+                "text": "s_c catches a great f_mp_s, and two f_tp_p! But their siblings come up empty-pawed. s_c offers to let them claim the smaller prey as their own, but the insulting suggestion just causes a massive argument.",
                 "exp": 30,
                 "weight": 20,
                 "stat_skill": ["HUNTER,0"],
@@ -4201,7 +4189,7 @@
                 ]
             },
             {
-                "text": "s_c catches a great f_mp_s, and two f_tp_p! But their siblings come up empty pawed. s_c offers to let them claim the smaller prey as their own, but the insulting suggestion just causes a massive argument.",
+                "text": "s_c catches a great f_mp_s, and two f_tp_p! But their siblings come up empty-pawed. s_c offers to let them claim the smaller prey as their own, but the insulting suggestion just causes a massive argument.",
                 "exp": 30,
                 "weight": 20,
                 "stat_skill": ["HUNTER,0"],
@@ -5034,7 +5022,7 @@
                 ]
             },
             {
-                "text": "r_c always feels like {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} padding in p_l's footsteps, especially today, watching {PRONOUN/p_l/object} haul back such a good catch of prey for the pack, a contribution that more than makes up for r_c's meagre offerings.",
+                "text": "r_c always feels like {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} padding in p_l's footsteps, especially today, watching {PRONOUN/p_l/object} haul back such a good catch of prey for the Pack, a contribution that more than makes up for r_c's meagre offerings.",
                 "exp": 20,
                 "weight": 5,
                 "prey": ["medium"],
@@ -5066,7 +5054,7 @@
                 "prey": ["very_small"]
             },
             {
-                "text": "r_c comes down with a crippling headache, making {PRONOUN/r_c/object} stagger, dizzy and weak, as {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} helped back to camp.",
+                "text": "r_c comes down with a debilitating headache, making {PRONOUN/r_c/object} stagger, dizzy and weak, as {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} helped back to camp.",
                 "exp": 0,
                 "weight": 10,
                 "injury": [
@@ -5455,7 +5443,7 @@
                 ]
             },
             {
-                "text": "r_c always feels like {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} padding in p_l's footsteps, especially today, watching {PRONOUN/p_l/object} haul back such a good catch of prey for the pack, a contribution that more than makes up for r_c's meagre offerings.",
+                "text": "r_c always feels like {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} padding in p_l's footsteps, especially today, watching {PRONOUN/p_l/object} haul back such a good catch of prey for the Pack, a contribution that more than makes up for r_c's meagre offerings.",
                 "exp": 20,
                 "weight": 5,
                 "prey": ["medium"],
@@ -5487,7 +5475,7 @@
                 "prey": ["very_small"]
             },
             {
-                "text": "r_c comes down with a crippling headache, making {PRONOUN/r_c/object} stagger, dizzy and weak, as {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} helped back to camp.",
+                "text": "r_c comes down with a debilitating headache, making {PRONOUN/r_c/object} stagger, dizzy and weak, as {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} helped back to camp.",
                 "exp": 0,
                 "weight": 10,
                 "injury": [

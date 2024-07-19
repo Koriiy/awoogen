@@ -1,6 +1,6 @@
 [
     {
-        "id": "general_kittypet_thoughts",
+        "id": "general_pet_thoughts",
         "thoughts": [
             "Engages in loaf mode",
             "Cuddles with {PRONOUN/m_c/poss} housefolk",
@@ -76,7 +76,7 @@
         ]
     },
     {
-        "id": "kittypet_shameless_thoughts",
+        "id": "pet_shameless_thoughts",
         "thoughts":[
             "Stole food the second {PRONOUN/m_c/poss} housefolk turned their head",
             "Is sleeping in the cat's bed",
@@ -88,7 +88,7 @@
         ]
     },
     {
-        "id": "kittypet_kitten_and_adolescent_thoughts",
+        "id": "pet_kitten_and_adolescent_thoughts",
         "thoughts": [
             "Is currently trying to figure out how to catch a bird",
             "Plays with a tennis ball",
@@ -106,7 +106,7 @@
         ]
     },
     {
-        "id": "kittypet_adolescent_thoughts",
+        "id": "pet_adolescent_thoughts",
         "thoughts": [
             "Is hogging the bed from {PRONOUN/m_c/poss} siblings",
             "Thinks {PRONOUN/m_c/poss} new collar is uncomfortable",
@@ -117,7 +117,7 @@
         ]
     },
     {
-        "id": "kittypet_adult_thoughts",
+        "id": "pet_adult_thoughts",
         "thoughts": [
             "Is meowing for food",
             "Was wandering in the backyard when a strange noise scared {PRONOUN/m_c/object} back inside",
@@ -134,7 +134,7 @@
         ]
     },
     {
-        "id": "kittypet_senior_thoughts",
+        "id": "pet_senior_thoughts",
         "thoughts": [
             "Is enjoying the sun on {PRONOUN/m_c/poss} back",
             "Is glad that {PRONOUN/m_c/poss} housefolk have taken care of {PRONOUN/m_c/object} for so long",

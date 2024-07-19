@@ -1,18 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: ascii -*-
 import os
+
 import pygame
+import pygame_gui
 
-from scripts.utility import scale
-
-from .Screens import Screens
-
-from scripts.utility import get_text_box_theme, shorten_text_to_fit
 from scripts.cat.cats import Cat
 from scripts.game_structure import image_cache
-import pygame_gui
-from scripts.game_structure.image_button import UIImageButton, UITextBoxTweaked
 from scripts.game_structure.game_essentials import game, screen_x, screen_y, MANAGER
+from scripts.game_structure.ui_elements import UIImageButton, UITextBoxTweaked
+from scripts.utility import get_text_box_theme, shorten_text_to_fit
+from scripts.utility import scale
+from .Screens import Screens
 
 resourcepath = Screens.resourcepath
 class RoleScreen(Screens):
@@ -423,7 +422,7 @@ class RoleScreen(Screens):
     def get_role_blurb(self):
         if self.the_cat.status == "warrior":
             output = f"{self.the_cat.name} is a <b>warrior</b>. Warriors are adult wolves who feed and protect their " \
-                     f"Clan. They are trained to hunt and fight in addition to the ways of the Warrior Code. " \
+                     f"Pack. They are trained to hunt and fight in addition to the ways of the Warrior Code. " \
                      f"Warriors are essential to the survival of a Pack, and usually make up the bulk of it's members. "
         elif self.the_cat.status == "leader":
             output = f"{self.the_cat.name} is the <b>leader</b> of {game.clan.name}Pack. The guardianship of all " \

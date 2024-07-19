@@ -21,30 +21,30 @@
 	"ONYX": "cool",
 	"SUNSTONE": "warm",
 	"MOONSTONE": "cool",
-    "COCOA": "brown",
-    "SPRUCE": "cool",
-    "ISABELLA": "warm",
-    "SUNNY": "warm",
-    "LUNA": "cool",
-    "SNOW": "white",
-    "FROST": "warm",
-    "GOSLING": "brown",
-    "HAZELNUT": "basic",
-    "THISTLE": "warm",
-    "DAISY": "white",
-    "VOID": "monochrome",
-    "REDWOOD": "brown",
-    "PYRITE": "basic",
-    "PEACHY": "coollight"
+  "COCOA": "brown",
+  "SPRUCE": "cool",
+  "ISABELLA": "warm",
+  "SUNNY": "warm",
+  "LUNA": "cool",
+  "SNOW": "white",
+  "FROST": "warm",
+  "GOSLING": "brown",
+  "HAZELNUT": "basic",
+  "THISTLE": "warm",
+  "DAISY": "white",
+  "VOID": "monochrome",
+  "REDWOOD": "brown",
+  "PYRITE": "basic",
+  "PEACHY": "coollight"
   },
   "possible_tints": {
-    "basic": ["none", "gray", "yellow"],
-    "warm": ["pink", "purple", "orange", "red"],
-    "cool": ["blue", "purple", "black", "gray"],
-    "coollight": ["blue", "purple", "gray", "none"],
+    "basic": ["none", "gray", "yellow", "warmdilute"],
+    "warm": ["pink", "purple", "orange", "red", "dilute", "cooldilute"],
+    "cool": ["blue", "purple", "black", "gray", "dilute"],
+    "coollight": ["blue", "purple", "gray", "none", "cooldilute", "dilute"],
     "white": ["yellow", "none"],
-    "monochrome": ["blue", "black", "gray"],
-    "brown": ["yellow", "pink", "purple", "black"]
+    "monochrome": ["blue", "black", "gray", "dilute", "cooldilute"],
+    "brown": ["yellow", "pink", "purple", "black", "dilute", "cooldilute"]
   },
   "tint_colours":
   {
@@ -56,6 +56,13 @@
     "yellow": [250, 248, 225],
     "purple": [235, 225, 244],
     "blue": [218, 237, 245],
+    "none": null
+  },
+  "dilute_tint_colours":
+  {
+    "dilute": [20, 20, 20],
+    "warmdilute": [25, 15, 7],
+    "cooldilute": [7, 15, 25],
     "none": null
   }
 }

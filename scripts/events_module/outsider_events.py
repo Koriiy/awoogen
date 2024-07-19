@@ -2,9 +2,8 @@ import random
 
 from scripts.cat.cats import Cat
 from scripts.cat.history import History
-from scripts.events_module.generate_events import GenerateEvents
-from scripts.game_structure.game_essentials import game
 from scripts.event_class import Single_Event
+from scripts.game_structure.game_essentials import game
 
 
 # ---------------------------------------------------------------------------- #
@@ -16,10 +15,16 @@ class OutsiderEvents:
 
     @staticmethod
     def killing_outsiders(cat: Cat):
+        if "lead_den_outsider_event" in game.clan.clan_settings:
+            if game.clan.clan_settings["lead_den_outsider_event"]:
+                info_dict = game.clan.clan_settings["lead_den_outsider_event"]
+                if cat.ID == info_dict["cat_ID"]:
+                    return
+
         # killing outside cats
         if cat.outside:
             if random.getrandbits(6) == 1 and not cat.dead:
-                death_history = "m_c died outside of the Clan."
+                death_history = "m_c died outside of the Pack."
                 if cat.exiled:
                     text = f'Rumors reach your Pack that the exiled {cat.name} has died recently.'
                 elif cat.status in ['pet', 'loner', 'rogue', 'former Packwolf']:
@@ -31,24 +36,24 @@ class OutsiderEvents:
                     text = f"Will they reach StarPack, even so far away? {cat.name} isn't sure, " \
                            f"but as they drift away, they hope to see " \
                            f"familiar starry fur on the other side."
-                    death_history = "m_c died while being lost and trying to get back to the Clan."
+                    death_history = "m_c died while being lost and trying to get back to the Pack."
 
                 History.add_death(cat, death_text=death_history)
-                cat.die(None) # none is to prevent griefing
+                cat.die()
                 game.cur_events_list.append(
                     Single_Event(text, "birth_death", cat.ID))
                 
     @staticmethod
     def lost_cat_become_outsider(cat: Cat):
         """ 
-        this will be for lost cats becoming kittypets/loners/etc
+        this will be for lost cats becoming pets/loners/etc
         TODO: need to make a unique backstory for these cats so they still have thoughts related to their clan
         """
         if random.getrandbits(7) == 1 and not cat.dead:
-            OutsiderEvents.become_kittypet(cat)
+            OutsiderEvents.become_pet(cat)
 
     @staticmethod
-    def become_kittypet(cat: Cat):
+    def become_pet(cat: Cat):
         # TODO: Make backstory for all of these + for exiled cats
         cat.status = 'pet'
 
