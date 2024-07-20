@@ -1823,12 +1823,12 @@ class SaveAsImage(UIWindow):
                 self.medium_size_button.enable()
                 self.large_size_button.enable()
             elif event.ui_element == self.medium_size_button:
-                self.scale_factor = 4
+                self.scale_factor = 1.5
                 self.small_size_button.enable()
                 self.medium_size_button.disable()
                 self.large_size_button.enable()
             elif event.ui_element == self.large_size_button:
-                self.scale_factor = 6
+                self.scale_factor = 2
                 self.small_size_button.enable()
                 self.medium_size_button.enable()
                 self.large_size_button.disable()

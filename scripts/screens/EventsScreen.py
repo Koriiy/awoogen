@@ -192,6 +192,7 @@ class EventsScreen(Screens):
         self.update_events_display()
 
     def screen_switches(self):
+        resourcepath = Screens.resourcepath
         # On first open, update display events list
         if not self.first_opened:
             self.first_opened = True
@@ -265,7 +266,7 @@ class EventsScreen(Screens):
         self.events_frame = pygame_gui.elements.UIImage(
             scale(pygame.Rect((322, 0), (1068, 740))),
             image_cache.load_image(
-                "resources/images/event_page_frame.png"
+                resourcepath + "images/event_page_frame.png"
             ).convert_alpha(),
             object_id="#events_frame",
             starting_height=2,
@@ -288,7 +289,7 @@ class EventsScreen(Screens):
                 self.alert[f"{event_type}"] = pygame_gui.elements.UIImage(
                     scale(pygame.Rect((20, 48 + y_pos), (8, 44))),
                     pygame.transform.scale(
-                        image_cache.load_image("resources/images/alert_mark.png"), (8, 44)
+                        image_cache.load_image(resourcepath + "images/alert_mark.png"), (8, 44)
                     ),
                     container=self.full_event_display_container,
                     object_id=f"alert_mark_{event_type}",
@@ -420,6 +421,7 @@ class EventsScreen(Screens):
         ]
 
     def update_events_display(self):
+        resourcepath = Screens.resourcepath
         """
         Kills and recreates the event display, updates the clan info, sets the event display scroll position if it was
         previously saved
@@ -475,7 +477,7 @@ class EventsScreen(Screens):
 
             # SHADING
             if i % 2 == 0:
-                image_path = "resources/images/shading"
+                image_path = resourcepath + "images/shading"
                 if game.settings["dark mode"]:
                     image_path += "_dark.png"
                 else:

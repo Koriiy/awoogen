@@ -228,7 +228,7 @@ class ChooseMentorScreen(Screens):
         self.filter_seperator = pygame_gui.elements.UIImage(
             scale(pygame.Rect((995, 15), (20, 420))),
             pygame.transform.scale(
-                image_cache.load_image("resources/images/vertical_bar.png"),
+                image_cache.load_image(resourcepath + "images/vertical_bar.png"),
                 scale_dimentions((20, 420))
             ),
             container=self.filter_container

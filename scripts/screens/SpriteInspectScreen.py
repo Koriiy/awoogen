@@ -217,7 +217,7 @@ class SpriteInspectScreen(Screens):
         self.the_cat = Cat.fetch_cat(game.switches["cat"])
 
         self.cat_elements["platform"] = pygame_gui.elements.UIImage(
-            scale(pygame.Rect((240, 200), (1120, 980))),
+            scale(pygame.Rect((240, 300), (1120, 980))),
             pygame.transform.scale(self.get_platform(), scale_dimentions((1120, 701))),
             manager=MANAGER,
         )
@@ -410,8 +410,8 @@ class SpriteInspectScreen(Screens):
         )
 
         self.cat_elements["cat_image"] = pygame_gui.elements.UIImage(
-            scale(pygame.Rect((450, 200), (700, 700))),
-            pygame.transform.scale(self.cat_image, scale_dimentions((700, 700))),
+            scale(pygame.Rect((350, 200), (800, 800))),
+            pygame.transform.scale(self.cat_image, scale_dimentions((800, 800))),
         )
 
     def determine_previous_and_next_cat(self):
@@ -594,9 +594,5 @@ class SpriteInspectScreen(Screens):
 
     def generate_image_to_save(self):
         """Generates the image to save, with platform if needed."""
-        if self.platform_shown:
-            full_image = self.get_platform()
-            full_image.blit(self.cat_image, (15, 0))
-            return full_image
-        else:
-            return self.cat_image
+        #KORI - fix when platforms are
+        return self.cat_image
