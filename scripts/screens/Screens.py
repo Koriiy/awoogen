@@ -362,7 +362,7 @@ class Screens():
                                 scale(pygame.Rect((80, 120), (20, 250))),
                                 pygame.transform.scale(
                                     image_cache.load_image(
-                                        "resources/images/vertical_bar.png").convert_alpha(),
+                                        self.resourcepath + "images/vertical_bar.png").convert_alpha(),
                                     (380, 70)),
                                 visible=True,
                                 starting_height=1,
