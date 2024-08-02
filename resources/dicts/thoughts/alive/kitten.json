@@ -25,6 +25,9 @@
         ],
         "random_status_constraint": [
             "elder"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -121,6 +124,9 @@
         ],
         "main_trait_constraint": [
             "bouncy"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -143,6 +149,9 @@
         ],
         "main_trait_constraint": [
             "bullying"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -163,6 +172,9 @@
         ],
         "main_trait_constraint": [
             "charming"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -183,10 +195,12 @@
             "Is sneaking into the leader's nest",
             "Sticks {PRONOUN/m_c/poss} paw into an old snake hole",
             "Isn't afraid of the dark at all"
-
         ],
         "main_trait_constraint": [
             "fearless"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -215,6 +229,9 @@
         ],
         "main_trait_constraint": [
             "daydreamer"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -275,6 +292,9 @@
         ],
         "main_trait_constraint": [
             "skittish"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -282,7 +302,7 @@
         "thoughts": [
             "Is too good at playing hide-and-seek",
             "Is asked to speak up",
-          "Plays quietly with a feather in front of the nursery alone",
+            "Plays quietly with a feather in front of the nursery alone",
             "Is very excited for {PRONOUN/m_c/poss} nap",
             "Doesn't have much to say",
             "Is happy being alone sometimes",
@@ -290,9 +310,9 @@
             "Yips quietly to {PRONOUN/m_c/self}",
             "Doesn't make a sound today",
             "Is acting very shy",
-          "Plays by {PRONOUN/m_c/self}",
+            "Plays by {PRONOUN/m_c/self}",
             "Is yawning again",
-          "Hides behind r_c",
+            "Hides behind r_c",
             "Doesn't want to play right now",
             "Is very sleepy",
             "Doesn't like to howl",
@@ -300,6 +320,9 @@
         ],
         "main_trait_constraint": [
             "quiet"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -325,20 +348,23 @@
         ],
         "main_trait_constraint": [
             "sweet"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
         "id": "unruly_kit",
         "thoughts": [
-          "Thinks about mischief",
-          "Wonders what trouble {PRONOUN/m_c/subject} can create",
-          "Wonders about the unknown",
+            "Thinks about mischief",
+            "Wonders what trouble {PRONOUN/m_c/subject} can create",
+            "Wonders about the unknown",
             "Is planning to be naughty",
             "Is thinking about being in trouble",
             "Is trying to get out of trouble",
             "Is scrambling the medicine wolf's herbs",
             "Is thinking of how to cause trouble",
-          "Plans to annoy an elder",
+            "Plans to annoy an elder",
             "Is trying very hard to look innocent",
             "Is thinking about play-fighting with {PRONOUN/m_c/poss} littermates",
             "Is putting thorns in r_c's bedding",
@@ -351,17 +377,20 @@
             "Is up to no good... again",
             "Splashes around in a puddle, getting r_c all wet",
             "Is not allowed to leave the nursery for the rest of the day after pranking r_c",
-          "Tries to scare r_c",
+            "Tries to scare r_c",
             "Is covered in mud"
         ],
         "main_trait_constraint": [
             "unruly"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
         "id": "shy_kit",
         "thoughts": [
-          "Feels alone",
+            "Feels alone",
             "Wishes {PRONOUN/m_c/subject} had friends",
             "Wants someone to talk to",
             "Doesn't understand why {PRONOUN/m_c/subject} {VERB/m_c/are/is} always left out",
@@ -375,6 +404,9 @@
         ],
         "main_trait_constraint": [
             "shy"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -392,6 +424,9 @@
         ],
         "main_trait_constraint": [
             "attention-seeker"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -411,6 +446,9 @@
         ],
         "main_trait_constraint": [
             "noisy"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -427,6 +465,9 @@
         ],
         "main_trait_constraint": [
             "self-conscious"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -445,6 +486,9 @@
         ],
         "main_trait_constraint": [
             "polite"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -465,6 +509,9 @@
         ],
         "main_trait_constraint": [
             "know-it-all"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -483,7 +530,9 @@
         ],
         "main_trait_constraint": [
             "bossy"
+        ],
+        "random_living_status": [
+            "living"
         ]
     }
 ]
-

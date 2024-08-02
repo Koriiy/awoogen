@@ -12,7 +12,7 @@
         "random_status_constraint": [
             "kitten"
         ],
-        "random_living_status":[
+        "random_living_status": [
             "living"
         ]
     },
@@ -56,15 +56,15 @@
         "random_status_constraint": [
             "apprentice"
         ],
-        "random_living_status":[
+        "random_living_status": [
             "living"
         ]
     },
     {
-        "id":"leader_alive_deputy",
-        "thoughts":[
+        "id": "leader_alive_deputy",
+        "thoughts": [
             "Tries to set a good example for the deputy",
-          "Has been letting {PRONOUN/m_c/poss} deputy call the shots recently and is proud of {PRONOUN/r_c/poss} initiative",
+            "Has been letting {PRONOUN/m_c/poss} deputy call the shots recently and is proud of {PRONOUN/r_c/poss} initiative",
             "Needs to talk to r_c about something",
             "Wants to go on patrol with r_c so they can have a chat",
             "Is grateful for r_c's support",
@@ -75,7 +75,7 @@
         "random_status_constraint": [
             "deputy"
         ],
-        "random_living_status":[
+        "random_living_status": [
             "living"
         ]
     },
@@ -120,11 +120,11 @@
             "Doesn't understand StarPack's resentment towards {PRONOUN/m_c/object}",
             "Is thinking about taking pups from another Pack",
             "Encourages warriors to destroy other Pack's herb supplies",
-            "Demands the warriors train with their fangs bared",
+            "Demands the warriors train with their jaws open",
             "Considers exiling elders from now on",
             "Thinks about driving out an opposing Pack",
             "Glares over the Pack from the leader's den",
-            "Is snapping at a 'disloyal' warrior",
+            "Is slashing at a 'disloyal' warrior",
             "Swears the Pack is plotting against {PRONOUN/m_c/object}"
         ],
         "main_trait_constraint": [
@@ -167,6 +167,9 @@
         ],
         "main_trait_constraint": [
             "childish"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -176,6 +179,9 @@
         ],
         "main_trait_constraint": [
             "cold"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -188,7 +194,6 @@
             "insecure"
         ]
     },
-
     {
         "id": "strange_leader",
         "thoughts": [
@@ -212,8 +217,8 @@
         ]
     },
     {
-        "id":"leader_meanie_deputy_meanie",
-        "thoughts":[
+        "id": "leader_meanie_deputy_meanie",
+        "thoughts": [
             "Is pleased with r_c's ruthless treatment of the warriors",
             "Is sparring violently with r_c, both drawing blood",
             "Shows r_c how to lead with fear and demand respect",
@@ -226,7 +231,7 @@
         "random_status_constraint": [
             "deputy"
         ],
-        "random_living_status":[
+        "random_living_status": [
             "living"
         ],
         "main_trait_constraint": [
@@ -255,7 +260,7 @@
         "random_status_constraint": [
             "medicine cat"
         ],
-        "random_living_status":[
+        "random_living_status": [
             "living"
         ],
         "main_trait_constraint": [
@@ -272,8 +277,8 @@
         ]
     },
     {
-        "id":"leader_nice_deputy_meanie",
-        "thoughts":[
+        "id": "leader_nice_deputy_meanie",
+        "thoughts": [
             "Is wondering if {PRONOUN/m_c/subject} made a mistake by appointing r_c",
             "Is trying to teach r_c to lead with kindness",
             "Is doing all {PRONOUN/m_c/subject} can to make r_c a better wolf",
@@ -292,7 +297,7 @@
         "random_status_constraint": [
             "deputy"
         ],
-        "random_living_status":[
+        "random_living_status": [
             "living"
         ],
         "random_trait_constraint": [
@@ -302,9 +307,4 @@
             "vengeful"
         ]
     }
-   
 ]
-
-
-
- 

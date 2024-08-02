@@ -535,62 +535,101 @@ class SpriteInspectScreen(Screens):
 
     def get_platform(self):
         the_cat = Cat.all_cats.get(game.switches["cat"], game.clan.instructor)
-
-        light_dark = "light"
-        if game.settings["dark mode"]:
-            light_dark = "dark"
-
-        available_biome = ["Forest", "Mountainous", "Plains", "Beach"]
         biome = game.clan.biome
+        platformsheet = pygame.image.load("resources/images/platforms.png").convert_alpha()
 
-        if biome not in available_biome:
-            biome = available_biome[0]
-        if the_cat.age == "newborn" or the_cat.not_working():
-            biome = "nest"
+        biome_list = {"Forest": [0, 0, 480, 420], "Mountainous": [0, 420, 480, 420], "Wetlands": [0, 840, 480, 420],
+            "Plains": [1920, 0, 480, 420], "Beach": [1920, 420, 480, 420], "Desert": [1920, 840, 480, 420],
+            "Sick Nest": [0, 1260, 480, 420], "StarPack": [2880, 1260, 480, 420], "Dark Forest": [3360, 1260, 480, 420]}
+        season_list = {"Newleaf": [0, 0, 0, 0], "Greenleaf": [480, 0, 0, 0], "Leaf-fall": [960, 0, 0, 0], "Leaf-bare": [1440, 0, 0, 0]}
+        sick_list = {"Forest": [0, 0, 0, 0], "Mountainous": [480, 0, 0, 0], "Wetlands": [960, 0, 0, 0],
+            "Plains": [1440, 0, 0, 0], "Beach": [1920, 0, 0, 0], "Desert": [2400, 0, 0, 0]}
 
-        biome = biome.lower()
-
-        platformsheet = pygame.image.load(
-            "resources/images/platforms.png"
-        ).convert_alpha()
-
-        order = ["beach", "forest", "mountainous", "nest", "plains", "SC/DF"]
-
-        offset = 0
-        if light_dark == "light":
-            offset = 80
-
-        if the_cat.df:
-            biome_platforms = platformsheet.subsurface(
-                pygame.Rect(0, order.index("SC/DF") * 70, 640, 70)
-            )
-            return biome_platforms.subsurface(pygame.Rect(0 + offset, 0, 80, 70))
+        platform_location = [0, 0, 0, 0]
+        if the_cat.not_working() or the_cat.age == "newborn":
+            for x in range(4):
+                platform_location[x] += biome_list["Sick Nest"][x]
+                platform_location[x] += sick_list[biome][x]
+            biome_platforms = platformsheet.subsurface(pygame.Rect(platform_location)).convert_alpha()
+        elif the_cat.df:
+            for x in range(4):
+                platform_location[x] += biome_list["Dark Forest"][x]
+            biome_platforms = platformsheet.subsurface(pygame.Rect(platform_location)).convert_alpha()
         elif the_cat.dead or game.clan.instructor.ID == the_cat.ID:
-            biome_platforms = platformsheet.subsurface(
-                pygame.Rect(0, order.index("SC/DF") * 70, 640, 70)
-            )
-            return biome_platforms.subsurface(pygame.Rect(160 + offset, 0, 80, 70))
-        else:
-            biome_platforms = platformsheet.subsurface(
-                pygame.Rect(0, order.index(biome) * 70, 640, 70)
-            ).convert_alpha()
-            season_x = {
-                "greenleaf": 0 + offset,
-                "leafbare": 160 + offset,
-                "leaffall": 320 + offset,
-                "newleaf": 480 + offset,
+            glitter = {
+                'DAYLIGHT': (120, 215, 216),
+                'ICE': (233, 255, 255),
+                'NAVY': (47, 63, 114),
+                'RAIN': (87, 145, 178),
+                'SAPPHIRE': (15, 21, 114),
+                'SEAFOAM': (179, 239, 220),
+                'SKY': (124, 216, 217),
+                'STORM': (142, 168, 199),
+                'TEAL': (88, 186, 185), 
+                'ALMOND': (163, 95, 29),
+                'BEAR': (111, 68, 43),
+                'CASHEW': (237, 189, 151),
+                'HAZEL': (160, 183, 98),
+                'LATTE': (185, 134, 85),
+                'SPARROW': (110, 78, 62),
+                'BLACK': (30, 33, 35),
+                'GULL': (164, 180, 183), 
+                'SILVER': (232, 240, 241),
+                'SMOKE': (214, 224, 226),
+                'WHITE': (255, 255, 255),
+                'EMERALD': (81, 150, 48),
+                'FERN': (189, 212, 148),
+                'FOREST': (154, 184, 102),
+                'LEAF': (113, 168, 86),
+                'LIME': (203, 232, 103), 
+                'MINT': (229, 250, 196),
+                'HARVEST': (255, 157, 20),
+                'PEACH': (237, 184, 137),
+                'PUMPKIN': (239, 137, 27),
+                'TANGELO': (206, 103, 17),
+                'TWILIGHT': (222, 122, 10),
+                'AMETHYST': (170, 114, 199),
+                'DAWN': (255, 251, 205),
+                'DUSK': (168, 79, 94),
+                'LILAC': (218, 199, 228),
+                'MIDNIGHT': (90, 60, 99),
+                'VIOLET': (141, 77, 157),
+                'BUBBLEGUM': (255, 210, 210), 
+                'PINK': (235, 183, 189),
+                'ROUGE': (245, 133, 94),
+                'RUBY': (174, 0, 0),
+                'SCARLET': (225, 77, 73),
+                'AMBER': (244, 220, 55),
+                'LEMON': (247, 240, 127),
+                'PALE': (255, 251, 205),
+                'SUNBEAM': (249, 236, 162),
+                'SUNLIGHT': (239, 232, 121), 
+                'WHEAT': (223, 225, 159)
             }
+            for x in range(4):
+                platform_location[x] += biome_list["StarPack"][x]
+            biome_platforms = platformsheet.subsurface(pygame.Rect(platform_location)).convert_alpha()
+            biome_platforms.fill(glitter[the_cat.pelt.eye_colour], special_flags=pygame.BLEND_RGB_MULT)
+            
+        else:
+            for x in range(4):
+                platform_location[x] += biome_list[biome][x]
+                platform_location[x] += season_list[game.clan.current_season][x]
+            biome_platforms = platformsheet.subsurface(pygame.Rect(platform_location)).convert_alpha()
 
-            return biome_platforms.subsurface(
-                pygame.Rect(
-                    season_x.get(
-                        game.clan.current_season.lower(), season_x["greenleaf"]
-                    ),
-                    0,
-                    80,
-                    70,
-                )
-            )
+        if game.settings["dark mode"]:
+            dark_tint_list = {"Moonlight": (232, 223, 253), "Seaside": (210, 234, 232), "ClassicClangen": (239, 229, 206)}
+            dark_tint = "Moonlight"
+            if game.settings["Moonlight"]:
+                dark_tint = "Moonlight"
+            elif game.settings["Seaside"]:
+                dark_tint = "Seaside"
+            elif game.settings["ClassicClangen"]:
+                dark_tint = "ClassicClangen"
+            biome_platforms.fill(dark_tint_list[dark_tint], special_flags=pygame.BLEND_RGB_MULT)
+        
+        
+        return biome_platforms
 
     def generate_image_to_save(self):
         """Generates the image to save, with platform if needed."""

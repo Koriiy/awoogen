@@ -304,6 +304,9 @@
     "random_status_constraint": [
       "medicine cat",
       "medicine cat apprentice"
+    ],
+    "random_living_status": [
+        "living"
     ]
   },
   {
@@ -389,6 +392,9 @@
     "random_status_constraint": [
       "medicine cat",
       "medicine cat apprentice"
+    ],
+    "random_living_status": [
+      "living"
     ]
   },
   {
@@ -1288,6 +1294,9 @@
       "m_c": [
         "recurring shock"
       ]
-    }
+    },
+    "random_living_status": [
+      "living"
+    ]
   }
 ]
