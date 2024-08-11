@@ -318,12 +318,6 @@ class HandleShortEvents:
             if acc not in ["WILD", "PLANT", "COLLAR"]:
                 acc_list.append(acc)
 
-        if hasattr(self.main_cat.pelt, "scars"):
-            if "NOTAIL" in self.main_cat.pelt.scars or "HALFTAIL" in self.main_cat.pelt.scars:
-                for acc in pelts.tail_accessories:
-                    if acc in acc_list:
-                        acc_list.remove(acc)
-
         if acc_list:
             self.main_cat.pelt.accessory = random.choice(acc_list)
 
