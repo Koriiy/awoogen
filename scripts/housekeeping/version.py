@@ -9,7 +9,7 @@ from platformdirs import user_data_dir
 
 logger = logging.getLogger(__name__)
 
-VERSION_NAME = "Seaside v2.1"
+VERSION_NAME = "Seaside v2.4"
 # This is saved in the Pack save-file, and is used for save-file converstion.
 SAVE_VERSION_NUMBER = 3
 
