@@ -6,6 +6,7 @@ import pygame_gui
 
 from scripts.cat.cats import create_example_cats, create_cat, Cat
 from scripts.cat.names import names
+from scripts.clan import Pack
 from scripts.game_structure import image_cache
 from scripts.game_structure.game_essentials import (
     game,

@@ -336,7 +336,7 @@
     "location": ["any"],
     "season": ["any"],
     "weight": 10,
-    "event_text": "m_c misstepped and slipped from a rock, but landed on {PRONOUN/m_c/poss} feet nimbly, {PRONOUN/m_c/poss} Clanmates commenting on the show of dexterity.",
+    "event_text": "m_c misstepped and slipped from a rock, but landed on {PRONOUN/m_c/poss} feet nimbly, {PRONOUN/m_c/poss} Packmates commenting on the show of dexterity.",
     "m_c": {
       "age": ["any"],
       "status": ["any"]
@@ -453,7 +453,7 @@
     "season": ["any"],
     "tags": ["skill_trait_required"],
     "weight": 10,
-    "event_text": "m_c's dreams are filled with flashing teeth and blood-scent. {PRONOUN/m_c/subject/CAP} {VERB/m_c/wake/wakes} up screaming.",
+    "event_text": "m_c's dreams are filled with flashing fangs and blood-scent. {PRONOUN/m_c/subject/CAP} {VERB/m_c/wake/wakes} up screaming.",
     "m_c": {
       "age": ["any"],
       "status": ["any"],
@@ -479,7 +479,7 @@
     "season": ["leaf-fall"],
     "tags": ["clan:kitten"],
     "weight": 20,
-    "event_text": "The older cats look fondly upon the kits who are dashing in and out of leaf piles at the edge of camp.",
+    "event_text": "The older wolves look fondly upon the pups who are dashing in and out of leaf piles at the edge of camp.",
     "m_c": {
       "age": ["senior", "senior adult"]
     },
@@ -555,7 +555,7 @@
     "sub_type": ["accessory"],
     "weight": 10,
     "event_text": "m_c always seems to have acc_plural stuck in {PRONOUN/m_c/poss} fur.",
-    "new_accessory": ["HERBS","PETALS","DRY HERBS", "DRY CATMINT", "DRY LAURELS", "DRY NETTLES", "RED FEATHERS", "BLUE FEATHERS","JAY FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS"],
+    "new_accessory": ["HERBS", "PETALS", "PURPLE PETALS", "GOLD HERBS", "DRY HERBS", "DRY CATMINT", "DRY LAURELS", "DRY NETTLES", "RED FEATHERS", "BLUE FEATHERS","JAY FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS", "CROW FEATHERS", "DOVE FEATHERS", "CLOVER", "DAISY"],
     "m_c":{
       "age": ["any"],
       "status": ["any"]
@@ -601,7 +601,7 @@
     "sub_type": ["accessory"],
     "weight": 20,
     "event_text": "m_c finds acc_plural while out on a walk and decides to keep them.",
-    "new_accessory": ["WILD","PLANT"],
+    "new_accessory": ["WILD", "PLANT"],
     "m_c":{
       "age": ["any"],
       "status": ["any"]
@@ -666,7 +666,7 @@
     "sub_type": ["ceremony", "accessory"],
     "weight": 20,
     "event_text": "m_c decides to pick something to adorn {PRONOUN/m_c/poss} pelt as celebration.",
-    "new_accessory": ["WILD","PLANT"],
+    "new_accessory": ["WILD", "PLANT"],
     "m_c":{
       "age": ["any"],
       "status": ["any"]
@@ -679,7 +679,7 @@
     "sub_type": ["ceremony", "accessory"],
     "weight": 20,
     "event_text": "r_c gives m_c something to adorn {PRONOUN/m_c/poss} pelt as congratulations.",
-    "new_accessory": ["WILD","PLANT"],
+    "new_accessory": ["WILD", "PLANT"],
     "m_c":{
       "age": ["any"],
       "status": ["any"]
@@ -712,7 +712,7 @@
     "sub_type": ["accessory"],
     "weight": 20,
     "event_text": "m_c found a mysterious acc_singular growing in the frost and decided to wear it.",
-    "new_accessory": ["FORGET ME NOTS", "BLUEBELLS", "LILY OF THE VALLEY", "SNAPDRAGON", "POPPY", "ORANGE POPPY", "WHITE POPPY", "CYAN POPPY", "PINK POPPY"],
+    "new_accessory": ["FORGET ME NOTS", "BLUEBELLS", "LILY OF THE VALLEY", "SNAPDRAGON", "POPPY", "ORANGE POPPY", "WHITE POPPY", "CYAN POPPY", "PINK POPPY", "ROSE", "WHITE ROSE", "SAKURA"],
     "m_c":{
       "age": ["any"],
       "status": ["any"]
@@ -1140,7 +1140,7 @@
         "season": ["leaf-fall"],
       "tags": ["clan:warrior"],
         "weight": 20,
-        "event_text": "m_c and r_c lead a small leaf-gathering hunt, which the adult cats watch with amused purrs.",
+        "event_text": "m_c and r_c lead a small leaf-gathering hunt, which the adult wolves watch with amused grins.",
         "m_c": {
             "status": ["kitten"]
         },
@@ -1230,7 +1230,7 @@
         "season": ["any"],
         "sub_type": ["war"],
         "weight": 10,
-        "event_text": "m_c is being comforted by r_c after having nightmares about the big, bad o_c_n cats.",
+        "event_text": "m_c is being comforted by r_c after having nightmares about the big, bad o_c_n wolves.",
         "m_c": {
             "status": ["kitten"],
             "relationship_status": ["child/parent"]
@@ -1259,7 +1259,7 @@
         "sub_type": ["accessory"],
         "weight": 15,
         "event_text": "m_c was playing with acc_plural earlier, and decides to wear some of them.",
-        "new_accessory": ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS"],
+        "new_accessory": ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS", "CROW FEATHERS", "DOVE FEATHERS"],
         "m_c": {
           "status": ["kitten"]
         }
@@ -1271,7 +1271,7 @@
         "sub_type": ["accessory"],
         "weight": 15,
         "event_text": "m_c sneaked out of camp, and brought back with them some acc_singular from when {PRONOUN/m_c/poss} fur got snagged in a bush.",
-        "new_accessory": ["HOLLY", "JUNIPER", "RASPBERRY"],
+        "new_accessory": ["HOLLY", "JUNIPER", "RASPBERRY", "GORSE"],
         "m_c": {
             "status": ["kitten"]
         }
@@ -1295,7 +1295,7 @@
       "sub_type": ["accessory"],
       "weight": 15,
       "event_text": "As the wind blows many petals in the camp, m_c picks a few to decorate {PRONOUN/m_c/self}.",
-      "new_accessory": ["PETALS"],
+      "new_accessory": ["PETALS", "PURPLE PETALS"],
       "m_c": {
         "status": ["kitten"]
       }
@@ -1407,7 +1407,7 @@
         "sub_type": ["accessory"],
         "weight": 10,
         "event_text": "No matter how hard r_c tries, there's always something stuck in m_c's fur.",
-        "new_accessory": ["HERBS", "PETALS", "DRY HERBS", "DRY CATMINT", "DRY NETTLES", "DRY LAURELS"],
+        "new_accessory": ["HERBS", "PETALS", "DRY HERBS", "DRY CATMINT", "DRY NETTLES", "DRY LAURELS", "GOLD HERBS", "CLOVER", "DAISY", "IVY"],
         "m_c": {
           "age": ["kitten"],
           "relationship_status": ["child/parent"]
@@ -1652,7 +1652,7 @@
     "sub_type": ["accessory", "romance"],
     "weight": 20,
     "event_text": "m_c and r_c were chatting about their day and the chores they finished when r_c mentioned {PRONOUN/r_c/subject} liked the smell of wild fruit. m_c decides to wear acc_plural on {PRONOUN/m_c/poss} pelt, hoping that r_c notices {PRONOUN/m_c/object}.",
-    "new_accessory": ["BLUE BERRIES", "HOLLY", "RASPBERRY"],
+    "new_accessory": ["BLUE BERRIES", "HOLLY", "RASPBERRY", "JUNIPER"],
     "m_c": {
       "age": ["adolescent"],
       "status": ["apprentice"]
@@ -1704,8 +1704,8 @@
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 20,
-    "event_text": "m_c is nearly blindsided by r_c as {PRONOUN/r_c/subject} {VERB/r_c/walk/walks} into camp after a long training day, listening to the kit squeak about a type of feather. r_c leads m_c to the nursery, where {PRONOUN/r_c/subject} carefully put acc_plural in m_c's fur.",
-    "new_accessory": ["BLUE FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS", "JAY FEATHERS", "RED FEATHERS"],
+    "event_text": "m_c is nearly blindsided by r_c as {PRONOUN/r_c/subject} {VERB/r_c/walk/walks} into camp after a long training day, listening to the pup squeak about a type of feather. r_c leads m_c to the nursery, where {PRONOUN/r_c/subject} carefully put acc_plural in m_c's fur.",
+    "new_accessory": ["BLUE FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS", "JAY FEATHERS", "RED FEATHERS", "DOVE FEATHERS", "CROW FEATHERS"],
     "m_c": {
         "age": ["adolescent"]
     },
@@ -1890,7 +1890,7 @@
     "location": ["any"],
     "season": ["any"],
     "weight": 10,
-    "event_text": "m_c was loitering around o_c_n's border, looking for a specific cat.",
+    "event_text": "m_c was loitering around o_c_n's border, looking for a specific wolf.",
     "m_c": {
         "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
     }
@@ -1915,7 +1915,7 @@
     "season": ["any"],
     "tags": [],
     "weight": 10,
-    "event_text": "m_c was seen arguing, and borderline-fighting, with a cat from o_c_n.",
+    "event_text": "m_c was seen arguing, and borderline-fighting, with a wolf from o_c_n.",
     "m_c": {
         "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
     },
@@ -1929,7 +1929,7 @@
     "location": ["any"],
     "season": ["any"],
     "weight": 10,
-    "event_text": "m_c was seen speaking calmly to a cat from o_c_n.",
+    "event_text": "m_c was seen speaking calmly to a wolf from o_c_n.",
     "m_c": {
         "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
     },
@@ -1995,7 +1995,7 @@
     "location": ["any"],
     "season": ["any"],
     "weight": 10,
-    "event_text": "m_c was seen talking calmly to a loner, before both cats went their separate ways.",
+    "event_text": "m_c was seen talking calmly to a loner, before both wolves went their separate ways.",
     "m_c": {
         "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
     },
@@ -2108,7 +2108,7 @@
     "season": ["any"],
     "sub_type": ["war"],
     "weight": 15,
-    "event_text": "m_c goes to o_c_n in an attempt to ease the tension of war between the Clans: it goes well, and o_c_n begins to draw back from c_n's territory!",
+    "event_text": "m_c goes to o_c_n in an attempt to ease the tension of war between the Packs: it goes well, and o_c_n begins to draw back from c_n's territory!",
     "m_c": {
       "age":["any"],
       "status":["mediator", "mediator apprentice"],
@@ -2124,7 +2124,7 @@
     "season": ["any"],
     "sub_type": ["war"],
     "weight": 20,
-    "event_text": "m_c is checking in on every cat in the camp to make sure everyone is staying healthy in the midst of war.",
+    "event_text": "m_c is checking in on every wolf in the camp to make sure everyone is staying healthy in the midst of war.",
     "m_c": {
       "age":["any"],  
       "status": ["mediator", "mediator apprentice"],
@@ -2146,7 +2146,7 @@
     "season": ["any"],
     "sub_type": ["war"],
     "weight": 15,
-    "event_text": "m_c goes to o_c_n in an attempt to ease the tension of war between the Clans: it doesn't go well, and o_c_n further advances in c_n's territory.",
+    "event_text": "m_c goes to o_c_n in an attempt to ease the tension of war between the Packs: it doesn't go well, and o_c_n further advances in c_n's territory.",
     "m_c":{
       "age":["any"],
       "status":["mediator", "mediator apprentice"]
@@ -2160,7 +2160,7 @@
     "location": ["any"],
     "season": ["any"],
     "weight": 10,
-    "event_text": "m_c pulls r_c to the side, quietly asking {PRONOUN/r_c/object} abou {PRONOUN/r_c/poss} crush on a fellow Clanmate.",
+    "event_text": "m_c pulls r_c to the side, quietly asking {PRONOUN/r_c/object} abou {PRONOUN/r_c/poss} crush on a fellow Packmate.",
     "m_c":{
       "status":["mediator", "mediator apprentice"]
     },
@@ -2300,7 +2300,7 @@
     "location": ["any"],
     "season": ["any"],
     "weight": 15,
-    "event_text": "m_c visits the other medicine cats.",
+    "event_text": "m_c visits the other medicine wolves.",
     "m_c": {
         "status": ["medicine cat"]
     },
@@ -2314,7 +2314,7 @@
     "location": ["any"],
     "season": ["any"],
     "weight": 15,
-    "event_text": "m_c visits o_c_n to converse with their medicine cats about an omen StarClan sent.",
+    "event_text": "m_c visits o_c_n to converse with their medicine wolves about an omen StarPack sent.",
     "m_c": {
         "status": ["medicine cat"],
         "skill": ["OMEN,0"]
@@ -2329,7 +2329,7 @@
     "location": ["any"],
     "season": ["any"],
     "weight": 15,
-    "event_text": "m_c visits o_c_n to congratulate them on their new medicine cat.",
+    "event_text": "m_c visits o_c_n to congratulate them on their new medicine wolf.",
     "m_c": {
         "status": ["medicine cat"],
         "skill": ["MEDIATOR,1"]
@@ -2346,7 +2346,7 @@
     "sub_type": ["ceremony", "accessory"],
     "weight": 10,
     "event_text": "r_c presents m_c with acc_plural as a congratulations.",
-    "new_accessory": ["WILD", "PLANT"],
+    "new_accessory": ["PLANT"],
     "m_c": {
       "status": ["medicine cat"]
     },
@@ -2406,7 +2406,7 @@
     "season": ["any"],
     "tags": ["skill_trait_required"],
     "weight": 10,
-    "event_text": "m_c walks into the dreams of {PRONOUN/m_c/poss} Clanmates while everyone sleeps.",
+    "event_text": "m_c walks into the dreams of {PRONOUN/m_c/poss} Packmates while everyone sleeps.",
     "m_c": {
       "status": ["medicine cat"],
       "skill": ["DREAM,2"]
@@ -2418,7 +2418,7 @@
     "season": ["any"],
     "tags": ["skill_trait_required"],
     "weight": 10,
-    "event_text": "m_c tosses in {PRONOUN/m_c/poss} sleep as {PRONOUN/m_c/poss} dreamself pads through the thoughts of {PRONOUN/m_c/poss} Clanmates, picking up snippets of dream_list. {PRONOUN/m_c/subject/CAP} slowly {VERB/m_c/blink/blinks} awake, wondering whose dreams {PRONOUN/m_c/subject} walked in.",
+    "event_text": "m_c tosses in {PRONOUN/m_c/poss} sleep as {PRONOUN/m_c/poss} dreamself pads through the thoughts of {PRONOUN/m_c/poss} Packmates, picking up snippets of dream_list. {PRONOUN/m_c/subject/CAP} slowly {VERB/m_c/blink/blinks} awake, wondering whose dreams {PRONOUN/m_c/subject} walked in.",
     "m_c": {
       "status": ["medicine cat apprentice", "medicine cat"],
       "skill": ["DREAM,2"]
@@ -2441,7 +2441,7 @@
     "location": ["any"],
     "season": ["any"],
     "weight": 15,
-    "event_text": "m_c spends {PRONOUN/m_c/poss} day communing with StarClan, attempting to figure out a recent prophecy.",
+    "event_text": "m_c spends {PRONOUN/m_c/poss} day communing with StarPack, attempting to figure out a recent prophecy.",
     "m_c": {
       "status":["medicine cat", "medicine cat apprentice"],
       "skill": ["PROPHET,2"]
@@ -2467,7 +2467,7 @@
     "location": ["any"],
     "season": ["any"],
     "weight": 15,
-    "event_text": "m_c was seen loudly bickering with the medicine cat of o_c_n.",
+    "event_text": "m_c was seen loudly bickering with the medicine wolf of o_c_n.",
     "m_c":{
       "status": ["medicine cat"]
     },
@@ -2515,7 +2515,7 @@
     "season": ["any"],
     "sub_type": ["war"],
     "weight": 20,
-    "event_text": "m_c watches every little thing around {PRONOUN/m_c/object} for any omen that indicates what the Pack should do in the war. The losses weigh heavy on the hearts of every cat.",
+    "event_text": "m_c watches every little thing around {PRONOUN/m_c/object} for any omen that indicates what the Pack should do in the war. The losses weigh heavy on the hearts of every wolf.",
     "m_c": {
       "status": ["medicine cat apprentice", "medicine cat"],
       "skill": ["OMEN,1"]
@@ -2605,7 +2605,7 @@
     "location": ["any"],
     "season": ["any"],
     "weight": 20,
-    "event_text": "m_c awakens with multiple objects stacked on {PRONOUN/m_c/object}, and the sound of giggling cats in the distance.",
+    "event_text": "m_c awakens with multiple objects stacked on {PRONOUN/m_c/object}, and the sound of giggling wolves in the distance.",
     "m_c": {
       "status":["elder"]
     }
@@ -2643,7 +2643,7 @@
     "location": ["any"],
     "season": ["any"],
     "weight": 20,
-    "event_text": "m_c places small feathers and shining stones near the nest of each Clanmate while they're on patrol.",
+    "event_text": "m_c places small feathers and shining stones near the nest of each Packmate while they're on patrol.",
     "m_c": {
       "age":["any"],
       "status":["elder"],
@@ -2668,7 +2668,7 @@
     "season": ["any"],
     "tags": ["clan:apps"],
     "weight": 20,
-    "event_text": "m_c calls the younger cats to {PRONOUN/m_c/poss} den to tell stories of the Pack's past.",
+    "event_text": "m_c calls the younger wolves to {PRONOUN/m_c/poss} den to tell stories of the Pack's past.",
     "m_c": {
       "age":["any"],
       "status":["elder"],
@@ -2681,7 +2681,7 @@
     "season": ["any"],
     "tags": ["clan:kitten"],
     "weight": 30,
-    "event_text": "m_c calls out to some eager kits, and after they have situated themselves in front of m_c, {PRONOUN/m_c/subject} {VERB/m_c/start/starts} telling the kits a thrilling story of times long past.",
+    "event_text": "m_c calls out to some eager pups, and after they have situated themselves in front of m_c, {PRONOUN/m_c/subject} {VERB/m_c/start/starts} telling the kits a thrilling story of times long past.",
     "m_c": {
       "age": ["senior", "adolescent","young adult", "adult","senior adult"],
       "skill": ["STORY,1","LORE,2"]
@@ -2731,7 +2731,7 @@
     "location": ["any"],
     "season": ["any"],
     "weight": 10,
-    "event_text": "m_c travels to the other Clans to bring them an important message.",
+    "event_text": "m_c travels to the other Packs to bring them an important message.",
     "m_c":{
       "status": [
         "medicine cat",
@@ -2883,7 +2883,7 @@
     "season": ["any"],
      "sub_type": ["war"],
     "weight": 20,
-    "event_text": "m_c's relationships with {PRONOUN/m_c/poss} Clanmates are strained, with some questioning {PRONOUN/m_c/poss} decisions and others relying on {PRONOUN/m_c/object} more heavily than ever.",
+    "event_text": "m_c's relationships with {PRONOUN/m_c/poss} Packmates are strained, with some questioning {PRONOUN/m_c/poss} decisions and others relying on {PRONOUN/m_c/object} more heavily than ever.",
     "m_c":{
       "status":["leader"]
     }
@@ -2949,7 +2949,7 @@
     "season": ["any"],
     "tags": ["clan_wide"],
     "weight": 5,
-    "event_text": "The o_c_n medicine cat comes asking if c_n has any herbs to spare. Unfortunately, the c_n herb stocks are far too low and c_n is unable to provide any help.",
+    "event_text": "The o_c_n medicine wolf comes asking if c_n has any herbs to spare. Unfortunately, the c_n herb stocks are far too low and c_n is unable to provide any help.",
     "supplies": [
       {
           "type": "all_herb",
@@ -2968,7 +2968,7 @@
     "season": ["any"],
     "tags": ["clan_wide"],
     "weight": 2,
-    "event_text": "A medicine cat from o_c_n comes comes to c_n, asking for herbs to heal their sick Clanmates. c_n quickly shoos them away, not willing to admit that they already don't have enough to support themselves.",
+    "event_text": "A medicine wolf from o_c_n comes comes to c_n, asking for herbs to heal their sick Packmates. c_n quickly shoos them away, not willing to admit that they already don't have enough to support themselves.",
     "supplies": [
       {
           "type": "all_herb",
@@ -2987,7 +2987,7 @@
     "season": ["any"],
     "tags": ["clan_wide"],
     "weight": 5,
-    "event_text": "The o_c_n medicine cat comes asking if c_n has any given_herb to spare. Graciously, your Pack decides to aid their allies and share the herbs.",
+    "event_text": "The o_c_n medicine wolf comes asking if c_n has any given_herb to spare. Graciously, your Pack decides to aid their allies and share the herbs.",
     "supplies": [
       {
           "type": "any_herb",
@@ -3006,7 +3006,7 @@
     "season": ["any"],
     "tags": ["clan_wide"],
     "weight": 2,
-    "event_text": "The medicine cat apprentice from o_c_n comes asking for given_herb. They refuse to say why their Pack needs them but c_n still provides them with what they need.",
+    "event_text": "The medicine wolf apprentice from o_c_n comes asking for given_herb. They refuse to say why their Pack needs them but c_n still provides them with what they need.",
     "supplies": [
       {
           "type": "any_herb",
@@ -3025,7 +3025,7 @@
     "season": ["any"],
     "tags": ["clan_wide"],
     "weight": 5,
-    "event_text": "The o_c_n medicine cat comes asking if c_n has any given_herb to spare. However, c_n only has enough for themselves and they refuse to share.",
+    "event_text": "The o_c_n medicine wolf comes asking if c_n has any given_herb to spare. However, c_n only has enough for themselves and they refuse to share.",
     "supplies": [
       {
           "type": "any_herb",
@@ -3044,7 +3044,7 @@
     "season": ["any"],
     "tags": ["clan_wide"],
     "weight": 2,
-    "event_text": "The medicine cat apprentice from o_c_n comes asking for herbs. They refuse to say why their Pack needs them and c_n decides not to share their precious few given_herb.",
+    "event_text": "The medicine wolf apprentice from o_c_n comes asking for herbs. They refuse to say why their Pack needs them and c_n decides not to share their precious few given_herb.",
     "supplies": [
       {
           "type": "any_herb",
@@ -3063,7 +3063,7 @@
     "season": ["any"],
     "tags": ["clan_wide"],
     "weight": 2,
-    "event_text": "The o_c_n medicine cat apprentice comes to c_n's camp, pleading for help with a yellowcough epidemic. c_n provides the cat with some of their extra lungwort.",
+    "event_text": "The o_c_n medicine wolf apprentice comes to c_n's camp, pleading for help with a yellowcough epidemic. c_n provides the wolf with some of their extra lungwort.",
     "supplies": [
       {
           "type": "lungwort",
@@ -3082,7 +3082,7 @@
     "season": ["any"],
     "tags": ["clan_wide"],
     "weight": 2,
-    "event_text": "A medicine cat from o_c_n comes to c_n, asking for lungwort to heal a case of yellowcough. c_n has some extra, and so decides to share with their allies.",
+    "event_text": "A medicine wolf from o_c_n comes to c_n, asking for lungwort to heal a case of yellowcough. c_n has some extra, and so decides to share with their allies.",
     "supplies": [
       {
           "type": "lungwort",
@@ -3101,7 +3101,7 @@
     "season": ["any"],
     "tags": ["clan_wide"],
     "weight": 2,
-    "event_text": "The o_c_n medicine cat apprentice comes to c_n's camp, pleading for help with a yellowcough epidemic. However, c_n has nothing that they are willing to share.",
+    "event_text": "The o_c_n medicine wolf apprentice comes to c_n's camp, pleading for help with a yellowcough epidemic. However, c_n has nothing that they are willing to share.",
     "supplies": [
       {
           "type": "lungwort",
@@ -3120,7 +3120,7 @@
     "season": ["any"],
     "tags": ["clan_wide"],
     "weight": 2,
-    "event_text": "A medicine cat from o_c_n comes to c_n, asking for lungwort to heal a case of yellowcough. However, c_n hardly has enough for their own Pack and so refuses.",
+    "event_text": "A medicine wolf from o_c_n comes to c_n, asking for lungwort to heal a case of yellowcough. However, c_n hardly has enough for their own Pack and so refuses.",
     "supplies": [
       {
           "type": "lungwort",
@@ -3204,7 +3204,7 @@
     "season": ["leaf-bare"],
     "tags": ["clan_wide"],
     "weight": 1,
-    "event_text": "Freezing temperatures have not just affected the cats. It's also frostbitten the stored herbs. They're useless now and will have to be replaced.",
+    "event_text": "Freezing temperatures have not just affected the wolves. It's also frostbitten the stored herbs. They're useless now and will have to be replaced.",
     "supplies": [
       {
           "type": "all_herb",
@@ -3319,7 +3319,7 @@
     "season": ["any"],
     "sub_type": ["ceremony", "accessory"],
     "weight": 20,
-    "event_text": "r_c is so proud of how far {PRONOUN/r_c/poss} kit has grown. With a look of pride, r_c presents m_c with acc_plural as a congratulations for becoming an apprentice.",
+    "event_text": "r_c is so proud of how far {PRONOUN/r_c/poss} pup has grown. With a look of pride, r_c presents m_c with acc_plural as a congratulations for becoming an apprentice.",
     "new_accessory": ["WILD", "PLANT"],
     "m_c": {
       "status": ["apprentice"],
@@ -3452,7 +3452,7 @@
     "sub_type": ["ceremony", "accessory"],
     "weight": 20,
     "event_text": "m_c is feeling a bit overwhelmed, now that {PRONOUN/m_c/subject} {VERB/m_c/are/is} an apprentice. Luckily, r_c is there with a gift of acc_plural and some comforting words to cheer m_c up.",
-    "new_accessory": ["WILD","PLANT"],
+    "new_accessory": ["WILD", "PLANT"],
     "m_c": {
       "status": ["apprentice"],
       "trait": ["nervous", "insecure"],
@@ -3484,8 +3484,8 @@
     "season": ["any"],
     "sub_type": ["ceremony", "accessory"],
     "weight": 20,
-    "event_text": "r_c feels so lucky to have {PRONOUN/r_c/poss} own sibling become a medicine cat apprentice. Knowing how time consuming it is to gather herbs, r_c spends a long time gathering up acc_plural to help out m_c. While m_c appreciates the efforts, none of these are particularly useful. Instead m_c uses the acc_plural to decorate {PRONOUN/m_c/poss} pelt.",
-    "new_accessory": ["HERBS", "DRY HERBS", "DRY CATMINT", "DRY NETTLES", "DRY LAURELS"],
+    "event_text": "r_c feels so lucky to have {PRONOUN/r_c/poss} own sibling become a medicine wolf apprentice. Knowing how time consuming it is to gather herbs, r_c spends a long time gathering up acc_plural to help out m_c. While m_c appreciates the efforts, none of these are particularly useful. Instead m_c uses the acc_plural to decorate {PRONOUN/m_c/poss} pelt.",
+    "new_accessory": ["PLANT"],
     "m_c": {
       "status": ["medicine cat apprentice"],
       "relationship_status":["siblings"]
@@ -3517,7 +3517,7 @@
     "sub_type": ["ceremony", "accessory"],
     "weight": 20,
     "event_text": "m_c can't help but feel hurt when {PRONOUN/m_c/poss} sibling isn't there to congratulate {PRONOUN/m_c/object} for becoming a warrior. However, when {PRONOUN/m_c/subject} later {VERB/m_c/go/goes} to {PRONOUN/m_c/poss} new nest {PRONOUN/m_c/subject} {VERB/m_c/find/finds} r_c there waiting for {PRONOUN/m_c/object}, with a gift of acc_plural. Together the siblings work on making m_c's new nest feel more comfortable.",
-    "new_accessory": ["WILD"],
+    "new_accessory": ["PLANT", "WILD"],
     "m_c": {
       "status": ["warrior"],
       "relationship_status":["siblings", "platonic_50"]
@@ -3608,7 +3608,7 @@
     "season": ["any"],
     "sub_type": ["ceremony", "accessory"],
     "weight": 10,
-    "event_text": "m_c yowls in shock, claws unsheathing from an unexpected to weight pinning {PRONOUN/m_c/object}. When {PRONOUN/m_c/subject} {VERB/m_c/are/is} able to get up, m_c's surprised and a bit upset to see that it had been {PRONOUN/m_c/poss} mentor who attacked {PRONOUN/m_c/object}. r_c doesn't seem to notice m_c's discomfort as {PRONOUN/r_c/subject} excitedly tell m_c about the acc_plural that now adorns {PRONOUN/m_c/poss} pelt.",
+    "event_text": "m_c yips in shock, fangs flashing from an unexpected to weight pinning {PRONOUN/m_c/object}. When {PRONOUN/m_c/subject} {VERB/m_c/are/is} able to get up, m_c's surprised and a bit upset to see that it had been {PRONOUN/m_c/poss} mentor who attacked {PRONOUN/m_c/object}. r_c doesn't seem to notice m_c's discomfort as {PRONOUN/r_c/subject} excitedly tell m_c about the acc_plural that now adorns {PRONOUN/m_c/poss} pelt.",
     "new_accessory": ["WILD", "PLANT"],
     "m_c": {
       "status": ["apprentice", "medicine cat apprentice", "mediator apprentice"],
@@ -3649,7 +3649,7 @@
     "sub_type": ["accessory"],
     "weight": 20,
     "event_text":  "r_c found a little patch of acc_plural and decided to gift them to m_c",
-    "new_accessory": ["POPPY", "ORANGE POPPY", "CYAN POPPY", "WHITE POPPY", "PINK POPPY", "BULB WHITE", "BULB YELLOW", "BULB ORANGE", "BULB PINK", "BULB BLUE", "LAVENDER", "HEATHER", "GORSE", "LILY OF THE VALLEY", "BLUEBELLS", "FORGET ME NOTS"],
+    "new_accessory": ["POPPY", "ORANGE POPPY", "CYAN POPPY", "WHITE POPPY", "PINK POPPY", "BULB WHITE", "BULB YELLOW", "BULB ORANGE", "BULB PINK", "BULB BLUE", "LAVENDER", "HEATHER", "GORSE", "LILY OF THE VALLEY", "BLUEBELLS", "FORGET ME NOTS", "SNAPDRAGON", "BLUEBELLS", "BLACK EYED SUSANS", "MARIGOLD", "ROSE", "WHITE ROSE", "SAKURA"],
     "m_c": {
       "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
     },
@@ -3687,7 +3687,7 @@
     "season": ["any"],
     "tags": ["skill_trait_required"],
     "weight": 5,
-    "event_text": "m_c thinks starclan is trying to warn {PRONOUN/m_c/object} about r_c.",
+    "event_text": "m_c thinks StarPack is trying to warn {PRONOUN/m_c/object} about r_c.",
     "m_c": {
       "age": ["adolescent", "young adult", "adult", "senior adult", "senior"],
       "status": ["medicine cat"],
@@ -3712,11 +3712,83 @@
     "season": ["leaf-bare"],
     "sub_type": ["accessory"],
     "weight": 10,
-    "event_text": "m_c finds a stray acc_singular in its last moments of life leading them to a new herb gathering spot before {PRONOUN/m_c/subject} {VERB/m_c/have/has} never found before. It gives a final flutter before it gently decends to the ground. Is it a sign from star clan, or a coincidence? m_c doesnt know but {PRONOUN/m_c/subject} {VERB/m_c/decide/decides} to keep it with {PRONOUN/m_c/object} in its honor.",
-    "new_accessory": ["BLACK CICADA", "CICADA WINGS", "ROSY MOTH WINGS", "MORPHO BUTTERFLY", "MONARCH BUTTERFLY"],
+    "event_text": "m_c finds a stray acc_singular in its last moments of life leading them to a new herb gathering spot before {PRONOUN/m_c/subject} {VERB/m_c/have/has} never found before. It gives a final flutter before it gently decends to the ground. Is it a sign from StarPack, or a coincidence? m_c doesnt know but {PRONOUN/m_c/subject} {VERB/m_c/decide/decides} to keep it with {PRONOUN/m_c/object} in its honor.",
+    "new_accessory": ["BLACK CICADA", "CICADA WINGS", "ROSY MOTH WINGS", "MORPHO BUTTERFLY", "MONARCH BUTTERFLY", "MOTH WINGS"],
     "m_c": {
       "age": ["adolescent", "young adult", "adult", "senior adult", "senior"],
       "status": ["medicine cat"]
+    }
+  },
+  {
+    "event_id": "gen_radio_collared1",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 5,
+    "event_text":  "m_c doesn't return home for a few days, then returns, disoriented, with a acc_singular around {PRONOUN/m_c/poss} neck.",
+    "new_accessory": ["RADIO"],
+    "m_c": {
+        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
+    }
+  },
+  {
+    "event_id": "gen_radio_collared2",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 5,
+    "event_text":  "m_c catches the scent of Twoleg activity. Believing them to be an immediate danger to the Pack, {PRONOUN/m_c/subject} {PRONOUN/m_c/seek/seeks} them out. What happens next is a blur - m_c comes home with a acc_singular around {PRONOUN/m_c/poss} neck.",
+    "new_accessory": ["RADIO"],
+    "m_c": {
+        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
+    }
+  },
+  {
+  "event_id": "gen_radio_collared3",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 5,
+    "event_text":  "There is a strange scent in the air... but before m_c even has a chance to react, {PRONOUN/m_c/subject} wakes up with a acc_singular around {PRONOUN/m_c/poss} neck.",
+    "new_accessory": ["RADIO"],
+    "m_c": {
+        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
+    }
+  },
+  {
+  "event_id": "baby_radio_collared",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 5,
+    "event_text":  "After a panicked search, the Pack finally finds m_c, who is still half-passed out and has a acc_singular around {PRONOUN/m_c/poss} neck.",
+    "new_accessory": ["RADIO"],
+    "m_c": {
+        "age": ["kitten"]
+    }
+  },
+  {
+  "event_id": "gen_twoleg_adventure",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 5,
+    "event_text":  "m_c had always been curious about this supposedly 'easy' pet life. Determined to find out for (PRONOUN/m_c/self), {PRONOUN/m_c/subject} joins a Twoleg family for a while. Ultimately unsatisifed with that life, m_c returns home with a new acc_singular.",
+    "new_accessory": ["BANDANA", "COLLAR", "HARNESS"],
+    "m_c": {
+        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
+    }
+  },
+  {
+  "event_id": "gen_twoleg_adventure",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 5,
+    "event_text":  "Compelled to help a Twoleg who seemed to struggle with the weight of their items, m_c offers {PRONOUN/m_c/poss} assistance. The Twoleg lets m_c keep the acc_singular.",
+    "new_accessory": ["HARNESS"],
+    "m_c": {
+        "age": ["young adult", "adult", "senior adult", "senior"]
     }
   }
 ]

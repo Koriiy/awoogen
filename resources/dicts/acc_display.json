@@ -91,16 +91,12 @@
   "HERBS": {
     "default": "herb-covered pelt",
     "plural": "herbs",
-    "singular": "bunch of herbs",
-    "comment": ["just 'herb' sounds wrong, since the acc is visually multiple leaves on the cat. so i've structured",
-      "this in a way that allows it to sound correct when used for the singular_acc abbreviation"]
+    "singular": "bunch of herbs"
   },
   "PETALS": {
     "default": "petal-covered pelt",
     "plural": "petals",
-    "singular": "bunch of petals",
-    "comment": ["just 'petal' sounds wrong, since the acc is visually multiple petals on the cat. so i've structured",
-      "this in a way that allows it to sound correct when used for the singular_acc abbreviation"]
+    "singular": "bunch of petals"
   },
   "PURPLE PETALS": {
     "default": "purple petal-covered pelt",
@@ -110,9 +106,7 @@
   "DRY HERBS": {
     "default": "herb-covered pelt",
     "plural": "dry herbs",
-    "singular": "bunch of dry herbs",
-    "comment": ["just 'dry herb' sounds wrong, since the acc is visually multiple leaves on the cat. so i've structured",
-      "this in a way that allows it to sound correct when used for the singular_acc abbreviation"]
+    "singular": "bunch of dry herbs"
   },
   "GOLD HERBS": {
     "default": "shiny herb-covered pelt",
@@ -190,12 +184,12 @@
 	"singular": "dove feather"
   },
   "MOTH WINGS": {
-    "default": "moth wings",
-    "plural": "moth wings",
-    "singular": "moth wing"
+    "default": "luna moth wing",
+    "plural": "luna moth wings",
+    "singular": "luna moth wing"
   },
   "CICADA WINGS": {
-    "default": "cicada wings",
+    "default": "cicada wing",
     "plural": "cicada wings",
     "singular": "cicada wing"
   },
@@ -233,6 +227,131 @@
     "default": "silk cloak",
     "plural": "silk cloaks",
     "singular": "silk cloak"
+  },
+  "CATTAIL": {
+    "default": "cattail",
+    "plural": "cattails",
+    "singular": "cattail"
+  },
+  "ORANGE POPPY": {
+    "default": "orange poppy",
+    "plural": "orange poppies",
+    "singular": "orange poppy"
+  },
+  "CYAN POPPY": {
+    "default": "blue poppy",
+    "plural": "blue poppies",
+    "singular": "blue poppy"
+  },
+  "WHITE POPPY": {
+    "default": "white poppy",
+    "plural": "white poppies",
+    "singular": "white poppy"
+  },
+  "PINK POPPY": {
+    "default": "pink poppy",
+    "plural": "pink poppies",
+    "singular": "pink poppy"
+  },
+  "LILY OF THE VALLEY": {
+    "default": "lily of the valley flowers",
+    "plural": "lily of the valley flowers",
+    "singular": "lily of the valley flower"
+  },
+  "SNAPDRAGON": {
+    "default": "snapdragons",
+    "plural": "snapdragons",
+    "singular": "snapdragon"
+  },
+  "HEATHER": {
+    "default": "heather",
+    "plural": "heather",
+    "singular": "heather"
+  },
+  "GORSE": {
+    "default": "gorse",
+    "plural": "gorse",
+    "singular": "gorse"
+  },
+  "RASPBERRY": {
+    "default": "raspberries",
+    "plural": "raspberries",
+    "singular": "raspberry"
+  },
+  "BULB WHITE": {
+    "default": "white bulb",
+    "plural": "white bulbs",
+    "singular": "white bulb"
+  },
+  "BULB YELLOW": {
+    "default": "yellow bulb",
+    "plural": "yellow bulbs",
+    "singular": "yellow bulb"
+  },
+  "BULB ORANGE": {
+    "default": "orange bulb",
+    "plural": "orange bulbs",
+    "singular": "orange bulb"
+  },
+  "BULB PINK": {
+    "default": "pink bulb",
+    "plural": "pink bulbs",
+    "singular": "pink bulb"
+  },
+  "BULB BLUE": {
+    "default": "blue bulb",
+    "plural": "blue bulbs",
+    "singular": "blue bulb"
+  },
+  "CLOVER": {
+    "default": "clovers",
+    "plural": "clovers",
+    "singular": "clover"
+  },
+  "DAISY": {
+    "default": "daisies",
+    "plural": "daisies",
+    "singular": "daisy"
+  },
+  "DRY CATMINT": {
+    "default": "dry catmint",
+    "plural": "dry catmint",
+    "singular": "dry catmint"
+  },
+  "DRY LAURELS": {
+    "default": "golden laurel",
+    "plural": "golden laurels",
+    "singular": "golden laurel"
+  },
+  "GULL FEATHERS": {
+    "default": "gull feathers",
+    "plural": "gull feathers",
+    "singular": "gull feather"
+  },
+  "SPARROW FEATHERS": {
+    "default": "sparrow feathers",
+    "plural": "sparrow feathers",
+    "singular": "sparrow feather"
+  },
+  "ROSY MOTH WINGS": {
+    "default": "rosy moth wing",
+    "plural": "rosy moth wings",
+    "singular": "rosy moth wing"
+  },
+  "MORPHO BUTTERFLY": {
+    "default": "shimmering blue butterfly wing",
+    "plural": "shimmering blue butterfly wings",
+    "singular": "shimmering blue butterfly wing"
+  },
+  "MONARCH BUTTERFLY": {
+    "default": "monarch butterfly wing",
+    "plural": "monarch butterfly wings",
+    "singular": "monarch butterfly wing"
+  },
+  "BLACK CICADA": {
+    "default": "black cicada wing",
+    "plural": "black cicada wings",
+    "singular": "black cicada wing"
   },
   "CRIMSON": {
     "default": "red leather collar",

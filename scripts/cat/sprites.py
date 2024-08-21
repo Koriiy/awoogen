@@ -141,7 +141,7 @@ class Sprites:
             'collars', 'bellcollars', 'bowcollars', 'nyloncollars',
 	'nylonpastelcollars', 'harness', 'radio', 'bandana', 'bandanaplaid',
             'shadersnewwhite', 'lineartdead', 'tortiepatchesmasks', 
-            'medcatherbs', 'lineartdf', 'lightingnew', 'fademask',
+            'herbs', 'koriacc', 'wild', 'extras', 'lineartdf', 'lightingnew', 'fademask',
             'fadestarclan', 'fadedarkforest',
             'symbols'
 
@@ -266,20 +266,36 @@ class Sprites:
 
         # Accessories
         # Natural stuff
-        for a, i in enumerate([
-		"BLUE FEATHERS", "BLUEBELLS", "BLUE BERRIES", "CATMINT", "CICADA WINGS", "DRY HERBS", "FORGET ME NOTS", "HERBS", "HOLLY", "JAY FEATHERS", "JUNIPER"]):
-            self.make_group('medcatherbs', (a, 0), f'natural{i}')
-        for a, i in enumerate([
-		"LAUREL", "LAVENDER", "MAPLE LEAF", "MAPLE SEED", "MOTH WINGS", "NETTLE", "OAK LEAVES", "PETALS", "POPPY", "RED FEATHERS", "RYE STALK"]):
-            self.make_group('medcatherbs', (a, 1), f'natural{i}')
-        for a, i in enumerate([
-		"BLACK EYED SUSANS", "CROW FEATHERS", "DOVE FEATHERS", "GOLD HERBS", "IVY", "MARIGOLD", "PURPLE PETALS", "ROSE", "SAKURA", "SUNFLOWER", "WHITE ROSE"]):
-            self.make_group('medcatherbs', (a, 2), f'natural{i}')
-        for a, i in enumerate([
-		"HIBISCUS", "RED HIBISCUS", "WHITE HIBISCUS", "STARFISH", "PINK STARFISH", "PURPLE STARFISH", "PEARLS", "SEASHELLS", "BIG LEAVES"]):
-            self.make_group('medcatherbs', (a, 3), f'natural{i}')
-        self.make_group('medcatherbs', (9, 3), f'junkTOWEL')
-        self.make_group('medcatherbs', (10, 3), f'cloakSILK CLOAK')
+        herb_data = [["MAPLE LEAF", "HOLLY", "BLUE BERRIES", "FORGET ME NOTS",
+            "RYE STALK", "CATTAIL", "POPPY", "ORANGE POPPY", "CYAN POPPY",
+            "WHITE POPPY", "PINK POPPY"],
+            ["BLUEBELLS", "LILY OF THE VALLEY", "SNAPDRAGON", "HERBS", "PETALS",
+            "NETTLE", "HEATHER", "GORSE", "JUNIPER", "RASPBERRY", "LAVENDER"],
+            ["OAK LEAVES", "CATMINT", "MAPLE SEED", "LAUREL", "BULB WHITE",
+            "BULB YELLOW", "BULB ORANGE", "BULB PINK", "BULB BLUE", "CLOVER", "DAISY"],
+            ["DRY HERBS", "DRY CATMINT", "DRY NETTLES", "DRY LAURELS"]]
+        wild_data = [["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "GULL FEATHERS",
+            "SPARROW FEATHERS", "MOTH WINGS", "ROSY MOTH WINGS",
+            "MORPHO BUTTERFLY", "MONARCH BUTTERFLY", "CICADA WINGS",
+            "BLACK CICADA"]]
+        kori_data = [["BLACK EYED SUSANS", "CROW FEATHERS", "DOVE FEATHERS",
+            "GOLD HERBS", "IVY", "MARIGOLD", "PURPLE PETALS", "ROSE", "SAKURA",
+            "SUNFLOWER"],
+            ["WHITE ROSE", "HIBISCUS", "RED HIBISCUS", "WHITE HIBISCUS", "STARFISH",
+             "PINK STARFISH", "PURPLE STARFISH", "PEARLS", "SEASHELLS", "BIG LEAVES"]]
+
+        for row, herbs in enumerate(herbs_data):
+            for col, herb in enumerate(herbs):
+                self.make_group('herbs', (col, row), f'natural{herb}')
+        for row, wilds in enumerate(wild_data):
+            for col, wild in enumerate(wilds):
+                self.make_group('wild', (col, 0), f'natural{wild}')
+        for row, moreaccs in enumerate(kori_data):
+            for col, moreacc in enumerate(moreaccs):
+                self.make_group('koriacc', (col, 0), f'natural{moreacc}')
+                
+        self.make_group('extras', (0, 0), f'junkTOWEL')
+        self.make_group('extras', (1, 0), f'cloakSILK CLOAK')
 
         # Collars, Harnesses, Bandanas
         collar_color_data = [["BLACK", "BLUE", "CRIMSON", "CYAN", "GREEN"],
