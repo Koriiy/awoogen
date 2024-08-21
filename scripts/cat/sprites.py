@@ -284,7 +284,7 @@ class Sprites:
             ["WHITE ROSE", "HIBISCUS", "RED HIBISCUS", "WHITE HIBISCUS", "STARFISH",
              "PINK STARFISH", "PURPLE STARFISH", "PEARLS", "SEASHELLS", "BIG LEAVES"]]
 
-        for row, herbs in enumerate(herbs_data):
+        for row, herbs in enumerate(herb_data):
             for col, herb in enumerate(herbs):
                 self.make_group('herbs', (col, row), f'natural{herb}')
         for row, wilds in enumerate(wild_data):

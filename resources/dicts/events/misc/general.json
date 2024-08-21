@@ -3773,7 +3773,7 @@
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 5,
-    "event_text":  "m_c had always been curious about this supposedly 'easy' pet life. Determined to find out for (PRONOUN/m_c/self), {PRONOUN/m_c/subject} joins a Twoleg family for a while. Ultimately unsatisifed with that life, m_c returns home with a new acc_singular.",
+    "event_text":  "m_c had always been curious about this supposedly 'easy' pet life. Determined to find out for {PRONOUN/m_c/self}, {PRONOUN/m_c/subject} joins a Twoleg family for a while. Ultimately unsatisifed with that life, m_c returns home with a new acc_singular.",
     "new_accessory": ["BANDANA", "COLLAR", "HARNESS"],
     "m_c": {
         "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
