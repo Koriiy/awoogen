@@ -1315,7 +1315,7 @@ class Pelt:
         else:
             self.tint = "none"
 
-        if self.colour in ["BLACK", "ONYX", "LUNA", "THISTLE", "VOID", "STEEL", "SPICE", "REDWOOD"] and random.randint(0, 4) < 3:
+        if self.colour in ["BLACK", "ONYX", "LUNA", "THISTLE", "VOID", "STEEL", "SPICE", "REDWOOD"] and random.randint(0, 6) < 5:
             self.tint = "none"
 
         # WHITE PATCHES TINT
