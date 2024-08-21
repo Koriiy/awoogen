@@ -16,7 +16,7 @@
     "location": ["beach"],
     "season": ["any"],
     "weight": 20,
-    "event_text": "As a storm rages across the beach and waves crash upon the shore, m_c is tucked up in the medicine cat den, {PRONOUN/m_c/poss} sleep anything but restful. {PRONOUN/m_c/subject/CAP} {VERB/m_c/keep/keeps} seeing flashes of prophecy_list_sight. {PRONOUN/m_c/subject/CAP} {VERB/m_c/wake/wakes} with a shiver, wondering what {PRONOUN/m_c/poss} dreams mean for the Pack.",
+    "event_text": "As a storm rages across the beach and waves crash upon the shore, m_c is tucked up in the medicine wolf den, {PRONOUN/m_c/poss} sleep anything but restful. {PRONOUN/m_c/subject/CAP} {VERB/m_c/keep/keeps} seeing flashes of prophecy_list_sight. {PRONOUN/m_c/subject/CAP} {VERB/m_c/wake/wakes} with a shiver, wondering what {PRONOUN/m_c/poss} dreams mean for the Pack.",
     "m_c": {
       "status": ["medicine cat", "medicine cat apprentice"],
       "skill": ["PROPHET,2"]
@@ -61,5 +61,159 @@
           "adjust": "reduce_full"
       }
     ]
+  },
+  {
+    "event_id": "bch_misc_any_gull_accessory",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 5,
+    "event_text":  "m_c finds an old seagull nest while out hunting. It seems to be long abandoned, but some pretty feathers have remained intact! m_c decides to take some with {PRONOUN/m_c/object}",
+    "new_accessory": ["GULL FEATHERS"],
+    "m_c": {
+        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
+    }
+  },
+  {
+    "event_id": "bch_misc_traditional1",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["ceremony", "accessory"],
+    "weight": 20,
+    "event_text": "r_c gives m_c something traditional to the pack to celebrate.",
+    "new_accessory": ["HIBISCUS", "RED HIBISCUS", "WHITE HIBISCUS", "STARFISH", "PINK STARFISH", "PURPLE STARFISH", "PEARLS", "SEASHELLS"],
+    "m_c":{
+      "age": ["any"],
+      "status": ["any"]
+    },
+    "r_c":{
+      "age": ["any"],
+      "status": ["any"]
+    },
+    "relationships": [
+        {
+            "cats_from": ["r_c"],
+            "cats_to": ["m_c"],
+            "mutual": true,
+            "values": ["platonic","comfort"],
+            "amount": 5
+        },
+        {
+            "cats_from": ["r_c"],
+            "cats_to": ["m_c"],
+            "mutual": true,
+            "values": ["dislike"],
+            "amount": -5
+        }
+    ]
+    },
+    {
+    "event_id": "bch_misc_silk_ceremony",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["ceremony", "accessory"],
+    "weight": 20,
+    "event_text": "m_c was given a acc_singular as a congratulations, r_c watches from the side with a jealous glint in {PRONOUN/r_c/poss} eyes.",
+    "new_accessory": ["SILK CLOAK"],
+    "m_c":{
+      "age": ["any"],
+      "status": ["any"]
+    },
+    "r_c":{
+      "age": ["any"],
+      "status": ["any"]
+    },
+    "relationships": [
+        {
+          "cats_from": ["r_c"],
+          "cats_to": ["m_c"],
+          "mutual": true,
+          "values": ["platonic","comfort","respect"],
+          "amount": -5
+        }
+    ]
+  },
+  {
+    "event_id": "bch_misc_med_cat",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["ceremony", "accessory"],
+    "weight": 10,
+    "event_text": "r_c honors m_c with a acc_singular - a flower incredibly important to this Pack.",
+    "new_accessory": ["HIBISCUS", "RED HIBISCUS", "WHITE HIBISCUS"],
+    "m_c": {
+      "status": ["medicine cat"]
+    },
+    "r_c": {
+      "status": ["medicine cat"]
+    },
+    "relationships": [
+      {
+        "cats_to": ["m_c"],
+            "cats_from": ["r_c"],
+            "mutual": true,
+            "values": ["platonic","comfort","trust"],
+        "amount": 5
+      },
+      {
+        "cats_to": ["m_c"],
+            "cats_from": ["r_c"],
+            "mutual": true,
+            "values": ["dislike"],
+        "amount": -5
+      }
+    ]
+  },
+  {
+    "event_id": "bch_wander_acc",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 20,
+    "event_text": "While digging around on the beach, m_c finds acc_plural and keeps them.",
+    "new_accessory": ["STARFISH", "PINK STARFISH", "PURPLE STARFISH", "PEARLS", "SEASHELLS"],
+    "m_c":{
+      "age": ["any"],
+      "status": ["any"]
+    }
+  },
+  {
+    "event_id": "bch_forest_acc",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 20,
+    "event_text": "m_c takes a walk through the forested areas outside of the beach. {PRONOUN/m_c/subject} is amazed by the acc_plural growing there and decides to keep some.",
+    "new_accessory": ["HIBISCUS", "RED HIBISCUS", "WHITE HIBISCUS", "BIG LEAVES"],
+    "m_c":{
+      "age": ["any"],
+      "status": ["any"]
+    }
+  },
+  {
+    "event_id": "bch_junk_acc",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 20,
+    "event_text": "m_c finds this weird thing on the beach...",
+    "new_accessory": ["TOWEL"],
+    "m_c":{
+      "age": ["any"],
+      "status": ["any"]
+    }
+  },
+  {
+    "event_id": "bch_silk_find",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 20,
+    "event_text": "m_c spots something light and airy on the beach. It turns out to be something strange - a acc_singular.",
+    "new_accessory": ["SILK CLOAK"],
+    "m_c":{
+      "age": ["any"],
+      "status": ["any"]
+    }
   }
 ]

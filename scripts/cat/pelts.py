@@ -74,13 +74,20 @@ class Pelt:
     scars4 = []
     # accessories, the bane of my existance
     # make sure to add plural and singular forms of new accs to acc_display.json so that they will display nicely
-    plant_accessories = ["BLUEBELLS", "BLUE BERRIES", "CATMINT", "DRY HERBS", "FORGET ME NOTS", "HERBS", 
-		"HOLLY", "JUNIPER", "LAUREL", "LAVENDER", "MAPLE LEAF", "MAPLE SEED", "NETTLE", "OAK LEAVES", 
-		"PETALS", "POPPY", "RYE STALK", "BLACK EYED SUSANS", "GOLD HERBS", "IVY", "MARIGOLD", 
-		"PURPLE PETALS", "ROSE", "SAKURA", "SUNFLOWER", "WHITE ROSE"]
-    wild_accessories = ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "MOTH WINGS", "CICADA WINGS", 
-		"CROW FEATHERS", "DOVE FEATHERS"]
-    manmade_accessories = []
+    plant_accessories = ["MAPLE LEAF", "HOLLY", "BLUE BERRIES", "FORGET ME NOTS",
+            "RYE STALK", "CATTAIL", "POPPY", "ORANGE POPPY", "CYAN POPPY",
+            "WHITE POPPY", "PINK POPPY", "BLUEBELLS", "LILY OF THE VALLEY",
+            "SNAPDRAGON", "HERBS", "PETALS", "NETTLE", "HEATHER", "GORSE", "JUNIPER",
+            "RASPBERRY", "LAVENDER", "OAK LEAVES", "CATMINT", "MAPLE SEED", "LAUREL",
+            "BULB WHITE", "BULB YELLOW", "BULB ORANGE", "BULB PINK", "BULB BLUE",
+            "CLOVER", "DAISY", "DRY HERBS", "DRY CATMINT", "DRY NETTLES", "DRY LAURELS",
+            "BLACK EYED SUSANS", "GOLD HERBS", "IVY", "MARIGOLD", "PURPLE PETALS",
+            "ROSE", "SAKURA", "SUNFLOWER", "WHITE ROSE"]
+    wild_accessories = ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "GULL FEATHERS",
+            "SPARROW FEATHERS", "MOTH WINGS", "ROSY MOTH WINGS",
+            "MORPHO BUTTERFLY", "MONARCH BUTTERFLY", "CICADA WINGS",
+            "BLACK CICADA", "CROW FEATHERS", "DOVE FEATHERS"]
+    manmade_accessories = ['TOWEL', 'SILK CLOAK']
     special_accessories = ["HIBISCUS", "RED HIBISCUS", "WHITE HIBISCUS", "BIG LEAVES", "STARFISH", "PINK STARFISH",
                            "PURPLE STARFISH", "PEARLS", "SEASHELLS", "TOWEL", "SILK CLOAK"]
     collars = [
@@ -1308,7 +1315,7 @@ class Pelt:
         else:
             self.tint = "none"
 
-        if self.colour in ["BLACK", "ONYX", "LUNA", "THISTLE", "VOID", "STEEL", "SPICE", "REDWOOD"] and random.randint(0, 4) < 3:
+        if self.colour in ["BLACK", "ONYX", "LUNA", "THISTLE", "VOID", "STEEL", "SPICE", "REDWOOD"] and random.randint(0, 6) < 5:
             self.tint = "none"
 
         # WHITE PATCHES TINT
