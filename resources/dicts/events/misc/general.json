@@ -3737,7 +3737,7 @@
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 5,
-    "event_text":  "m_c catches the scent of Twoleg activity. Believing them to be an immediate danger to the Pack, {PRONOUN/m_c/subject} {PRONOUN/m_c/seek/seeks} them out. What happens next is a blur - m_c comes home with a acc_singular around {PRONOUN/m_c/poss} neck.",
+    "event_text":  "m_c catches the scent of Twoleg activity. Believing them to be an immediate danger to the Pack, {PRONOUN/m_c/subject} {VERB/m_c/seek/seeks} them out. What happens next is a blur - m_c comes home with a acc_singular around {PRONOUN/m_c/poss} neck.",
     "new_accessory": ["RADIO"],
     "m_c": {
         "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
