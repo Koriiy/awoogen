@@ -11,8 +11,8 @@ Currently requires 2GB of RAM to run, may require more in the future.
 
 
 ## Downloads
-We are currently on Moonlight (1.1)
-[Moonlight Download](https://github.com/Koriiy/awoogen/releases/tag/v1.1-moonlight)
+We are currently on Seaside (2.3)
+[Seaside Download](https://github.com/Koriiy/awoogen/releases/tag/v2.3-seaside)
 Grab the version for your operating system and run like regular clangen!
 
 
