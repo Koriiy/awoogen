@@ -1,0 +1,21 @@
+{
+  "color_categories":
+  {
+    "CATEGORIES": ["REDS", "ORANGES", "YELLOWS", "GREENS", "BLUES", "PURPLES", "GRAYS", "PASTELS", "NEONS"],
+    "WEIGHTS": [3, 3, 3, 3, 3, 3, 3, 3, 1],
+    "REDS": ["RED", ""]
+  },
+  "colors":
+  {
+    "RED": {
+        "display": "red",
+        "base": "#f20700",
+        "leatherbase": "#bb2e2a",
+        "leathermetal": "GOLD",
+        "harnessradioaccent": "BLACK",
+        "bandanaswirl": "WHITE",
+        "nylonaccent": "BLACK",
+        "bellnylonmetal": "GOLD",
+        "bowlighten": false},
+  }
+}
