@@ -136,13 +136,14 @@ class Sprites:
 
         for x in [
             'lineart',
-            'whitepatches', 'eyes', 'eyes2', 'skin', 'scars', 'missingscars', 'specialpoints',
-            'dark', 'highlights', 'red', 'base', 'merle', 
-            'collars', 'bellcollars', 'bowcollars', 'nyloncollars',
-	'nylonpastelcollars', 'harness', 'radio', 'bandana', 'bandanaplaid',
-            'shadersnewwhite', 'lineartdead', 'tortiepatchesmasks', 
-            'herbs', 'koriacc', 'wild', 'extras', 'lineartdf', 'lightingnew', 'fademask',
-            'fadestarclan', 'fadedarkforest',
+            'base', 'basetail', 'dark', 'darkears', 'darkfade', 'darkforest', 'darktail',
+            'extras', 'eyes', 'fadebg', 'herbs', 'highlights', 
+            'highlightsears', 'highlightstail', 'koriacc', 'lines',
+	'lineears', 'linetail', 'merle', 'merleears', 'merletail', 'mouth',
+            'petacc', 'petaccbase', 'petaccmissing', 
+            'petaccpatterns', 'points', 'pointsears', 'pointstail', 'red', 'redears', 'redtail',
+            'scars', 'scarsmissing', 'shading', 'skin', 'starfade', 'starfog', 'tortieears',
+            'torties', 'tortietail', 'white', 'whiteears', 'whitetail', 'wild',
             'symbols'
 
         ]:
