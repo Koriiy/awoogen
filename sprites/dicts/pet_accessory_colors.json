@@ -3,7 +3,15 @@
   {
     "CATEGORIES": ["REDS", "ORANGES", "YELLOWS", "GREENS", "BLUES", "PURPLES", "GRAYS", "PASTELS", "NEONS"],
     "WEIGHTS": [3, 3, 3, 3, 3, 3, 3, 3, 1],
-    "REDS": ["RED", ""]
+    "REDS": ["RED", "CRIMSON", "RUBY", "CORAL", "PINK"],
+    "ORANGES": ["ORANGE", "PEACH", "HARVEST", "SPICE", "FLAME"],
+    "YELLOWS": ["YELLOW", "GOLD", "GOLDENROD", "FLAX", "DIJON"],
+    "GREENS": ["GREEN", "FERN", "FOREST", "MINT", "RAINFOREST"],
+    "BLUES": ["BLUE", "SEAFOAM", "SAPPHIRE", "TEAL", "SKY"],
+    "PURPLES": ["PURPLE", "LILAC", "VIOLET", "GRAPE", "PLUM"],
+    "GRAYS": ["BLACK", "WHITE", "GRAY", "SILVER"],
+    "PASTELS": ["PASTEL PINK", "PASTEL ORANGE", "PASTEL YELLOW", "PASTEL GREEN", "PASTEL BLUE", "PASTEL CYAN", "PASTEL LILAC"],
+    "NEONS": ["MAGENTA", "LIME", "CYAN", "ELECTRIC VIOLET", "TURQUOISE"]
   },
   "colors":
   {
@@ -16,6 +24,16 @@
         "bandanaswirl": "WHITE",
         "nylonaccent": "BLACK",
         "bellnylonmetal": "GOLD",
+        "bowlighten": false},
+    "CRIMSON": {
+        "display": "",
+        "base": "#",
+        "leatherbase": "#",
+        "leathermetal": "",
+        "harnessradioaccent": "",
+        "bandanaswirl": "",
+        "nylonaccent": "",
+        "bellnylonmetal": "",
         "bowlighten": false},
   }
 }
