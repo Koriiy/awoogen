@@ -135,11 +135,11 @@ class Sprites:
         del width, height  # unneeded
 
         for x in [
-            'lineart',
+            'lines',
             'base', 'basetail', 'dark', 'darkears', 'darkfade', 'darkforest', 'darktail',
             'extras', 'eyes', 'fadebg', 'herbs', 'highlights', 
             'highlightsears', 'highlightstail', 'koriacc', 'lines',
-	'lineears', 'linetail', 'merle', 'merleears', 'merletail', 'mouth',
+	'linetail', 'merle', 'merleears', 'merletail', 'mouth',
             'petacc', 'petaccbase', 'petaccmissing', 
             'petaccpatterns', 'points', 'pointsears', 'pointstail', 'red', 'redears', 'redtail',
             'scars', 'scarsmissing', 'shading', 'skin', 'starfade', 'starfog', 'tortieears',
@@ -153,92 +153,127 @@ class Sprites:
                 self.spritesheet(f"sprites/{x}.png", x)
 
         # Line art
-        self.make_group('lineart', (0, 0), 'lines')
-        self.make_group('shadersnewwhite', (0, 0), 'shaders')
-        self.make_group('lightingnew', (0, 0), 'lighting')
+        self.make_group('lines', (0, 0), 'lines')
+        self.make_group('lineears', (0, 0), 'lineears')
+        self.make_group('linetail', (0, 0), 'linetail')
+        self.make_group('shaders', (0, 0), 'shaders')
 
-        self.make_group('lineartdead', (0, 0), 'lineartdead')
-        self.make_group('lineartdf', (0, 0), 'lineartdf')
+        # base pelt - to be expanded with extras later
+        self.make_group('base', (0, 0), 'baseSOLID')
+        self.make_group('basetail', (0, 0), 'basetailSOLID')
+        self.make_group('mouth', (0, 0), 'mouth')
+
+        # dead stuff
+        self.make_group('starfog', (0, 0), 'starfog')
+        self.make_group('darkforest', (0, 0), 'darkforest')
+        self.make_group('fadebg', (0, 0), 'fadebg')
 
         # Fading Fog
         for i in range(0, 3):
-            self.make_group('fademask', (i, 0), f'fademask{i}')
-            self.make_group('fadestarclan', (i, 0), f'fadestarclan{i}')
-            self.make_group('fadedarkforest', (i, 0), f'fadedf{i}')
+            self.make_group('starfade', (i, 0), f'starfade{i}')
+            self.make_group('darkfade', (i, 0), f'darkfade{i}')
 
-        # Eyes
-        eye_colors = [['ICE', 'NAVY', 'RAIN', 'SAPPHIRE', 'SEAFOAM', 'SKY', 'STORM', 'TEAL'],
-            ['ALMOND', 'BEAR', 'CASHEW', 'HAZEL', 'LATTE', 'SPARROW', 'BLACK', 'GULL'],
-            ['SILVER', 'SMOKE', 'WHITE', 'EMERALD', 'FERN', 'FOREST', 'LEAF', 'LIME'],
-            ['MINT', 'PEACH', 'PUMPKIN', 'TANGELO', 'AMETHYST', 'LILAC', 'BUBBLEGUM', 'PINK'],
-            ['ROUGE', 'SCARLET', 'AMBER', 'LEMON', 'PALE', 'SUNBEAM', 'SUNLIGHT', 'WHEAT'],
-            ['HARVEST', 'VIOLET', 'RUBY', 'DAWN', 'DAYLIGHT', 'TWILIGHT', 'DUSK', 'MIDNIGHT']]
-        for row, colors in enumerate(eye_colors):
-            for col, color in enumerate(colors):
-                self.make_group('eyes', (col, row), f'eyes{color}')
-                self.make_group('eyes2', (col, row), f'eyes2{color}')
+        # skin
+        for a, i in enumerate([|"SOLID", "BUTTERFLY", "DUDLEY", "SNOWNOSE", "SPECKLED"]):
+            self.make_group('skin', (a, 0), f'skin{i}')
+        # eyes
+        for a, i in enumerate(["SCLERA", "BASE", "HIGHLIGHT"]):
+            self.make_group('eyes', (a, 0), f'eye{i}')
 
         # White Patches
-        white_patches = [['FLASH', 'HIGHLIGHTS', 'JACKAL', 'LOCKET', 'SNOWFLAKE', 'SOCKS', 'SPLIT', 'STRIPE', 'TOES', 'TRIM'],
-            ['WOLFTICKING', 'BLAZE', 'BLOTCH', 'HALF', 'HEART', 'IRISH', 'MOONRISE', 'MUNSTERLANDER', 'SPITZ', 'STAR'],
-            ['SUMMERFOX', 'TICKING', 'URAJIRO', 'BLUETICK', 'EXTREMEPIEBALD', 'LIGHTDALMATIAN', 'PIEBALD', 'TAIL', 'WHITE', 'HEAVYDALMATIAN'],
-            ['BACKLEG', 'BEE', 'DAPPLES', 'POINTED', 'SPECKLES', 'DIAMOND', 'HOUND', 'KING', 'HEELER']]
+        white_patches = [["BACKLEG", "BEE", "BLAZE", "BLOTCH", "BLUETICK", "DAPPLES", "DIAMOND", "EXTREMEPIEBALD", "FLASH", "HALF"],
+            ["HEART", "HEAVYDALMATIAN", "HEELER", "HIGHLIGHT", "HOUND", "IRISH", "JACKAL", "KING", "LIGHTDALMATIAN", "LOCKET"],
+            ["MOONRISE", "MUNSTERLANDER", "PIEBALD", "POINTED", "SNOWFLAKE", "SOCKS", "SPECKLES", "SPITZ", "SPLIT", "STAR"],
+            ["STRIPE", "SUMMERFOX", "TAIL", "TICKING", "TOES", "TRIM", "URAJIRO", "WOLFTICKING"]]
         for row, patches in enumerate(white_patches):
             for col, patch in enumerate(patches):
-                self.make_group('whitepatches', (col, row), f'white{patch}')
+                self.make_group('white', (col, row), f'white{patch}')
+        for a, i in enumerate(["INNEREARS", "DAPPLES", "EXTREMEPIEBALD", "LIGHTDALMATIAN", "SNOWFLAKE", "SPLIT", "TAIL"]):
+            self.make_group('whiteears', (a, 0), f'whiteears{i}')
+        white_tails = [["UNDERTAIL", "SOLIDTAIL", "TIPTAIL", "SMALLTAIL", "HALFTAIL", "BEE", "BLUETICK", "DAPPLES"],
+            ["DIAMOND", "HEART", "HEAVYDALMATIAN", "HEELER", "KING", "LIGHTDALMATIAN", "MUNSTERLANDER", "SNOWFLAKE"],
+            ["SPECKLES", "SPITZ", "SPLIT", "STAR", "TICKING"]]
+        for row, tails in enumerate(white_tails):
+            for col, tail in enumerate(tails):
+                self.make_group('whitetail', (col, row), f'whitetail{tail}')
 
         # Colorpoints
-        special_points = [['SEPIA', 'MINK', 'POINT', 'CLEAR'],
-            ['HIMALAYAN', 'BEW', 'ALBINO']]
-        for row, specialpoints in enumerate(special_points):
-            for col, point in enumerate(specialpoints):
-                self.make_group('specialpoints', (col, row), f'specialpoint{point}')
-
+        for a, i in enumerate(["SEPIA", "MINK", "POINT", "CLEAR", "HIMALAYAN", "BEW"]):
+            self.make_group('points', (a, 0), f'points{i}')
+        for a, i in enumerate(["SOLID", "HIMALAYAN", "BEW"]):
+            self.make_group('pointsears', (a, 0), f'pointsears{i}')
+        for a, i in enumerate(["SOLID", "HIMALAYAN", "BEW"]):
+            self.make_group('pointstail', (a, 0), f'pointstail{i}')
+            
         # Merles
-        for a, i in enumerate(['DARKDAPPLE', 'SHADOWSNEAK', 'STORMSONG', 'BRINDLECLOUD', 'DAPPLEPELT', 'DAYSKY', 'WILLOWLEAF', 'BRIGHTLEAF', 'SEAFUR', 'SILVERCLAW']):
-            self.make_group('merle', (a, 0), f'patch{i}')
+        merle_patches = [["BRIGHTLEAF", "BRINDLECLOUD", "DAPPLECLOUD", "DARKDAPPLE", "DAYSKY", "SEAFUR", "SHADOWSNEAK", "SILVERCLAW"],
+                              ["STORMSONG", "WILLOWLEAF"]]
+        for row, patches in enumerate(merle_patches):
+            for col, patch in enumerate(patches):
+                self.make_group('merle', (col, row), f'merle{patch}')
+        for a, i in enumerate(["SOLID", "BRIGHTLEAF", "BRINDLECLOUD", "DAPPLECLOUD", "DARKDAPPLE", "DAYSKY", "SEAFUR", "SHADOWSNEAK"]):
+            self.make_group('merleears', (a, 0), f'merleears{i}')
+        merle_tails = [["BRIGHTLEAF", "BRINDLECLOUD", "DAPPLECLOUD", "DARKDAPPLE", "DAYSKY", "SEAFUR", "SHADOWSNEAK", "SILVERCLAW"],
+                              ["STORMSONG", "WILLOWLEAF"]]
+        for row, tails in enumerate(merle_tails):
+            for col, tail in enumerate(tails):
+                self.make_group('merletail', (col, row), f'merletail{tail}')
         
-        # base pelt - to be expanded with extras later
-        self.make_group('base', (0, 0), 'baseSOLID')
-
         # Red Highlights
-        red_highlights = [['RUNIC', 'OPHELIA', 'MEXICAN', 'GRAYWOLF', 'TIMBER', 'VIBRANT', 'STORMY'],
-            ['ASPEN', 'CALI', 'FOXY']]
+        red_highlights = [["ASPEN", "CALI", "FOXY", "GRAYWOLF", "MEXICAN", "OPHELIA"],
+            ["RUNIC", "STORMY", "TIMBER", "VIBRANT"]]
         for row, redhighlight in enumerate(red_highlights):
             for col, rh in enumerate(redhighlight):
                 self.make_group('red', (col, row), f'red{rh}')
+        for a, i in enumerate(["SOLID", "MOST", "ASPEN", "OPHELIA"]):
+            self.make_group('redears', (a, 0), f'redears{i}')
+        for a, i in enumerate(["MOST", "ASPEN", "CALI", "FOXY", "GRAYWOLF", "OPHELIA", "RUNIC", "STORMY"]):
+            self.make_group('redtail', (a, 0), f'redtail{i}')
 
         # Highlights
-        highlights = [['RUNIC', 'RUNICBRIGHT', 'OPHELIA', 'MEXICAN', 'GRAYWOLF', 'TIMBER', 'VIBRANT'],
-            ['STORMY', 'SMOKEY', 'WINTER', 'HUSKY', 'SHEPHERD', 'SABLE', 'ARCTIC'],
-            ['SEMISOLID', 'AGOUTI', 'ASPEN', 'CALI', 'FOXY', 'GRIZZLE', 'SVALBARD']]
+        highlights = [["AGOUTI", "ARCTIC", "ASPEN", "CALI", "FOXY", "GRAYWOLF", "GRIZZLE", "HUSKY"],
+            ["MEXICAN", "OPHELIA", "RUNICMID", "RUNIC", "SABLE", "SEMISOLID", "SHEPHERD", "SMOKEY"],
+            ["STORMY", "SVALBARD", "TIMBER", "VIBRANT", "WINTER"]]
         for row, highlight in enumerate(highlights):
             for col, hl in enumerate(highlight):
                 self.make_group('highlights', (col, row), f'highlight{hl}')
+        for a, i in enumerate(["EXTRA", "INNER", "AGOUTI", "CALI", "OPHELIA", "SVALBARD"]):
+            self.make_group('highlightsears', (a, 0), f'highlightears{i}')
+        highlight_tails = [["AGOUTI", "ARCTIC", "ASPEN", "CALI", "FOXY", "GRIZZLE", "HUSKY", "MEXICAN"],
+                              ["SEMISOLID", "SHEPHERD", "SVALBARD"]]
+        for row, tails in enumerate(highlight_tails):
+            for col, tail in enumerate(tails):
+                self.make_group('highlightstail', (col, row), f'highlighttail{tail}')
 
         # Dark Shading
-        dark_shading = [['BLACK', 'RUNIC', 'OPHELIA', 'MEXICAN', 'GRAYWOLF', 'TIMBER', 'VIBRANT'],
-            ['STORMY', 'SMOKEY', 'WINTER', 'HUSKY', 'SHEPHERD', 'SABLE', 'ARCTIC'],
-            ['COLORPOINT', 'BRINDLE', 'POINTS', 'SEMISOLID', 'SOLID', 'AGOUTI', 'ASPEN'],
-            ['CALI', 'FOXY', 'GRIZZLE', 'SVALBARD']]
+        dark_shading = [["AGOUTI", "ARCTIC", "ASPEN", "BRINDLE", "CALI", "COLORPOINT", "FOXY", "GRAYWOLF"],
+            ["GRIZZLE", "HUSKY", "MEXICAN", "OPHELIA", "POINTS", "RUNIC", "SABLE", "SEMISOLID"],
+            ["SHEPHERD", "SMOKEY", "SOLID", "STORMY", "SVALBARD", "TIMBER", "VIBRANT", "WINTER"]]
         for row, darkshading in enumerate(dark_shading):
             for col, ds in enumerate(darkshading):
                 self.make_group('dark', (col, row), f'dark{ds}')
+        dark_ears = [["MOST", "SHADED", "AGOUTI", "ARCTIC", "BRINDLE", "CALI", "FOXY", "GRAYWOLF"],
+                              ["GRIZZLE", "MEXICAN", "RUNIC", "STORMY", "SVALBARD", "TIMBER", "VIBRANT", "WINTER"]]
+        for row, ears in enumerate(dark_ears):
+            for col, ear in enumerate(ears):
+                self.make_group('darkears', (col, row), f'darkears{ear}')
+        dark_tail = [["SOLID", "STRIPE", "AGOUTI", "ARCTIC", "ASPEN", "BRINDLE", "CALI", "FOXY"],
+            ["GRAYWOLF", "GRIZZLE", "HUSKY", "MEXICAN", "OPHELIA", "RUNIC", "SABLE", "SEMISOLID"],
+            ["SMOKEY", "SOLID", "SVALBARD", "TIMBER", "VIBRANT", "WINTER"]]
+        for row, tails in enumerate(dark_tail):
+            for col, tail in enumerate(tails):
+                self.make_group('darktail', (col, row), f'darktail{tail}')
 
         # Torties
-        tortie_patches = [['CAPE', 'DIPPED', 'HEARTBREAKER', 'INKSPILL', 'MINIMAL', 'PHANTOM'],
-            ['PUDDLES', 'REDTAIL', 'SHADOWSTEP', 'SPLIT', 'SPLOTCH', 'WATERFALL']]
+        tortie_patches = [["CAPE", "DIPPED", "HEARTBREAKER", "INKSPILL", "MINIMAL", "PHANTOM", "PUDDLES", "REDTAIL"],
+            ["SHADOWSTEP", "SPLIT", "SPLOTCH", "WATERFALL"]]
         for row, tortiepatches in enumerate(tortie_patches):
             for col, tp in enumerate(tortiepatches):
-                self.make_group('tortiepatchesmasks', (col, row), f'patch{tp}')
-
-        # Skins
-        skin_colors = [['BLACK', 'BLUE', 'BUTTERFLY', 'DUDLEY', 'DUDLEYBLUE', 'DUDLEYLIVER'],
-            ['GRAY', 'ISABELLA', 'LIVER', 'MOCHA', 'PINK', 'SNOWNOSE'],
-            ['SPECKLED']]
-        for row, colors in enumerate(skin_colors):
-            for col, color in enumerate(colors):
-                self.make_group('skin', (col, row), f"skin{color}")
+                self.make_group('torties', (col, row), f'tortie{tp}')
+        for a, i in enumerate(["SOLID", "HEARTBREAKER", "MINIMAL", "PUDDLES", "REDTAIL", "SHADOWSTEP", "SPLIT"]):
+            self.make_group('tortieears', (a, 0), f'tortieears{i}')
+        for a, i in enumerate(["SOLID", "HEARTBREAKER", "INKSPILL", "PHANTOM", "SPLIT", "SPLOTCH", "WATERFALL"]):
+            self.make_group('tortietail', (a, 0), f'tortietail{i}')
 
         self.load_scars()
         self.load_symbols()
@@ -247,23 +282,19 @@ class Sprites:
         """
         Loads scar sprites and puts them into groups.
         """
-        scars_data = [["BEAKLOWER", "BEAKCHEEK", "BELLY", "BLIND", "BOTHBLIND", "BRIDGE", 
-            "BRIGHTHEART", "BURNPAWS", "BURNRUMP", "BURNBELLY", "BURNTAIL", "CATBITE"],
-            ["CHEEK", "FACE", "FROSTFACE", "FROSTMITT", "FROSTSOCK", "FROSTTAIL",
-            "HALFTAIL", "LEFTBLIND", "LEFTEAR", "LEGBITE", "MANTAIL", "MANLEG"],
-            ["NECKBITE", "NOEAR", "NOLEFTEAR", "NOPAW", "NORIGHTEAR", "NOTAIL", "ONE",
-            "QUILLCHUNK", "QUILLSCRATCH", "RATBITE", "RIGHTBLIND", "RIGHTEAR"],
-            ["SIDE", "SNAKE", "SNOUT", "TAILBASE", "TAILSCAR", "THREE", "THROAT", "TOETRAP",
-            "TWO", "GIN", "HINDLEG", "BACK"],
-            ["QUILLSIDE", "SCRATCHSIDE", "TOE", "BEAKSIDE", "CATBITETWO", "SNAKETWO", "FOUR"]]
-        missing_parts_data = [["BRIGHTHEART", "BURNBELLY", "BURNTAIL", "FROSTTAIL", "HALFTAIL", "LEFTEAR"],
-                              ["NOEAR", "NOLEFTEAR", "NOPAW", "NORIGHTEAR", "NOTAIL", "RIGHTEAR"]]
+        scars_data = [["ONE", "TWO", "THREE", "MANLEG", "BRIGHTHEART", "MANTAIL", "BRIDGE", "RIGHTBLIND", "LEFTBLIND",
+             "BOTHBLIND", "BURNPAWS", "BURNTAIL"],
+            ["BURNBELLY", "BEAKCHEEK", "BEAKLOWER", "BURNRUMP", "CATBITE", "RATBITE", "FROSTFACE", 
+             "FROSTMITT", "FROSTSOCK", "QUILLCHUNK", "QUILLSCRATCH", "FROSTTAIL"],
+            ["TAILSCAR", "SNOUT", "CHEEK", "SIDE", "THROAT", "TAILBASE", "BELLY", "TOETRAP", "SNAKE", "LEGBITE",
+             "NECKBITE", "FACE"],
+            ["HINDLEG", "BACK", "QUILLSIDE", "SCRATCHSIDE", "TOE", "BEAKSIDE", "CATBITETWO", "SNAKETWO", "FOUR"]]
         for row, scars in enumerate(scars_data):
             for col, scar in enumerate(scars):
                 self.make_group('scars', (col, row), f'scars{scar}')
-        for row, missing_parts in enumerate(missing_parts_data):
-            for col, missing_part in enumerate(missing_parts):
-                self.make_group('missingscars', (col, row), f'scarsmissing{missing_part}')
+                
+        for a, i in enumerate(["BURNBELLY", "BURNTAIL", "FROSTFACE", "FROSTTAIL", "HALFTAIL", "LEFTEAR", "MANTAIL", "NOLEFTEAR", "NOPAW", "NORIGHTEAR", "RIGHTEAR", "TAILSCAR"]):
+            self.make_group('scarsmissing', (a, 0), f'scarsmissing{i}')
 
         # Accessories
         # Natural stuff
@@ -299,20 +330,21 @@ class Sprites:
         self.make_group('extras', (1, 0), f'cloakSILK CLOAK')
 
         # Collars, Harnesses, Bandanas
-        collar_color_data = [["BLACK", "BLUE", "CRIMSON", "CYAN", "GREEN"],
-            ["INDIGO", "LIME", "MULTI", "PINK", "PURPLE"],
-            ["RAINBOW", "RED", "SPIKES", "WHITE", "YELLOW"]]
-        for row, collars in enumerate(collar_color_data):
-            for col, color in enumerate(collars):
-                self.make_group('collars', (col, row), f'collars{color}')
-                self.make_group('bellcollars', (col, row), f'collarsBELL{color}')
-                self.make_group('bowcollars', (col, row), f'collarsBOW{color}')
-                self.make_group('nyloncollars', (col, row), f'collarsNYLON{color}')
-                self.make_group('nylonpastelcollars', (col, row), f'collarsPASTELNYLON{color}')
-                self.make_group('radio', (col, row), f'collarsRADIO{color}')
-                self.make_group('harness', (col, row), f'collarsHARNESS{color}')
-                self.make_group('bandana', (col, row), f'collarsBANDANA{color}')
-                self.make_group('bandanaplaid', (col, row), f'collarsPLAIDBANDANA{color}')
+        for a, i in enumerate(["BANDANABACK", "BANDANA", "BELL", "BOW", "COLLAR", "HARNESS", "LEATHER", "NYLON", "RADIO"]):
+            self.make_group('petacc', (a, 0), f'petlines{i}')
+        base_petacc = [["BANDANABACK", "BANDANA", "BOWLIGHT", "BOW", "COLLAR", "HARNESS", "RADIO", "accentHARNESS", "metalLEATHER", "accentNYLON", "highlightBOW", "metalBELL"],
+                              ["tagNYLON"]]
+        for row, accessories in enumerate(base_petacc):
+            for col, accessory in enumerate(accessories):
+                self.make_group('petaccbase', (col, row), f'petbase{accessory}')
+        for a, i in enumerate(["GENERAL", "BANDANABACK"]):
+            self.make_group('petaccmissing', (a, 0), f'petmissing{i}')
+        pattern_petacc = [["plaidBANDANABACK", "swirlBANDANABACK"],
+                              ["plaidBANDANA", "swirlBANDANA"]]
+        for row, accessories in enumerate(base_petacc):
+            for col, accessory in enumerate(accessories):
+                self.make_group('petaccpatterns', (col, row), f'petpattern{accessory}')
+        
 
     def load_symbols(self):
         """

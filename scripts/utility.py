@@ -2579,537 +2579,260 @@ def generate_sprite(
 
     # generating the sprite
     try:
-        #base, red, highlight, dark - runic mid, solids base, solids dark, solids light
-        color_dict = {
-            "HONEY": ["#c09460", "#a05f36", "#f2e9d8", "#1e1c1a", "#d8c093", "#c09460", "#aa774c", "#ceb282"],
-            "FLAXEN": ["#cfae8d", "#ad753e", "#f5f3ed", "#1f1c1a", "#e8d9c1", "#cfae8d", "#bd9975", "#e3cdae"],
-            "CREAM": ["#e5d1af", "#d09a5b", "#faf6e9", "#1e1c1a", "#f1ebda", "#e5d1af", "#dabc97", "#f6eace"],
-            "PEARL": ["#f2e9d8", "#dab487", "#fffcf3", "#1f1d1a", "#fcf4e6", "#f2e9d8", "#d4c5a9", "#fffcf3"],
-            "GOLD": ["#e0bc66", "#b96d13", "#fff7e5", "#211f1c", "#f9edda", "#e0bc66", "#c89236", "#f3da9e"],
-            "BRASS": ["#d3be9b", "#e6d5cb", "#f7ecdf", "#a07c4e", "#ead5bd", "#d3be9b", "#bea57b", "#e4d6bf"],
-            "SUNSTONE": ["#f2dcc6", "#b07748", "#fffaef", "#dcae79", "#f9edda", "#f2dcc6", "#ddb17d", "#fffaef"],
-            "SUNNY": ["#f7eed4", "#f1ddab", "#faf4e5", "#d3ab6d", "#faf4e5", "#f7eed3", "#f0e5c2", "#faf4e5"],
-            "DAISY": ["#fffcef", "#fff9dc", "#fffef8", "#fff9dc", "#FFFDF4", "#FFFCEF", "#FFFBE6", "#fffef8"],
-            "PEACHY": ["#ffc571", "#e89f4c", "#fffcf3", "#c67c3f", "#FFEFD6", "#FFCE85", "#FFBB5C", "#FFEED0"],
-            "MIST": ["#d7d4cb", "#daccb7", "#f7f5ed", "#a19e96", "#e9e6dd", "#d7d4cb", "#bfbdb5", "#edeae1"],
-            "ASH": ["#87847d", "#afa294", "#f7f5ed", "#62605a", "#ceccc2", "#87847d", "#716e68", "#9a9791"],
-            "STEEL": ["#4d4b45", "#877663", "#bdb8aa", "#1b1a18", "#7a776f", "#4d4b45", "#3e3c37", "#6f6c65"],
-            "SILVER": ["#e3e4e6", "#bbbcbe", "#f7f8fa", "#797a7c", "#f1f1f2", "#e3e4e6", "#c0c1c5", "#f7f8fa"],
-            "MOONSTONE": ["#e9eeec", "#bfc5ce", "#f6f6f6", "#b7bcb9", "#f6f6f6", "#e9eeec", "#d5dad8", "#f6f6f6"],
-            "SNOW": ["#fafafa", "#fafafa", "#fafafa", "#efefef", "#fafafa", "#fafafa", "#fafafa", "#fafafa"],
-            "GOSLING": ["#8b8171", "#b8ab96", "#a89b87", "#2b2a29", "#9A8E7C", "#8B8171", "#7D7364", "#b8ab96"],
-            "PYRITE": ["#e0d7c6", "#dc9b57", "#fffaf6", "#655f55", "#F0E9DE", "#E0D7C6", "#BCAE98", "#F8F2EA"],
-            "BLACK": ["#161310", "#76593c", "#161310", "#161310", "#76593c", "#161310", "#161310", "#76593c"],
-            "ONYX": ["#3f4144", "#181a1d", "#56595d", "#181a1d", "#4e5154", "#2d2f31", "#2d2f31", "#3f4144"],
-            "LUNA": ["#151419", "#a8aaae", "#151419", "#151419", "#a8aaae", "#151419", "#151419", "#d5d8dc"],
-            "THISTLE": ["#13110f", "#b89c6c", "#b89c6c", "#13110f", "#13110f", "#13110f", "#13110f", "#b89c6c"],
-            "VOID": ["#0f1011", "#0f1011", "#0f1011", "#0f1011", "#0f1011", "#0f1011", "#0f1011", "#0f1011"],
-            "SPICE": ["#5e3728", "#2a140c", "#cda781", "#1e1c1a", "#a7794d", "#5e3728", "#512f22", "#825d43"],
-            "GINGER": ["#a05f36", "#854219", "#eed9b8", "#1e1c1a", "#caa37a", "#a05f36", "#8e522d", "#bc8c5c"],
-            "COPPER": ["#b7702f", "#742a0a", "#f8dfb6", "#080301", "#deba7e", "#b7702f", "#8a501c", "#cda158"],
-            "REDWOOD": ["#572f1d", "#422011", "#5e3c26", "#171412", "#5B3622", "#572F1D", "#452A1E", "#5e3c26"],
-            "CHOCOLATE": ["#e7caa4", "#a36c48", "#f8ecd6", "#6a4c39", "#f3e3c5", "#6f482f", "#6f482f", "#82583e"],
-            "COCOA": ["#6a422e", "#5b3320", "#7d5741", "#512e20", "#7d5741", "#522e20", "#522e20", "#5b3526"],
-            "HAZELNUT": ["#cb8d4c", "#a0672e", "#dcaf78", "#4c3826", "#D49E62", "#4C3826", "#4C3826", "#6C4E30"],
-            "BLUE": ["#e9d2b4", "#d6ae80", "#f8f3ea", "#897e76", "#f6eddc", "#887e76", "#887e76", "#aba097"],
-            "SPRUCE": ["#7d6d63", "#5a514f", "#bcb3ad", "#4c4347", "#bcb3ad", "#564e52", "#564e52", "#665d61"],
-            "FROST": ["#efefeb", "#70777c", "#f6f6f0", "#70777c", "#F3F3EE", "#70777c", "#70777c", "#8B9092"],
-            "LILAC": ["#f2e9d8", "#ebd2aa", "#fffbf4", "#c4aeae", "#fcf7ec", "#c4aeae", "#c4aeae", "#d4c2c2"],
-            "ISABELLA": ["#bbada2", "#d6c3aa", "#ded3c6", "#a99689", "#ded3c6", "#aa988b", "#aa988b", "#bbada2"]
-            }
+        # what the frick is happening here
         # set up expectations for markings
-        all_markings = ["OPHELIA", "MEXICAN", "GRAYWOLF", "TIMBER", "VIBRANT", "STORMY", "ASPEN", "CALI", "FOXY"] # red, dark + highlights
-        both_markings = ["ARCTIC", "SMOKEY", "WINTER", "SHEPHERD", "SABLE", "AGOUTI", "GRIZZLE", "SVALBARD"] # dark + highlights
-        dark_markings = ["COLORPOINT", "BRINDLE", "POINTS"] # only dark
         special_markings = ["RUNIC", "SEMISOLID", "SOLID", "HUSKY"] # special kinds of markings
-        # SPRITE GENERATION
-        # this is gross and don't look at it
-        base_name = None
-        base_color = None
-        tortie_base = None
-        tortie_color = None
-        if cat.pelt.name not in ['Tortie', 'Calico']:
-            base_name = str(cat.pelt.name).upper()
-            base_color = str(cat.pelt.colour).upper()
-        else:
-            base_name = str(cat.pelt.tortiebase).upper()
-            base_color = str(cat.pelt.colour).upper()
-            tortie_base = str(cat.pelt.tortiepattern).upper()
-            tortie_color = str(cat.pelt.tortiecolour).upper()
-        black_colors = Pelt.black_colors.copy()
-        base_tint = None
-        if cat.pelt.points != "ALBINO": # avoid all this shit if it's not needed
-            pelt = sprites.sprites['baseSOLID' + cat_sprite].copy().convert_alpha()
-            if cat.pelt.tint != "none":
-                base_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                if cat.pelt.tint in sprites.cat_tints["tint_colours"]:
-                    base_tint.fill(tuple(sprites.cat_tints["tint_colours"][cat.pelt.tint]))
-                elif cat.pelt.tint in sprites.cat_tints["dilute_tint_colours"]:
-                    base_tint.fill(tuple(sprites.cat_tints["dilute_tint_colours"][cat.pelt.tint]))
-            solid_merle = False
-            if cat.pelt.merle:
-                # merle pieces for later
-                merle_list = cat.pelt.merle_pattern.copy()
-                merle_dilute_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                merle_dilute_tint.fill(merle_list[3])
-                merle_dark_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                merle_dark_tint.fill(merle_list[1])
-                merle_red_tint = None
-                if merle_list[2] is not None and base_name != "POINTS":
-                    merle_red_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                    merle_red_tint.fill(merle_list[2])
-                # solid merles are handled differently, so check now
-                if base_name == 'solid' or base_name == 'semisolid' or base_color in black_colors:
-                    solid_merle = True
+        no_tortie_ears = "INKSPILL"
+        no_tortie_tail = ["MINIMAL", "REDTAIL"]
+        no_white_ears = ["BEE", "BLAZE", "BLUETICK", "DIAMOND", "FLASH", "HALF", "HEART",
+                         "HEAVYDALMATIAN", "HEELER", "HIGHLIGHT", "HOUND", "KING", "LOCKET", 
+                         "MUNSTERLANDER", "SOCKS","SPECKLES", "STAR", "STRIPE", "TICKING",
+                         "TOES", "TRIM", "WOLFTICKING"]
+        no_white_tail = ["FLASH", "HIGHLIGHT", "JACKAL", "SNOWFLAKE", "SOCKS", "TOES", "WOLFTICKING"]
+        layer_highlight_dark = [[0, 2, 1], "ARCTIC", "GRIZZLE", "SVALBARD"]
+        layer_red_highlight_dark = [[0, 3, 2, 1], "OPHELIA", "MEXICAN", "RUNIC", "ASPEN", "CALI", "FOXY"]
+        layer_red_dark_highlight = [[0, 3, 1, 2], "GRAYWOLF", "TIMBER", "VIBRANT", "STORMY"]
+        layer_dark = [[0, 1], "SOLID", "COLORPOINT", "POINTS", "BRINDLE"]
+        layer_dark_highlight = [[0, 1, 2], "SEMISOLID", "SMOKEY", "WINTER", "HUSKY", "SHEPHERD", "SABLE", "AGOUTI"]
+        layer_list = [layer_dark_highlight, layer_dark, layer_red_dark_highlight, layer_red_highlight_dark, layer_highlight_dark]
+        # torties are set up in a minute, if not false
+        tortie = False
+        if cat.pelt.tortiepattern:
+            tortie = True
+        merle = False
+        if cat.pelt.merle:
+            merle = True
+        harlequin = False
+        if cat.pelt.harlequin:
+            harlequin = True
+        # base layer holder
+        base_layers = ["base", "dark", "highlight", "red"]
+        ear_layers = ["baseears", "darkears", "highlightears", "redears"]
+        tail_layers = ["basetail", "darktail", "highlightstail", "redtail"]
+        # this is what order they should be present in
+        order_layers = []
+        tortie_order_layers = []
 
-            # SETTING UP EACH PIECE
-            base_pelt = None
-            red_pelt = None
-            highlight_pelt = None
-            dark_pelt = None
+        # scars or other weird shit accounted for here
+        body_mod = {earscar = False
+                        tailscar = False}
+        # have python check if certain scars are in the list ty
+        # function goes here for base patterns
+        # layer_dict = function_name()
+        # function that returns a blitted sprite, taking into account merle if not harlequin
+        # pass order layers. pass the layer dict
+        # run it 3x, one for base, one for ears, and one for tail. pass on which one is needing it
+        # check scar info if it should not be run. if it shouldn't, it should return False for further
+        # calc later when setting up the sprite (less important for base sprites, but useful for torties
+        # and other types)
+        # function goes here for torties, if not false
+        # function that returns blitted tortie sprite, taking into account merle if not harlequin
+        # now if it was harlequin, crunch the sprite into the proper place. otherwise,
+        # do nothing and move on
 
-            # pelt marking collection, shortcut for solid merles
-            if solid_merle:
-                dilute_patch = sprites.sprites['baseSOLID' + cat_sprite].copy().convert_alpha()
-                dilute_patch.blit(merle_dilute_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                dark_patch = sprites.sprites["patch" + merle_list[0] + cat_sprite].copy().convert_alpha()
-                dark_patch.blit(merle_dark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                
-            elif base_name in special_markings:
-                # special markings that require special consideration
-                if base_name in ["SEMISOLID", "SOLID"]:
-                    base_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                    base_tint.fill(color_dict[base_color][5])
-                    base_pelt = sprites.sprites['baseSOLID' + cat_sprite].copy().convert_alpha()
-                    base_pelt.blit(base_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                    dark_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                    dark_tint.fill(color_dict[base_color][6])
-                    dark_pelt = sprites.sprites['dark' + base_name + cat_sprite].copy().convert_alpha()
-                    dark_pelt.blit(dark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                    if base_name == "SEMISOLID":
-                        highlight_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                        highlight_tint.fill(color_dict[base_color][7])
-                        highlight_pelt = sprites.sprites['highlight' + base_name + cat_sprite].copy().convert_alpha()
-                        highlight_pelt.blit(highlight_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                else:
-                    dark_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                    dark_tint.fill(color_dict[base_color][3])
-                    dark_pelt = sprites.sprites['dark' + base_name + cat_sprite].copy().convert_alpha()
-                    dark_pelt.blit(dark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                    if base_name == "RUNIC":
-                        base_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                        base_tint.fill(color_dict[base_color][0])
-                        base_pelt = sprites.sprites['baseSOLID' + cat_sprite].copy().convert_alpha()
-                        base_pelt.blit(base_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                        highlight_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                        highlight_tint.fill(color_dict[base_color][4])
-                        highlight_pelt = sprites.sprites['highlightRUNIC' + cat_sprite].copy().convert_alpha()
-                        bright_highlight_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                        bright_highlight_tint.fill(color_dict[base_color][2])
-                        bright_highlight_pelt = sprites.sprites['highlightRUNICBRIGHT' + cat_sprite].copy().convert_alpha()
-                        highlight_pelt.blit(highlight_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                        highlight_pelt.blit(bright_highlight_pelt, (0, 0))
-                        red_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                        red_tint.fill(color_dict[base_color][1])
-                        red_pelt = sprites.sprites['redRUNIC' + cat_sprite].copy().convert_alpha()
-                        red_pelt.blit(red_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                    elif base_name == "HUSKY":
-                        if base_color in ["BLACK", "ONYX"]:
-                            base_pelt = sprites.sprites['baseSOLID' + cat_sprite].copy().convert_alpha()
-                            base_pelt.blit(dark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                        else:
-                            base_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                            base_tint.fill(color_dict[base_color][0])
-                            base_pelt = sprites.sprites['baseSOLID' + cat_sprite].copy().convert_alpha()
-                            base_pelt.blit(base_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                        if base_color in ["REDWOOD", "STEEL", "GOSLING", "BLACK", "ONYX", "LUNA", "VOID", "COCOA", "HAZELNUT", "SPRUCE"]:
-                            highlight_pelt = sprites.sprites["highlight" + base_name + cat_sprite].copy().convert_alpha()
-                            if cat.pelt.white_patches_tint != "none":
-                                highlight_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                                highlight_tint.fill(tuple(sprites.white_patches_tints["tint_colours"][cat.pelt.white_patches_tint]))
-                                highlight_pelt.blit(highlight_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                        else:
-                            highlight_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                            highlight_tint.fill(color_dict[base_color][2])
-                            highlight_pelt = sprites.sprites['highlight' + base_name + cat_sprite].copy().convert_alpha()
-                            highlight_pelt.blit(highlight_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)        
+        # uhhh probably turn this into a function so that it can be used twice for torties
+        # pls pass either pelt name/color or tortie pelt name depending!!!!!
+        # pelt_name
+        if "ALBINO" not in cat.pelt.points and "WHITE" not in cat.pelt.white_patches:
+        # keep that ^ to determine if the functions following should run at all
+        # one thing to pass to this function is whether this is a tortie or not to do the final calc
+            no_red = ["ARCTIC", "SMOKEY", "WINTER", "SHEPHERD", "SABLE", "AGOUTI", "GRIZZLE", "SVALBARD", "COLORPOINT", "BRINDLE", "POINTS", "SEMISOLID", "SOLID", "HUSKY"]
+            no_highlight = ["COLORPOINT", "BRINDLE", "POINTS", "SOLID"]
+            no_dark_ears = ["OPHELIA", "ASPEN"]
+            no_highlight_ears = "SHEPHERD"
+            no_highlight_tail = ["GRAYWOLF", "OPHELIA", "RUNIC", "SABLE", "SMOKEY", "STORMY"]
+            base_val = pelt_name.copy()
+            baseears_val = pelt_name.copy()
+            basetail_val = pelt_name.copy()
+            dark_val = pelt_name.copy()
+            if base_val in ["COLORPOINT", "POINTS"]:
+                darktail_val = "SOLID"
+            elif base_val in ["SHEPHERD", "STORMY"]:
+                darktail_val = "STRIPE"
             else:
-                base_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                if base_color in ["BLACK", "LUNA"]:
-                    base_tint.fill(color_dict[base_color][1])
+                darktail_val = pelt_name.copy()
+            if base_val not in no_dark_ears:
+                if base_val in ["COLORPOINT", "POINTS", "SHEPHERD", "SOLID", "SEMISOLID"]:
+                    darkears_val = "MOST"
+                elif base_val in ["SABLE", "HUSKY", "SMOKEY"]:
+                    darkears_val = "SHADED"
                 else:
-                    base_tint.fill(color_dict[base_color][0])
-                base_pelt = sprites.sprites['baseSOLID' + cat_sprite].copy().convert_alpha()
-                base_pelt.blit(base_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                if not cat.pelt.merle:
-                    dark_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                    dark_tint.fill(color_dict[base_color][3])
-                    dark_pelt = sprites.sprites['dark' + base_name + cat_sprite].copy().convert_alpha()
-                    dark_pelt.blit(dark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                if base_name not in dark_markings:
-                    highlight_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                    highlight_tint.fill(color_dict[base_color][2])
-                    highlight_pelt = sprites.sprites['highlight' + base_name + cat_sprite].copy().convert_alpha()
-                    highlight_pelt.blit(highlight_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                    if base_name not in both_markings:
-                        red_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                        red_tint.fill(color_dict[base_color][1])
-                        red_pelt = sprites.sprites['red' + base_name + cat_sprite].copy().convert_alpha()
-                        red_pelt.blit(red_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                        
-            # tortie pieces
-            if tortie_base:
-                if tortie_base in special_markings:
-                    # special markings that require special consideration
-                    if tortie_base in ["SEMISOLID", "SOLID"]:
-                        tortie_base_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                        tortie_base_tint.fill(color_dict[tortie_color][5])
-                        tortie_base_pelt = sprites.sprites['baseSOLID' + cat_sprite].copy().convert_alpha()
-                        tortie_base_pelt.blit(tortie_base_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                        tortie_dark_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                        tortie_dark_tint.fill(color_dict[tortie_color][6])
-                        tortie_dark_pelt = sprites.sprites['dark' + tortie_base + cat_sprite].copy().convert_alpha()
-                        tortie_dark_pelt.blit(tortie_dark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                        if tortie_base == "SEMISOLID":
-                            tortie_highlight_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                            tortie_highlight_tint.fill(color_dict[tortie_color][7])
-                            tortie_highlight_pelt = sprites.sprites['highlight' + tortie_base + cat_sprite].copy().convert_alpha()
-                            tortie_highlight_pelt.blit(tortie_highlight_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                    darkears_val = pelt_name.copy()
+            if base_val not in no_highlight:
+                highlights_val = pelt_name.copy()
+                if base_val != no_highlight_ears:
+                    if base_val in ["FOXY", "GRAYWOLF", "GRIZZLE", "HUSKY", "MEXICAN", "RUNIC",
+                                "SEMISOLID", "SMOKEY", "STORMY", "TIMBER", "VIBRANT", "WINTER"]:
+                        highlightsears_val = "INNER"
+                    elif base_val in ["ARCTIC", "ASPEN"]:
+                        highlightsears_val = "EXTRA"
                     else:
-                        tortie_dark_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                        tortie_dark_tint.fill(color_dict[tortie_color][3])
-                        tortie_dark_pelt = sprites.sprites['dark' + tortie_base + cat_sprite].copy().convert_alpha()
-                        tortie_dark_pelt.blit(tortie_dark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                        if tortie_base == "RUNIC":
-                            tortie_base_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                            tortie_base_tint.fill(color_dict[tortie_color][0])
-                            tortie_base_pelt = sprites.sprites['baseSOLID' + cat_sprite].copy().convert_alpha()
-                            tortie_base_pelt.blit(tortie_base_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                            tortie_highlight_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                            tortie_highlight_tint.fill(color_dict[tortie_color][4])
-                            tortie_highlight_pelt = sprites.sprites['highlightRUNIC' + cat_sprite].copy().convert_alpha()
-                            tortie_bright_highlight_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                            tortie_bright_highlight_tint.fill(color_dict[tortie_color][2])
-                            tortie_bright_highlight_pelt = sprites.sprites['highlightRUNICBRIGHT' + cat_sprite].copy().convert_alpha()
-                            tortie_highlight_pelt.blit(tortie_highlight_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                            tortie_highlight_pelt.blit(tortie_bright_highlight_pelt, (0, 0))
-                            tortie_red_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                            tortie_red_tint.fill(color_dict[tortie_color][1])
-                            tortie_red_pelt = sprites.sprites['redRUNIC' + cat_sprite].copy().convert_alpha()
-                            tortie_red_pelt.blit(tortie_red_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                        elif tortie_base == "HUSKY":
-                            if tortie_color in ["BLACK", "ONYX"]:
-                                tortie_base_pelt = sprites.sprites['baseSOLID' + cat_sprite].copy().convert_alpha()
-                                tortie_base_pelt.blit(tortie_dark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                            else:
-                                tortie_base_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                                tortie_base_tint.fill(color_dict[tortie_color][0])
-                                tortie_base_pelt = sprites.sprites['baseSOLID' + cat_sprite].copy().convert_alpha()
-                                tortie_base_pelt.blit(tortie_base_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                            if base_color in ["REDWOOD", "STEEL", "GOSLING", "BLACK", "ONYX", "LUNA", "VOID", "COCOA", "HAZELNUT", "SPRUCE"]:
-                                tortie_highlight_pelt = sprites.sprites["highlight" + base_name + cat_sprite].copy().convert_alpha()
-                                if cat.pelt.white_patches_tint != "none":
-                                    tortie_highlight_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                                    tortie_highlight_tint.fill(tuple(sprites.white_patches_tints["tint_colours"][cat.pelt.white_patches_tint]))
-                                    tortie_highlight_pelt.blit(tortie_highlight_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                            else:
-                                tortie_highlight_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                                tortie_highlight_tint.fill(color_dict[tortie_color][2])
-                                tortie_highlight_pelt = sprites.sprites['highlight' + tortie_base + cat_sprite].copy().convert_alpha()
-                                tortie_highlight_pelt.blit(tortie_highlight_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)           
+                        highlightsears_val = pelt_name.copy()
+                if base_val not in no_highlight_tail:
+                    highlightstail_val = pelt_name.copy()
+            if base_val not in no_red:
+                red_val = pelt_name.copy()
+                if base_val in ["GRAYWOLF", "MEXICAN", "RUNIC", "STORMY", "TIMBER", "VIBRANT"]:
+                    redears_val = "SOLID"
+                elif base_val in ["CALI", "FOXY"]:
+                    redears_val = "MOST"
                 else:
-                    tortie_base_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                    if base_color in ["BLACK", "LUNA"]:
-                        tortie_base_tint.fill(color_dict[tortie_color][1])
-                    else:
-                        tortie_base_tint.fill(color_dict[tortie_color][0])
-                    tortie_base_pelt = sprites.sprites['baseSOLID' + cat_sprite].copy().convert_alpha()
-                    tortie_base_pelt.blit(tortie_base_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                    tortie_dark_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                    tortie_dark_tint.fill(color_dict[tortie_color][3])
-                    tortie_dark_pelt = sprites.sprites['dark' + tortie_base + cat_sprite].copy().convert_alpha()
-                    tortie_dark_pelt.blit(tortie_dark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                    if tortie_base not in dark_markings:
-                        tortie_highlight_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                        tortie_highlight_tint.fill(color_dict[tortie_color][2])
-                        tortie_highlight_pelt = sprites.sprites['highlight' + tortie_base + cat_sprite].copy().convert_alpha()
-                        tortie_highlight_pelt.blit(tortie_highlight_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                        if tortie_base not in both_markings:
-                            tortie_red_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                            tortie_red_tint.fill(color_dict[tortie_color][1])
-                            tortie_red_pelt = sprites.sprites['red' + tortie_base + cat_sprite].copy().convert_alpha()
-                            tortie_red_pelt.blit(tortie_red_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-
-            # merles that aren't solids
-            if not solid_merle and cat.pelt.merle:
-                # now all the merling to complete
-                dark_pelt = sprites.sprites['dark' + base_name + cat_sprite].copy().convert_alpha()
-                dark_pelt.blit(merle_dilute_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                dark_patch = sprites.sprites['dark' + base_name + cat_sprite].copy().convert_alpha()
-                dark_patch.blit(merle_dark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                dark_patch.blit(sprites.sprites["patch" + merle_list[0] + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
-                dark_pelt.blit(dark_patch, (0, 0))
-                if merle_red_tint != None:
-                    red_patch = sprites.sprites["baseSOLID" + cat_sprite].copy().convert_alpha()
-                    red_patch.blit(merle_red_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                    red_patch.blit(sprites.sprites["patch" + merle_list[0] + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
-                    base_pelt.blit(red_patch, (0, 0))
-
-            #BUILDING THE PELT FROM PIECES
-            if solid_merle:
-                pelt.blit(dilute_patch, (0, 0))
-                pelt.blit(dark_patch, (0, 0))  
-            else:
-                pelt.blit(base_pelt, (0, 0))
-                if base_name in ["ARCTIC", "GRIZZLE", "SVALBARD"]:
-                    pelt.blit(highlight_pelt, (0, 0))
-                    pelt.blit(dark_pelt, (0, 0))
-                elif base_name in ["OPHELIA", "MEXICAN", "RUNIC", "ASPEN", "CALI", "FOXY"]:
-                    pelt.blit(red_pelt, (0, 0))
-                    pelt.blit(highlight_pelt, (0, 0))
-                    pelt.blit(dark_pelt, (0, 0))
-                elif base_name in ["SEMISOLID", "SOLID"]:
-                    pelt.blit(dark_pelt, (0, 0))
-                    if base_name == "SEMISOLID":
-                        pelt.blit(highlight_pelt, (0, 0))
-                elif base_name in ["GRAYWOLF", "TIMBER", "VIBRANT", "STORMY"]:
-                    pelt.blit(red_pelt, (0, 0))
-                    pelt.blit(dark_pelt, (0, 0))
-                    pelt.blit(highlight_pelt, (0, 0))
+                    redears_val = pelt_name.copy()
+                if base_val in ["MEXICAN", "TIMBER", "VIBRANT"]:
+                    redtail_val = "MOST"
                 else:
-                    pelt.blit(dark_pelt, (0, 0))
-                    if base_name in ["SMOKEY", "WINTER", "HUSKY", "SHEPHERD", "SABLE", "AGOUTI"]:
-                        pelt.blit(highlight_pelt, (0, 0))
-        
-            if tortie_base:
-                tortie_pelt = sprites.sprites["baseSOLID" + cat_sprite].copy().convert_alpha()
-                tortie_pelt.blit(tortie_base_pelt, (0, 0))
-                if tortie_base in ["ARCTIC", "GRIZZLE", "SVALBARD"]:
-                    tortie_pelt.blit(tortie_highlight_pelt, (0, 0))
-                    tortie_pelt.blit(tortie_dark_pelt, (0, 0))
-                elif tortie_base in ["OPHELIA", "MEXICAN", "RUNIC", "ASPEN", "CALI", "FOXY"]:
-                    tortie_pelt.blit(tortie_red_pelt, (0, 0))
-                    tortie_pelt.blit(tortie_highlight_pelt, (0, 0))
-                    tortie_pelt.blit(tortie_dark_pelt, (0, 0))
-                elif tortie_base in ["SEMISOLID", "SOLID"]:
-                    tortie_pelt.blit(tortie_dark_pelt, (0, 0))
-                    if tortie_base == "SEMISOLID":
-                        tortie_pelt.blit(tortie_highlight_pelt, (0, 0))
-                elif tortie_base in ["GRAYWOLF", "TIMBER", "VIBRANT", "STORMY"]:
-                    tortie_pelt.blit(tortie_red_pelt, (0, 0))
-                    tortie_pelt.blit(tortie_dark_pelt, (0, 0))
-                    tortie_pelt.blit(tortie_highlight_pelt, (0, 0))
-                else:
-                    tortie_pelt.blit(tortie_dark_pelt, (0, 0))
-                    if tortie_base in ["SMOKEY", "WINTER", "HUSKY", "SHEPHERD", "SABLE", "AGOUTI"]:
-                        tortie_pelt.blit(tortie_highlight_pelt, (0, 0))
-                tortie_pelt.blit(sprites.sprites["patch" + cat.pelt.pattern + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
-                pelt.blit(tortie_pelt, (0, 0))
+                    redtail_val = pelt_name.copy()
 
-            # apply tints now
-            if base_tint != None:
-                if cat.pelt.tint in sprites.cat_tints["tint_colours"]:
-                    pelt.blit(base_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                elif cat.pelt.tint in sprites.cat_tints["dilute_tint_colours"]:
-                    pelt.blit(base_tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
+            layer_dict = {"base": base_val,
+                            "dark": dark_val,
+                            "highlights": highlights_val,
+                            "red": red_val,
+                            "baseears": baseears_val,
+                            "basetail": basetail_val,
+                            "darkears": darkears_val,
+                            "darktail": darktail_val,
+                            "highlightsears": highlightsears_val,
+                            "highlightstail": hightlightstail_val,
+                            "redears": redears_val,
+                            "redtail": redtail_val}
+            return layer_dict
+            # return the lists for base layers, ear layers, etc
+            # then those lists are used to create the image outside of this function
+            # it'll run again for torties, which can be blitted on top of that one.
+
+            # this function is next, it grabs info and gives color values to the pelt
+            # pass the layer dict, the color info stuff from the json, and the color of pelt
+            # pass merle color if present, otherwise false
+            # pass white tint (for huskies)
+            # run it again for torties, but change the name
+            base_color = color_dict["colors"][pelt_color]["base"]
+            dark_color = color_dict["colors"][pelt_color]["dark"]
+            highlights_color = color_dict["colors"][pelt_color]["highlight"]
+            if layer_dict["base"] in ["SOLID", "SEMISOLID"]:
+                base_color = color_dict["colors"][pelt_color]["solidbase"]
+                dark_color = color_dict["colors"][pelt_color]["soliddark"]
+                highlights_color = color_dict["colors"][pelt_color]["solidlight"]
+            elif layer_dict["base"] == "RUNIC":
+                layer_dict["highlightsmid"] = color_dict["colors"][pelt_color]["midlight"]
+            elif layer_dict["base"] == "HUSKY":
+                highlights_color = white_tint
                 
-            if cat.pelt.merle and cat.pelt.harlequin:
-                harlequin_base = sprites.sprites["baseSOLID" + cat_sprite].copy().convert_alpha()
-                if cat.pelt.white_patches_tint != 'none':
-                    tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                    tint.fill(tuple(sprites.white_patches_tints["tint_colours"][cat.pelt.white_patches_tint]))
-                    harlequin_base.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                pelt.blit(sprites.sprites["patch" + merle_list[0] + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
-                new_sprite.blit(harlequin_base, (0, 0))
-                new_sprite.blit(pelt, (0, 0))
+            for layer in layer_dict:
+                if layer_dict[layer]:
+                    if layer in ["base", "baseears", "basetail"]:
+                        layer_dict[layer] = [str(layer_dict[layer]), str(base_color)]
+                    elif layer in ["dark", "darkears", "darktail"]:
+                        layer_dict[layer] = [str(layer_dict[layer]), str(dark_color)]
+                    elif layer in ["highlight", "highlightears", "highlighttail"]:
+                        layer_dict[layer] = [str(layer_dict[layer]), str(highlights_color)]
+                    elif layer in ["red", "redears", "redtail"]:
+                        layer_dict[layer] = [str(layer_dict[layer]), str(color_dict["colors"][pelt_color]["red"])]
+            if merle:
+                layer_dict["merledilute"] = color_dict["merles"][merle[1]][merle[2]][1]
+                layer_dict["merledark"] = color_dict["merles"][merle[1]][merle[2]][0]
+                layer_dict["solid_black"] = False
+                if layer_dict["base"][0] in ["SOLID", "SEMISOLID"] or color_dict["colors"][pelt_color]["blackpelt"]:
+                    layer_dict["solid_black"] = True
+                if layer_dict["solid_black"] or layer_dict["base"][0] in ["POINTS", "SHEPHERD"]:
+                    layer_dict["merlered"] = False
+                else:
+                    layer_dict["merlered"] = color_dict["colors"][pelt_color]["merlered"]
+
+            return layer_dict
+                
+
+            # base_pelt (etc) = function_name(location (eg pelt, ears, tail), layer_dict, layer_order, base,
+            # ear or tail layers)
+            # don't forget to blit lines at the end of these
+
+            # keep here
+            for x in layer_list[1: ]:
+                if base_layer_dict["base"] in x:
+                    temp_order_layers = x[0]
+                    break
+            if tortie:
+                for x in layer_list[1: ]:
+                    if tortie_layer_dict["base"] in x:
+                        temp_tortie_order_layers = x[0]
+                        break
+                    
+
+            base_pelt = #function name(pelt, base_layer_dict, order_layers, base_layers, cat_sprite (for rest))
+            base_ears = #function name(ears, base_layer_dict, order_layers, ear_layers)
+            base_tail = #function name(tail, base_layer_dict, order_layers, tail_layers)
+            if tortie:
+                tortie_pelt = #function name(pelt, tortie_layer_dict, tortie_order_layers, base_layers)
+                tortie_ears = #function name(ears, tortie_layer_dict, tortie_order_layers, ear_layers)
+                tortie_tail = #function name(tail, tortie_layer_dict, tortie_order_layers, tail_layers)
+
+            # this is the function haha cool
+            # location, layer_dict, layer_order, layer_list
+            # location = base, tail, ears
+            # color_type = base or whatever
+            # layer_dict = has all the dict stuff from before
+            # layer_order = the numbers mason
+            # layer_list = the layer names
+            # cat_sprite = set up earlier yay
+            # merle = merle info pulled from cat.pelt
+            # harlequin = harlequin pulled from cat.pelt
+            # tint = white tint color from cat.pelt json thing
+            big_sprite = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+            blit_layer_order = []
+            location_name = ''
+            if location != 'base':
+                location_name = location.copy()
+            if merle and layer_dict["solid_black"]:
+                # throw in colors and patches and that's it
+                blit_layer_order.append(sprites.sprites[layer_list[0] + 'SOLID' + cat_sprite].copy().convert_alpha())
+                blit_layer_order.append(sprites.sprites['merle' + location_name + merle[0] + cat_sprite].copy().convert_alpha())
+                blit_layer_order[0].fill()
+                blit_layer_order[1].fill()
             else:
-                # all normal gen
-                new_sprite.blit(pelt, (0, 0))
+                for x in layer_order:
+                    if layer_dict[str(layer_list[x])]: #str of layer list item x
+                        if merle and not harlequin:
+                            # merle stuff in layer_dict is "merledark" "merledilute" and "merlered"
+                            if x in ["base", "baseears", "basetail"]:
+                                if "merlered" not in layer_dict:
+                                    # blit base normally
+                                else:
+                                    # blit base layer
+                                    # blit red color on merle patch
+                            elif x in ["dark", "darkears", "darktail"]:
+                                #blit dilute color in dark restrict
+                                #blit dark color in patches
+                            elif x in ["red", "redears", "redtail"]:
+                                #blit red
+                            elif x in ["highlights", "highlightsears", "highlightstail"]:
+                                #blit highlight
+                        else:
+                            pelt = layer_dict[x][0]
+                            color = layer_dict[x][1]
+                            blit_layer_order.append(sprites.sprites[layer_list[x] + pelt + cat_sprite].copy().convert_alpha())
+                            blit_layer_order[x].fill(color, special_flags=pygame.BLEND_RGBA_MULT)
+                    else:
+                        layer_order[x] = False
+            for x in blit_layer_order:
+                if x and not harlequin:
+                    big_sprite.blit(blit_layer_order[x], (0, 0))
+                elif x and harlequin:
+                    # blit to a temp sprite!!!!
+            if harlequin:
+                # do base layer harlequin
+                # constrict previous sprite ty ty
+            return big_sprite
 
-        # points
-        if cat.pelt.points is not None:
-            points = sprites.sprites['specialpoint' + cat.pelt.points + cat_sprite].copy()
-            if cat.pelt.white_patches_tint != "none":
-                tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                tint.fill(
-                    tuple(
-                        sprites.white_patches_tints["tint_colours"][
-                            cat.pelt.white_patches_tint
-                        ]
-                    )
-                )
-                points.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-            new_sprite.blit(points, (0, 0))
-
-        # draw white patches
-        if cat.pelt.white_patches is not None:
-            white_patches = sprites.sprites['white' + cat.pelt.white_patches + cat_sprite].copy()
-            # Apply tint to white patches.
-            if cat.pelt.white_patches_tint != "none":
-                tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                tint.fill(tuple(sprites.white_patches_tints["tint_colours"][cat.pelt.white_patches_tint]))
-                white_patches.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-            new_sprite.blit(white_patches, (0, 0))
-
-        #if cat.pelt.vitiligo:
-            #new_sprite.blit(sprites.sprites['white' + cat.pelt.vitiligo + cat_sprite], (0, 0))
-
-        # draw eyes & scars1
-        eyes = sprites.sprites["eyes" + cat.pelt.eye_colour + cat_sprite].copy()
-        if cat.pelt.eye_colour2 != None:
-            eyes.blit(
-                sprites.sprites["eyes2" + cat.pelt.eye_colour2 + cat_sprite], (0, 0)
-            )
-        new_sprite.blit(eyes, (0, 0))
-
-        blendmode = pygame.BLEND_RGBA_MIN
-        new_sprite.blit(sprites.sprites['skin' + cat.pelt.skin + cat_sprite], (0, 0))
-        # draw line art
-        if game.settings["shaders"] and not dead:
-            new_sprite.blit(
-                sprites.sprites["shaders" + cat_sprite],
-                (0, 0),
-                special_flags=pygame.BLEND_RGB_MULT,
-            )
-            new_sprite.blit(sprites.sprites["lighting" + cat_sprite], (0, 0))
-
-        if not dead:
-            new_sprite.blit(sprites.sprites["lines" + cat_sprite], (0, 0))
-        elif cat.df:
-            new_sprite.blit(sprites.sprites['lineartdf' + cat_sprite], (0, 0))
             
-        # draw skin and scars2
-        if not scars_hidden:
-            for scar in cat.pelt.scars:
-                if scar in cat.pelt.scars1:
-                    new_sprite.blit(sprites.sprites['scars' + scar + cat_sprite], (0, 0))
-                if scar in cat.pelt.scars3:
-                    new_sprite.blit(sprites.sprites['scars' + scar + cat_sprite], (0, 0))
-        
-        if not scars_hidden and not dead or cat.df and not scars_hidden:
-            for scar in cat.pelt.scars:
-                if scar in cat.pelt.scars2:
-                    new_sprite.blit(sprites.sprites['scarsmissing' + scar + cat_sprite], (0, 0), special_flags=blendmode)
-                    new_sprite.blit(sprites.sprites['scars' + scar + cat_sprite], (0, 0))
+            # whole thing should be blitted like so:
+            # entirety of possible values stored a list. python does for x in list etc
+            # it will loop through, checking if the value is false (as in, nothing to blit)
+            # if it's not false, it'll blit that sprite piece onto new_sprite
+            # this is done for the base pelt, ears, then the tail (assuming scars do not render all possible
+            # values for ears and/or tail False. that'll be checked for before it runs)
+            # skins are added near the end, and masked off as needed for ear scars
 
-        # kori's fun glitter friends
-        glitter = {
-            'DAYLIGHT': (120, 215, 216),
-            'ICE': (233, 255, 255),
-            'NAVY': (47, 63, 114),
-            'RAIN': (87, 145, 178),
-            'SAPPHIRE': (15, 21, 114),
-            'SEAFOAM': (179, 239, 220),
-            'SKY': (124, 216, 217),
-            'STORM': (142, 168, 199),
-            'TEAL': (88, 186, 185), 
-	'ALMOND': (163, 95, 29),
-            'BEAR': (111, 68, 43),
-            'CASHEW': (237, 189, 151),
-            'HAZEL': (160, 183, 98),
-            'LATTE': (185, 134, 85),
-            'SPARROW': (110, 78, 62),
-            'BLACK': (30, 33, 35),
-            'GULL': (164, 180, 183), 
-	'SILVER': (232, 240, 241),
-            'SMOKE': (214, 224, 226),
-            'WHITE': (255, 255, 255),
-            'EMERALD': (81, 150, 48),
-            'FERN': (189, 212, 148),
-            'FOREST': (154, 184, 102),
-            'LEAF': (113, 168, 86),
-            'LIME': (203, 232, 103), 
-            'MINT': (229, 250, 196),
-            'HARVEST': (255, 157, 20),
-            'PEACH': (237, 184, 137),
-            'PUMPKIN': (239, 137, 27),
-            'TANGELO': (206, 103, 17),
-            'TWILIGHT': (222, 122, 10),
-            'AMETHYST': (170, 114, 199),
-            'DAWN': (255, 251, 205),
-            'DUSK': (168, 79, 94),
-            'LILAC': (218, 199, 228),
-            'MIDNIGHT': (90, 60, 99),
-            'VIOLET': (141, 77, 157),
-            'BUBBLEGUM': (255, 210, 210), 
-	'PINK': (235, 183, 189),
-            'ROUGE': (245, 133, 94),
-            'RUBY': (174, 0, 0),
-            'SCARLET': (225, 77, 73),
-            'AMBER': (244, 220, 55),
-            'LEMON': (247, 240, 127),
-            'PALE': (255, 251, 205),
-            'SUNBEAM': (249, 236, 162),
-            'SUNLIGHT': (239, 232, 121), 
-	'WHEAT': (223, 225, 159)
-            }
-        
-        # draw accessories
-        if not acc_hidden and not dead or cat.df and not scars_hidden:        
-            if cat.pelt.accessory in cat.pelt.plant_accessories:
-                new_sprite.blit(sprites.sprites['natural' + cat.pelt.accessory + cat_sprite], (0, 0))
-            elif cat.pelt.accessory in cat.pelt.wild_accessories:
-                new_sprite.blit(sprites.sprites['natural' + cat.pelt.accessory + cat_sprite], (0, 0))
-            elif cat.pelt.accessory in cat.pelt.collars:
-                new_sprite.blit(sprites.sprites['collars' + cat.pelt.accessory + cat_sprite], (0, 0))
-            elif cat.pelt.accessory in cat.pelt.radiocollars:
-                new_sprite.blit(sprites.sprites['collars' + cat.pelt.accessory + cat_sprite], (0, 0))
-            elif cat.pelt.accessory in cat.pelt.harnesses:
-                new_sprite.blit(sprites.sprites['collars' + cat.pelt.accessory + cat_sprite], (0, 0))
-            elif cat.pelt.accessory in cat.pelt.bandanas:
-                new_sprite.blit(sprites.sprites['collars' + cat.pelt.accessory + cat_sprite], (0, 0))
-            elif cat.pelt.accessory in cat.pelt.special_accessories:
-                if cat.pelt.accessory in ["HIBISCUS", "RED HIBISCUS", "WHITE HIBISCUS", "BIG LEAVES", "STARFISH", "PINK STARFISH", "PURPLE STARFISH", "PEARLS", "SEASHELLS"]:
-                    new_sprite.blit(sprites.sprites['natural' + cat.pelt.accessory + cat_sprite], (0, 0))
-                elif cat.pelt.accessory == "TOWEL":
-                    new_sprite.blit(sprites.sprites['junk' + cat.pelt.accessory + cat_sprite], (0, 0))
-                elif cat.pelt.accessory == "SILK CLOAK":
-                    cloak = sprites.sprites["cloakSILK CLOAK" + cat_sprite].copy()
-                    cloak_color = glitter[str(cat.pelt.eye_colour)]
-                    cloak_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                    cloak_tint.fill(cloak_color)
-                    cloak.blit(cloak_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                    new_sprite.blit(cloak, (0, 0))
+            #AFTER pelts are blitted, scars, accessories, etc can be blitted on top
 
-        
-        if dead and not cat.df:
-            new_sprite.blit(sprites.sprites['lines' + cat_sprite], (0, 0))
-            if not scars_hidden:
-                for scar in cat.pelt.scars:
-                    if scar in cat.pelt.scars2:
-                        new_sprite.blit(sprites.sprites['scarsmissing' + scar + cat_sprite], (0, 0), special_flags=blendmode)
-                        new_sprite.blit(sprites.sprites['scars' + scar + cat_sprite], (0, 0))
-            if not acc_hidden:        
-                if cat.pelt.accessory in cat.pelt.plant_accessories:
-                    new_sprite.blit(sprites.sprites['natural' + cat.pelt.accessory + cat_sprite], (0, 0))
-                elif cat.pelt.accessory in cat.pelt.wild_accessories:
-                    new_sprite.blit(sprites.sprites['natural' + cat.pelt.accessory + cat_sprite], (0, 0))
-                elif cat.pelt.accessory in cat.pelt.collars:
-                    new_sprite.blit(sprites.sprites['collars' + cat.pelt.accessory + cat_sprite], (0, 0))
-                elif cat.pelt.accessory in cat.pelt.radiocollars:
-                    new_sprite.blit(sprites.sprites['collars' + cat.pelt.accessory + cat_sprite], (0, 0))
-                elif cat.pelt.accessory in cat.pelt.harnesses:
-                    new_sprite.blit(sprites.sprites['collars' + cat.pelt.accessory + cat_sprite], (0, 0))
-                elif cat.pelt.accessory in cat.pelt.bandanas:
-                    new_sprite.blit(sprites.sprites['collars' + cat.pelt.accessory + cat_sprite], (0, 0))
-                elif cat.pelt.accessory in cat.pelt.special_accessories:
-                    if cat.pelt.accessory in ["HIBISCUS", "RED HIBISCUS", "WHITE HIBISCUS", "BIG LEAVES", "STARFISH", "PINK STARFISH", "PURPLE STARFISH", "PEARLS", "SEASHELLS"]:
-                        new_sprite.blit(sprites.sprites['natural' + cat.pelt.accessory + cat_sprite], (0, 0))
-                    elif cat.pelt.accessory == "TOWEL":
-                        new_sprite.blit(sprites.sprites['junk' + cat.pelt.accessory + cat_sprite], (0, 0))
-                    elif cat.pelt.accessory == "SILK CLOAK":
-                        cloak = sprites.sprites["cloakSILK CLOAK" + cat_sprite].copy()
-                        cloak_color = glitter[str(cat.pelt.eye_colour)]
-                        cloak_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                        cloak_tint.fill(cloak_color)
-                        cloak.blit(cloak_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                        new_sprite.blit(cloak, (0, 0))
-            deadglitter = sprites.sprites['lineartdead' + cat_sprite].copy()
-            deadcolor = glitter[str(cat.pelt.eye_colour)]
-            deadtint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-            deadtint.fill(deadcolor)
-            deadglitter.blit(deadtint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-            new_sprite.blit(deadglitter, (0, 0))
 
         # Apply fading fog
         if (
