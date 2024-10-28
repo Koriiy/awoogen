@@ -2429,6 +2429,183 @@ def clan_symbol_sprite(clan, return_string=False, force_light=False):
             )
             return sprites.dark_mode_symbol(sprites.sprites[f"{choice(sprites.clan_symbols)}"], clan_color)
 
+def sprite_layer_dict(pelt_name, pelt_color, color_dict, white_tint, merle):
+    layer_dict = {"base": None,
+                    "dark": None,
+                    "highlights": None,
+                    "red": None,
+                    "baseears": None,
+                    "basetail": None,
+                    "darkears": None,
+                    "darktail": None,
+                    "highlightsears": None,
+                    "highlightstail": None,
+                    "redears": None,
+                    "redtail": None}
+
+    # layer setup
+    no_red = ["ARCTIC", "SMOKEY", "WINTER", "SHEPHERD", "SABLE", "AGOUTI", "GRIZZLE", "SVALBARD", "COLORPOINT", "BRINDLE", "POINTS", "SEMISOLID", "SOLID", "HUSKY"]
+    no_highlight = ["COLORPOINT", "BRINDLE", "POINTS", "SOLID"]
+    no_dark_ears = ["OPHELIA", "ASPEN"]
+    no_highlight_ears = "SHEPHERD"
+    no_highlight_tail = ["GRAYWOLF", "OPHELIA", "RUNIC", "SABLE", "SMOKEY", "STORMY"]
+    
+    layer_dict["base"] = pelt_name.copy()
+    layer_dict["baseears"] = pelt_name.copy()
+    layer_dict["basetail"] = pelt_name.copy()
+    layer_dict["dark"] = pelt_name.copy()
+    
+    if pelt_name in ["COLORPOINT", "POINTS"]:
+        layer_dict["darktail"] = "SOLID"
+    elif pelt_name in ["SHEPHERD", "STORMY"]:
+        layer_dict["darktail"] = "STRIPE"
+    else:
+        layer_dict["darktail"] = pelt_name.copy()
+        
+    if pelt_name not in no_dark_ears:
+        layer_dict["darkears"] = pelt_name.copy()
+        if pelt_name in ["COLORPOINT", "POINTS", "SHEPHERD", "SOLID", "SEMISOLID"]:
+            layer_dict["darkears"] = "MOST"
+        elif pelt_name in ["SABLE", "HUSKY", "SMOKEY"]:
+            layer_dict["darkears"] = "SHADED"
+
+    if pelt_name not in no_highlight:
+        layer_dict["highlights"] = pelt_name.copy()
+        if pelt_name != no_highlights_ears:
+            layer_dict["highlightsears"] = pelt_name.copy()
+            if pelt_name in ["FOXY", "GRAYWOLF", "GRIZZLE", "HUSKY", "MEXICAN", "RUNIC",
+                                "SEMISOLID", "SMOKEY", "STORMY", "TIMBER", "VIBRANT", "WINTER"]:
+                layer_dict["highlightsears"] = "INNER"
+            elif pelt_name in ["ARCTIC", "ASPEN"]:
+                layer_dict["highlightsears"] = "EXTRA"
+        if pelt_name not in no_highlight_tail:
+            layer_dict["highlightstail"] = pelt_name.copy()
+
+    if pelt_name not in no_red:
+        layer_dict["red"] = pelt_name.copy()
+        layer_dict["redears"] = pelt_name.copy()
+        layer_dict["redtail"] = pelt_name.copy()
+        if pelt_name in ["GRAYWOLF", "MEXICAN", "RUNIC", "STORMY", "TIMBER", "VIBRANT"]:
+            layer_dict["redears"] = "SOLID"
+        elif pelt_name in ["CALI", "FOXY"]:
+            layer_dict["redears"] = "MOST"
+        if pelt_name in ["MEXICAN", "TIMBER", "VIBRANT"]:
+            layer_dict["redtail"] = "MOST"
+
+    # color setup
+    base_color = color_dict["colors"][pelt_color]["base"]
+    dark_color = color_dict["colors"][pelt_color]["dark"]
+    highlights_color = color_dict["colors"][pelt_color]["highlight"]
+    if pelt_name in ["SOLID", "SEMISOLID"]:
+        base_color = color_dict["colors"][pelt_color]["solidbase"]
+        dark_color = color_dict["colors"][pelt_color]["soliddark"]
+        highlights_color = color_dict["colors"][pelt_color]["solidlight"]
+    elif pelt_name == "RUNIC":
+        layer_dict["highlightsmid"] = ["RUNIC", str(color_dict["colors"][pelt_color]["midlight"])]
+    elif pelt_name == "HUSKY":
+        highlights_color = white_tint
+
+    for layer in layer_dict:
+        if layer_dict[layer]:
+            if layer in ["base", "baseears", "basetail"]:
+                layer_dict[layer] = [str(layer_dict[layer]), str(base_color)]
+            elif layer in ["dark", "darkears", "darktail"]:
+                layer_dict[layer] = [str(layer_dict[layer]), str(dark_color)]
+            elif layer in ["highlight", "highlightears", "highlighttail"]:
+                layer_dict[layer] = [str(layer_dict[layer]), str(highlights_color)]
+            elif layer in ["red", "redears", "redtail"]:
+                layer_dict[layer] = [str(layer_dict[layer]), str(color_dict["colors"][pelt_color]["red"])]
+
+    if merle:
+        layer_dict["merledilute"] = color_dict["merles"][merle[1]][merle[2]][1]
+        layer_dict["merledark"] = color_dict["merles"][merle[1]][merle[2]][0]
+        layer_dict["solid_black"] = False
+        if layer_dict["base"][0] in ["SOLID", "SEMISOLID"] or color_dict["colors"][pelt_color]["blackpelt"]:
+            layer_dict["solid_black"] = True
+        if layer_dict["solid_black"] or layer_dict["base"][0] in ["POINTS", "SHEPHERD"]:
+            layer_dict["merlered"] = False
+        else:
+            layer_dict["merlered"] = color_dict["colors"][pelt_color]["merlered"]
+
+    return layer_dict
+
+def sprite_build(location,
+                    cat_sprite,
+                    layer_list,
+                    base,
+                    highlights,
+                    dark,
+                    red,
+                    layers,
+                    merle, # merle pattern, dilute, dark, red (or None)
+                    harlequin,
+                    tint,
+                    white_tint):
+    # removed dict, refer to specific layer types instead (eg red)
+    big_sprite = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+    blit_layer_order = []
+    location_name = ""
+    if location != "base":
+        location_name = location.copy()
+        
+    if merle and layers["solid_black"]:
+        blit_layer_order.append(sprites.sprites[location + "SOLID" + cat_sprite].copy().convert_alpha())
+        blit_layer_order.append(sprites.sprites["merle" + location_name + merle[0] + cat_sprite].copy().convert_alpha())
+        blit_layer_order[0].fill(merle[1])
+        blit_layer_order[1].fill(merle[2])
+    else:
+        for x in layer_order:
+            if layers[x]:
+                if merle and not harlequin:
+                    if "base" in x:
+                        if not merle[3]:
+                            blit_layer_order.append(sprites.sprites[location + "SOLID" + cat_sprite].copy().convert_alpha())
+                            blit_layer_order[0].fill(base)
+                        else:
+                            blit_layer_order.append(sprites.sprites[location + "SOLID" + cat_sprite].copy().convert_alpha())
+                            blit_layer_order[0].fill(base)
+                            blit_layer_order.append(sprites.sprites["merle" + location_name + merle[0] + cat_sprite].copy().convert_alpha())
+                            blit_layer_order[1].fill(merle[3])
+                    elif "dark" in x:
+                        if harlequin:
+                            blit_layer_order.append(sprites.sprites["dark" + location_name + dark[0] + cat_sprite].copy().convert_alpha())
+                            blit_layer_order[-1].fill(merle[2])
+                        else:
+                            temp_dilute = sprites.sprites["dark" + location_name + dark[0] + cat_sprite].copy().convert_alpha()
+                            temp_dilute.fill(merle[1])
+                            temp_dark = sprites.sprites["merle" + location_name + merle[0] + cat_sprite].copy().convert_alpha()
+                            temp_dark.fill(merle[2])
+                            temp_dark_blitted = temp_dark.blit(sprites.sprites["dark" + location_name + dark[0] + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+                            blit_layer_order.append(temp_dilute)
+                            blit_layer_order.append(temp_dark_blitted)
+                    elif "red" in x:
+                        blit_layer_order.append(sprites.sprites["red" + location_name + red[0] + cat_sprite].copy().convert_alpha())
+                        blit_layer_order[-1].fill(red[1])
+                    elif "highlights" in x:
+                        blit_layer_order.append(sprites.sprites["red" + location_name + highlights[0] + cat_sprite].copy().convert_alpha())
+                        blit_layer_order[-1].fill(highlights[1])
+                else:
+                    pelt_pattern = layers[x][0]
+                    pelt_color = layers[x][1]
+                    blit_layer_order.append(sprites.sprites[x + pelt_pattern + cat_sprite].copy().convert_alpha())
+                    blit_layer_order[-1].fill(pelt_color)
+
+    if merle and harlequin:
+        temp_sprite = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+    for x in blit_layer_order:
+        if x and harlequin and merle:
+            temp_sprite.blit(blit_layer_order[x], (0, 0))
+        else:
+            big_sprite.blit(blit_layer_order[x], (0, 0))
+
+    if harlequin and merle:
+        harlequin_base = sprites.sprites[location + "SOLID" + cat_sprite].copy().convert_alpha()
+        harlequin_base.fill(white_tint)
+        big_sprite.blit(harlequin_base, (0, 0))
+        temp_sprite.blit(sprites.sprites["merle" + location_name + merle[0] + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+        big_sprite.blit(temp_sprite, (0, 0))
+
+    return big_sprite
 
 def generate_sprite(
         cat,
@@ -2486,94 +2663,6 @@ def generate_sprite(
         else:
             cat_sprite = str(cat.pelt.cat_sprites[age])
 
-    # Fixing poses for scars. skips ahead if there aren't any scars, the wrong scars, or is baby
-    # don't look too closely at this i did it while half asleep ty
-    scarchange = []
-    posescars = ['BURNTAIL', 'FROSTTAIL', 'HALFTAIL', 'LEFTEAR', 'NOEAR', 'NOLEFTEAR', 'NORIGHTEAR', 'NOTAIL', 'RIGHTEAR']
-    if len(cat.pelt.scars) != 0 and age != 'newborn' and not cat.pelt.paralyzed and not cat.not_working():
-        for scar in cat.pelt.scars:
-            if scar in posescars:
-                scarchange.append(scar)
-        if len(scarchange) != 0 and age != 'newborn' and not cat.pelt.paralyzed:
-            changetail = False
-            changenoear = False
-            changeleft = False
-            changeright = False
-            if 'BURNTAIL' in scarchange or 'FROSTTAIL' in scarchange or 'HALFTAIL' in scarchange or 'NOTAIL' in scarchange:
-                changetail = True
-            if 'NOEAR' in scarchange:
-                changenoear = True
-            if 'NORIGHTEAR' in scarchange or 'RIGHTEAR' in scarchange:
-                changeright = True
-            if 'NOLEFTEAR' in scarchange or 'LEFTEAR' in scarchange:
-                changeleft = True
-            if changetail:
-                if changenoear or changeright or changeleft:
-                    if age in ['kitten']:
-                        cat_sprite = str(2)
-                    elif age in ['adolescent']:
-                        cat_sprite = str(5)
-                    elif age in ['senior']:
-                        cat_sprite = str(14)
-                    else:
-                        cat_sprite = str(8)
-                else:
-                    if age in ['kitten']:
-                        pass
-                    elif age in ['adolescent']:
-                        cat_sprite = str(5)
-                    elif age in ['senior']:
-                        if cat_sprite == 13:
-                            cat_sprite = str(12)
-                    else:
-                        if cat_sprite == 8 or cat_sprite == 9 or cat_sprite == 10:
-                            pass
-                        else:
-                            cat_sprite = str(9)
-            elif changenoear:
-                if age in ['kitten']:
-                    if cat_sprite == 0:
-                        cat_sprite = str(2)
-                elif age in ['adolescent']:
-                    if cat_sprite == 3:
-                        cat_sprite = str(5)
-                elif age in ['senior']:
-                    cat_sprite = str(14)
-                else:
-                    if cat_sprite == 6 or cat_sprite == 8 or cat_sprite == 9 or cat_sprite == 10:
-                        pass
-                    else:
-                        cat_sprite = str(8)
-            elif changeright:
-                if age in ['kitten']:
-                    if cat_sprite == 0:
-                        cat_sprite = str(2)
-                elif age in ['adolescent']:
-                    if cat_sprite == 3:
-                        cat_sprite = str(5)
-                elif age in ['senior']:
-                    if cat_sprite == 13:
-                        cat_sprite = str(14)
-                else:
-                    if cat_sprite == 6 or cat_sprite == 8 or cat_sprite == 9 or cat_sprite == 11:
-                        pass
-                    else:
-                        cat_sprite = str(8)
-            elif changeleft:
-                if age in ['kitten']:
-                    pass
-                elif age in ['adolescent']:
-                    pass
-                elif age in ['senior']:
-                    if cat_sprite == 12:
-                        cat_sprite = str(14)
-                else:
-                    if cat_sprite == 6 or cat_sprite == 7 or cat_sprite == 9 or cat_sprite == 10:
-                        pass
-                    else:
-                        cat_sprite = str(10)
-            else:
-                print('scar changer got confused')
 
     new_sprite = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
 
@@ -2581,7 +2670,7 @@ def generate_sprite(
     try:
         # what the frick is happening here
         # set up expectations for markings
-        special_markings = ["RUNIC", "SEMISOLID", "SOLID", "HUSKY"] # special kinds of markings
+        special_markings = ["RUNIC", "SEMISOLID", "SOLID", "HUSKY"]
         no_tortie_ears = "INKSPILL"
         no_tortie_tail = ["MINIMAL", "REDTAIL"]
         no_white_ears = ["BEE", "BLAZE", "BLUETICK", "DIAMOND", "FLASH", "HALF", "HEART",
@@ -2595,233 +2684,40 @@ def generate_sprite(
         layer_dark = [[0, 1], "SOLID", "COLORPOINT", "POINTS", "BRINDLE"]
         layer_dark_highlight = [[0, 1, 2], "SEMISOLID", "SMOKEY", "WINTER", "HUSKY", "SHEPHERD", "SABLE", "AGOUTI"]
         layer_list = [layer_dark_highlight, layer_dark, layer_red_dark_highlight, layer_red_highlight_dark, layer_highlight_dark]
-        # torties are set up in a minute, if not false
+
         tortie = False
         if cat.pelt.tortiepattern:
             tortie = True
-        merle = False
-        if cat.pelt.merle:
-            merle = True
-        harlequin = False
-        if cat.pelt.harlequin:
-            harlequin = True
-        # base layer holder
+
         base_layers = ["base", "dark", "highlight", "red"]
         ear_layers = ["baseears", "darkears", "highlightears", "redears"]
         tail_layers = ["basetail", "darktail", "highlightstail", "redtail"]
-        # this is what order they should be present in
+
         order_layers = []
         tortie_order_layers = []
 
-        # scars or other weird shit accounted for here
-        body_mod = {earscar = False
-                        tailscar = False}
-        # have python check if certain scars are in the list ty
-        # function goes here for base patterns
-        # layer_dict = function_name()
-        # function that returns a blitted sprite, taking into account merle if not harlequin
-        # pass order layers. pass the layer dict
-        # run it 3x, one for base, one for ears, and one for tail. pass on which one is needing it
-        # check scar info if it should not be run. if it shouldn't, it should return False for further
-        # calc later when setting up the sprite (less important for base sprites, but useful for torties
-        # and other types)
-        # function goes here for torties, if not false
-        # function that returns blitted tortie sprite, taking into account merle if not harlequin
-        # now if it was harlequin, crunch the sprite into the proper place. otherwise,
-        # do nothing and move on
+        body_mod = {earscar = None
+                        tailscar = None}
 
-        # uhhh probably turn this into a function so that it can be used twice for torties
-        # pls pass either pelt name/color or tortie pelt name depending!!!!!
-        # pelt_name
+        # skip pelt generation if dog is entirely white
+        # KORI pls use the color dict name when you get to it ty
         if "ALBINO" not in cat.pelt.points and "WHITE" not in cat.pelt.white_patches:
-        # keep that ^ to determine if the functions following should run at all
-        # one thing to pass to this function is whether this is a tortie or not to do the final calc
-            no_red = ["ARCTIC", "SMOKEY", "WINTER", "SHEPHERD", "SABLE", "AGOUTI", "GRIZZLE", "SVALBARD", "COLORPOINT", "BRINDLE", "POINTS", "SEMISOLID", "SOLID", "HUSKY"]
-            no_highlight = ["COLORPOINT", "BRINDLE", "POINTS", "SOLID"]
-            no_dark_ears = ["OPHELIA", "ASPEN"]
-            no_highlight_ears = "SHEPHERD"
-            no_highlight_tail = ["GRAYWOLF", "OPHELIA", "RUNIC", "SABLE", "SMOKEY", "STORMY"]
-            base_val = pelt_name.copy()
-            baseears_val = pelt_name.copy()
-            basetail_val = pelt_name.copy()
-            dark_val = pelt_name.copy()
-            if base_val in ["COLORPOINT", "POINTS"]:
-                darktail_val = "SOLID"
-            elif base_val in ["SHEPHERD", "STORMY"]:
-                darktail_val = "STRIPE"
-            else:
-                darktail_val = pelt_name.copy()
-            if base_val not in no_dark_ears:
-                if base_val in ["COLORPOINT", "POINTS", "SHEPHERD", "SOLID", "SEMISOLID"]:
-                    darkears_val = "MOST"
-                elif base_val in ["SABLE", "HUSKY", "SMOKEY"]:
-                    darkears_val = "SHADED"
-                else:
-                    darkears_val = pelt_name.copy()
-            if base_val not in no_highlight:
-                highlights_val = pelt_name.copy()
-                if base_val != no_highlight_ears:
-                    if base_val in ["FOXY", "GRAYWOLF", "GRIZZLE", "HUSKY", "MEXICAN", "RUNIC",
-                                "SEMISOLID", "SMOKEY", "STORMY", "TIMBER", "VIBRANT", "WINTER"]:
-                        highlightsears_val = "INNER"
-                    elif base_val in ["ARCTIC", "ASPEN"]:
-                        highlightsears_val = "EXTRA"
-                    else:
-                        highlightsears_val = pelt_name.copy()
-                if base_val not in no_highlight_tail:
-                    highlightstail_val = pelt_name.copy()
-            if base_val not in no_red:
-                red_val = pelt_name.copy()
-                if base_val in ["GRAYWOLF", "MEXICAN", "RUNIC", "STORMY", "TIMBER", "VIBRANT"]:
-                    redears_val = "SOLID"
-                elif base_val in ["CALI", "FOXY"]:
-                    redears_val = "MOST"
-                else:
-                    redears_val = pelt_name.copy()
-                if base_val in ["MEXICAN", "TIMBER", "VIBRANT"]:
-                    redtail_val = "MOST"
-                else:
-                    redtail_val = pelt_name.copy()
+            base_dict = sprite_layer_dict(cat.pelt.pattern, cat.pelt.color, "game color dict", cat.pelt.white_tint, cat.pelt.merle)
+            if tortie:
+                tortie_dict = sprite_layer_dict(cat.pelt.tortiepattern, cat.pelt.tortiecolor, "game color dict", cat.pelt.white_tint, cat.pelt.merle)
 
-            layer_dict = {"base": base_val,
-                            "dark": dark_val,
-                            "highlights": highlights_val,
-                            "red": red_val,
-                            "baseears": baseears_val,
-                            "basetail": basetail_val,
-                            "darkears": darkears_val,
-                            "darktail": darktail_val,
-                            "highlightsears": highlightsears_val,
-                            "highlightstail": hightlightstail_val,
-                            "redears": redears_val,
-                            "redtail": redtail_val}
-            return layer_dict
-            # return the lists for base layers, ear layers, etc
-            # then those lists are used to create the image outside of this function
-            # it'll run again for torties, which can be blitted on top of that one.
-
-            # this function is next, it grabs info and gives color values to the pelt
-            # pass the layer dict, the color info stuff from the json, and the color of pelt
-            # pass merle color if present, otherwise false
-            # pass white tint (for huskies)
-            # run it again for torties, but change the name
-            base_color = color_dict["colors"][pelt_color]["base"]
-            dark_color = color_dict["colors"][pelt_color]["dark"]
-            highlights_color = color_dict["colors"][pelt_color]["highlight"]
-            if layer_dict["base"] in ["SOLID", "SEMISOLID"]:
-                base_color = color_dict["colors"][pelt_color]["solidbase"]
-                dark_color = color_dict["colors"][pelt_color]["soliddark"]
-                highlights_color = color_dict["colors"][pelt_color]["solidlight"]
-            elif layer_dict["base"] == "RUNIC":
-                layer_dict["highlightsmid"] = color_dict["colors"][pelt_color]["midlight"]
-            elif layer_dict["base"] == "HUSKY":
-                highlights_color = white_tint
-                
-            for layer in layer_dict:
-                if layer_dict[layer]:
-                    if layer in ["base", "baseears", "basetail"]:
-                        layer_dict[layer] = [str(layer_dict[layer]), str(base_color)]
-                    elif layer in ["dark", "darkears", "darktail"]:
-                        layer_dict[layer] = [str(layer_dict[layer]), str(dark_color)]
-                    elif layer in ["highlight", "highlightears", "highlighttail"]:
-                        layer_dict[layer] = [str(layer_dict[layer]), str(highlights_color)]
-                    elif layer in ["red", "redears", "redtail"]:
-                        layer_dict[layer] = [str(layer_dict[layer]), str(color_dict["colors"][pelt_color]["red"])]
-            if merle:
-                layer_dict["merledilute"] = color_dict["merles"][merle[1]][merle[2]][1]
-                layer_dict["merledark"] = color_dict["merles"][merle[1]][merle[2]][0]
-                layer_dict["solid_black"] = False
-                if layer_dict["base"][0] in ["SOLID", "SEMISOLID"] or color_dict["colors"][pelt_color]["blackpelt"]:
-                    layer_dict["solid_black"] = True
-                if layer_dict["solid_black"] or layer_dict["base"][0] in ["POINTS", "SHEPHERD"]:
-                    layer_dict["merlered"] = False
-                else:
-                    layer_dict["merlered"] = color_dict["colors"][pelt_color]["merlered"]
-
-            return layer_dict
-                
-
-            # base_pelt (etc) = function_name(location (eg pelt, ears, tail), layer_dict, layer_order, base,
-            # ear or tail layers)
-            # don't forget to blit lines at the end of these
-
-            # keep here
-            for x in layer_list[1: ]:
-                if base_layer_dict["base"] in x:
+            # find out the layer order, skipping first item
+            for x in layer_list:
+                if base_dict["base"][0] in x[1: ]:
                     temp_order_layers = x[0]
                     break
             if tortie:
-                for x in layer_list[1: ]:
-                    if tortie_layer_dict["base"] in x:
+                for x in layer_list:
+                    if tortie_dict["base"][0] in x[1: ]:
                         temp_tortie_order_layers = x[0]
                         break
-                    
-
-            base_pelt = #function name(pelt, base_layer_dict, order_layers, base_layers, cat_sprite (for rest))
-            base_ears = #function name(ears, base_layer_dict, order_layers, ear_layers)
-            base_tail = #function name(tail, base_layer_dict, order_layers, tail_layers)
-            if tortie:
-                tortie_pelt = #function name(pelt, tortie_layer_dict, tortie_order_layers, base_layers)
-                tortie_ears = #function name(ears, tortie_layer_dict, tortie_order_layers, ear_layers)
-                tortie_tail = #function name(tail, tortie_layer_dict, tortie_order_layers, tail_layers)
-
-            # this is the function haha cool
-            # location, layer_dict, layer_order, layer_list
-            # location = base, tail, ears
-            # color_type = base or whatever
-            # layer_dict = has all the dict stuff from before
-            # layer_order = the numbers mason
-            # layer_list = the layer names
-            # cat_sprite = set up earlier yay
-            # merle = merle info pulled from cat.pelt
-            # harlequin = harlequin pulled from cat.pelt
-            # tint = white tint color from cat.pelt json thing
-            big_sprite = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-            blit_layer_order = []
-            location_name = ''
-            if location != 'base':
-                location_name = location.copy()
-            if merle and layer_dict["solid_black"]:
-                # throw in colors and patches and that's it
-                blit_layer_order.append(sprites.sprites[layer_list[0] + 'SOLID' + cat_sprite].copy().convert_alpha())
-                blit_layer_order.append(sprites.sprites['merle' + location_name + merle[0] + cat_sprite].copy().convert_alpha())
-                blit_layer_order[0].fill()
-                blit_layer_order[1].fill()
-            else:
-                for x in layer_order:
-                    if layer_dict[str(layer_list[x])]: #str of layer list item x
-                        if merle and not harlequin:
-                            # merle stuff in layer_dict is "merledark" "merledilute" and "merlered"
-                            if x in ["base", "baseears", "basetail"]:
-                                if "merlered" not in layer_dict:
-                                    # blit base normally
-                                else:
-                                    # blit base layer
-                                    # blit red color on merle patch
-                            elif x in ["dark", "darkears", "darktail"]:
-                                #blit dilute color in dark restrict
-                                #blit dark color in patches
-                            elif x in ["red", "redears", "redtail"]:
-                                #blit red
-                            elif x in ["highlights", "highlightsears", "highlightstail"]:
-                                #blit highlight
-                        else:
-                            pelt = layer_dict[x][0]
-                            color = layer_dict[x][1]
-                            blit_layer_order.append(sprites.sprites[layer_list[x] + pelt + cat_sprite].copy().convert_alpha())
-                            blit_layer_order[x].fill(color, special_flags=pygame.BLEND_RGBA_MULT)
-                    else:
-                        layer_order[x] = False
-            for x in blit_layer_order:
-                if x and not harlequin:
-                    big_sprite.blit(blit_layer_order[x], (0, 0))
-                elif x and harlequin:
-                    # blit to a temp sprite!!!!
-            if harlequin:
-                # do base layer harlequin
-                # constrict previous sprite ty ty
-            return big_sprite
-
+        else:
+            # blit a white sprite layer
             
             # whole thing should be blitted like so:
             # entirety of possible values stored a list. python does for x in list etc
