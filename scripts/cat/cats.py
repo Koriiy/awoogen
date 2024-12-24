@@ -331,9 +331,9 @@ class Cat:
                 status,
                 prefix,
                 suffix,
-                self.pelt.colour,
-                self.pelt.eye_colour,
-                self.pelt.name,
+                self.pelt.color,
+                self.pelt.eye_color,
+                self.pelt.pattern,
                 self.pelt.tortiepattern,
                 biome=biome,
                 specsuffix_hidden=self.specsuffix_hidden,
@@ -971,43 +971,43 @@ class Cat:
         return output
 
     def describe_eyes(self):
-        """Get a human-readable description of this cat's eye colour"""
-        colour = str(self.pelt.eye_colour).lower()
-        colour2 = str(self.pelt.eye_colour2).lower()
+        """Get a human-readable description of this cat's eye color"""
+        color = str(self.pelt.eye_color).lower()
+        color2 = str(self.pelt.eye_color2).lower()
 
-        if colour == "palegreen":
-            colour = "pale green"
-        elif colour == "darkblue":
-            colour = "dark blue"
-        elif colour == "paleblue":
-            colour = "pale blue"
-        elif colour == "paleyellow":
-            colour = "pale yellow"
-        elif colour == "heatherblue":
-            colour = "heather blue"
-        elif colour == "blue2":
-            colour = "blue"
-        elif colour == "sunlitice":
-            colour = "sunlit ice"
-        elif colour == "greenyellow":
-            colour = "green-yellow"
-        if self.pelt.eye_colour2:
-            if colour2 == "palegreen":
-                colour2 = "pale green"
-            if colour2 == "darkblue":
-                colour2 = "dark blue"
-            if colour2 == "paleblue":
-                colour2 = "pale blue"
-            if colour2 == "paleyellow":
-                colour2 = "pale yellow"
-            if colour2 == "heatherblue":
-                colour2 = "heather blue"
-            if colour2 == "sunlitice":
-                colour2 = "sunlit ice"
-            if colour2 == "greenyellow":
-                colour2 = "green-yellow"
-            colour = colour + " and " + colour2
-        return colour
+        if color == "palegreen":
+            color = "pale green"
+        elif color == "darkblue":
+            color = "dark blue"
+        elif color == "paleblue":
+            color = "pale blue"
+        elif color == "paleyellow":
+            color = "pale yellow"
+        elif color == "heatherblue":
+            color = "heather blue"
+        elif color == "blue2":
+            color = "blue"
+        elif color == "sunlitice":
+            color = "sunlit ice"
+        elif color == "greenyellow":
+            color = "green-yellow"
+        if self.pelt.eye_color2:
+            if color2 == "palegreen":
+                color2 = "pale green"
+            if color2 == "darkblue":
+                color2 = "dark blue"
+            if color2 == "paleblue":
+                color2 = "pale blue"
+            if color2 == "paleyellow":
+                color2 = "pale yellow"
+            if color2 == "heatherblue":
+                color2 = "heather blue"
+            if color2 == "sunlitice":
+                color2 = "sunlit ice"
+            if color2 == "greenyellow":
+                color2 = "green-yellow"
+            color = color + " and " + color2
+        return color
 
     def convert_history(self, died_by, scar_events):
         """
@@ -3344,7 +3344,7 @@ class Cat:
                 "gender_align": self.genderalign,
                 "pronouns": self.pronouns,
                 "species": self.pelt.species,
-	            "species_mix": self.pelt.species_mix,
+	    "species_mix": self.pelt.species_mix,
                 "birth_cooldown": self.birth_cooldown,
                 "status": self.status,
                 "backstory": self.backstory if self.backstory else None,
@@ -3370,16 +3370,16 @@ class Cat:
                 "no_mates": self.no_mates,
                 "exiled": self.exiled,
                 "driven_out": self.driven_out,
-                "pelt_name": self.pelt.name,
-                "pelt_color": self.pelt.colour,
+                "pelt_pattern": self.pelt.pattern,
+                "pelt_color": self.pelt.color,
                 "pelt_length": self.pelt.length,
                 "sprite_kitten": self.pelt.cat_sprites["kitten"],
                 "sprite_adolescent": self.pelt.cat_sprites["adolescent"],
                 "sprite_adult": self.pelt.cat_sprites["adult"],
                 "sprite_senior": self.pelt.cat_sprites["senior"],
                 "sprite_para_adult": self.pelt.cat_sprites["para_adult"],
-                "eye_colour": self.pelt.eye_colour,
-                "eye_colour2": self.pelt.eye_colour2 if self.pelt.eye_colour2 else None,
+                "eye_color": self.pelt.eye_color,
+                "eye_color2": self.pelt.eye_color2 if self.pelt.eye_color2 else None,
                 "reverse": self.pelt.reverse,
                 "white_patches": self.pelt.white_patches,
                 "vitiligo": self.pelt.vitiligo,
@@ -3388,7 +3388,7 @@ class Cat:
                 "white_patches_tint": self.pelt.white_patches_tint,
                 "pattern": self.pelt.pattern,
                 "tortie_base": self.pelt.tortiebase,
-                "tortie_color": self.pelt.tortiecolour,
+                "tortie_color": self.pelt.tortiecolor,
                 "tortie_pattern": self.pelt.tortiepattern,
                 "merle": self.pelt.merle,
                 "harlequin": self.pelt.harlequin,

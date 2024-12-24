@@ -2595,7 +2595,7 @@ class ProfileScreen(Screens):
             for x in range(4):
                 platform_location[x] += biome_list["StarPack"][x]
             biome_platforms = platformsheet.subsurface(pygame.Rect(platform_location)).convert_alpha()
-            biome_platforms.fill(glitter[the_cat.pelt.eye_colour], special_flags=pygame.BLEND_RGB_MULT)
+            biome_platforms.fill(glitter[the_cat.pelt.eye_color], special_flags=pygame.BLEND_RGB_MULT)
             
         else:
             for x in range(4):

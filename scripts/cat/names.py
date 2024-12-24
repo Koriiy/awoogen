@@ -64,7 +64,7 @@ class Name:
                  status="warrior",
                  prefix=None,
                  suffix=None,
-                 colour=None,
+                 color=None,
                  eyes=None,
                  pelt=None,
                  tortiepattern=None,
@@ -80,7 +80,7 @@ class Name:
         name_fixpref = False
         # Set prefix
         if prefix is None:
-            self.give_prefix(eyes, colour, biome)
+            self.give_prefix(eyes, color, biome)
             # needed for random dice when we're changing the Prefix
             name_fixpref = True
 
@@ -114,7 +114,7 @@ class Name:
 
                 # check if random die was for prefix
                 if name_fixpref:
-                    self.give_prefix(eyes, colour, biome)
+                    self.give_prefix(eyes, color, biome)
                 else:
                     self.give_suffix(pelt, biome, tortiepattern)
 
@@ -129,7 +129,7 @@ class Name:
                 i += 1
 
     # Generate possible prefix
-    def give_prefix(self, eyes, colour, biome):
+    def give_prefix(self, eyes, color, biome):
         # decided in game config: cat_name_controls
         if game.config["cat_name_controls"]["always_name_after_appearance"]:
             named_after_appearance = True
@@ -143,8 +143,8 @@ class Name:
         if game.config["cat_name_controls"]["allow_eye_names"]:  # game config: cat_name_controls
             if eyes in self.names_dict["eye_prefixes"]:
                 possible_prefix_categories.append(self.names_dict["eye_prefixes"][eyes])
-        if colour in self.names_dict["colour_prefixes"]:
-            possible_prefix_categories.append(self.names_dict["colour_prefixes"][colour])
+        if color in self.names_dict["color_prefixes"]:
+            possible_prefix_categories.append(self.names_dict["color_prefixes"][color])
         if biome is not None and biome in self.names_dict["biome_prefixes"]:
             possible_prefix_categories.append(self.names_dict["biome_prefixes"][biome])
 

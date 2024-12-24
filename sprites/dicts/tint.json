@@ -1,7 +1,7 @@
 {
-  "colour_groups":
+  "color_groups":
   {
-    "SPICE": "brown",
+    "SPICE": "darkwarm",
 	"GINGER": "brown",
 	"HONEY": "warm",
 	"FLAXEN": "warm",
@@ -9,8 +9,8 @@
 	"PEARL": "warm",
 	"MIST": "cool",
 	"ASH": "cool",
-	"STEEL": "cool",
-	"BLACK": "cool",
+	"STEEL": "darkcool",
+	"BLACK": "darkcool",
 	"CHOCOLATE": "brown",
 	"BLUE": "cool",
 	"LILAC": "warm",
@@ -18,22 +18,22 @@
 	"COPPER": "brown",
 	"BRASS": "cool",
 	"SILVER": "cool",
-	"ONYX": "cool",
+	"ONYX": "darkcool",
 	"SUNSTONE": "warm",
 	"MOONSTONE": "cool",
   "COCOA": "brown",
   "SPRUCE": "cool",
   "ISABELLA": "warm",
   "SUNNY": "warm",
-  "LUNA": "cool",
+  "LUNA": "darkcool",
   "SNOW": "white",
   "FROST": "warm",
   "GOSLING": "brown",
   "HAZELNUT": "basic",
-  "THISTLE": "warm",
+  "THISTLE": "darkwarm",
   "DAISY": "white",
-  "VOID": "monochrome",
-  "REDWOOD": "brown",
+  "VOID": "notint",
+  "REDWOOD": "darkwarm",
   "PYRITE": "basic",
   "PEACHY": "coollight"
   },
@@ -44,25 +44,28 @@
     "coollight": ["blue", "purple", "gray", "none", "cooldilute", "dilute"],
     "white": ["yellow", "none"],
     "monochrome": ["blue", "black", "gray", "dilute", "cooldilute"],
-    "brown": ["yellow", "pink", "purple", "black", "dilute", "cooldilute"]
-  },
-  "tint_colours":
+    "brown": ["yellow", "pink", "purple", "black", "dilute", "cooldilute"],
+    "notint": ["none", "none"],
+    "darkcool": ["none", "none", "none", "none", "none", "none", "dilute", "cooldilute", "blue", "purple", "gray"],
+    "darkwarm": ["none", "none", "none", "none", "none", "none", "dilute", "warmdilute", "red", "yellow"]
+  },    
+  "tint_colors":
   {
-    "pink": [253, 237, 237],
-    "gray": [225, 225, 225],
-    "red": [248, 226, 228],
-    "black": [195, 195, 195],
-    "orange": [255, 247, 235],
-    "yellow": [250, 248, 225],
-    "purple": [235, 225, 244],
-    "blue": [218, 237, 245],
+    "pink": "#FDEDED",
+    "gray": "#E1E1E1",
+    "red": "#F8E2E4",
+    "black": "#C3C3C3",
+    "orange": "#FFF7EB",
+    "yellow": "#FAF8E1",
+    "purple": "#EBE1F4",
+    "blue": "#DAEDF5",
     "none": null
   },
-  "dilute_tint_colours":
+  "dilute_tint_colors":
   {
-    "dilute": [20, 20, 20],
-    "warmdilute": [25, 15, 7],
-    "cooldilute": [7, 15, 25],
+    "dilute": "#141414",
+    "warmdilute": "#190F07",
+    "cooldilute": "#070F19",
     "none": null
   }
 }

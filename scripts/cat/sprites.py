@@ -27,6 +27,7 @@ class Sprites:
         self.blank_sprite = None
 
         self.load_tints()
+        self.load_awoogen()
 
     def load_tints(self):
         try:
@@ -40,6 +41,16 @@ class Sprites:
                 self.white_patches_tints = ujson.loads(read_file.read())
         except IOError:
             print("ERROR: Reading White Patches Tints")
+
+    def load_awoogen(self):
+        with open("resources/pelt_generation.json", 'r') as read_file:
+            self.pelt_generation = ujson.loads(read_file.read())
+        with open("sprites/dicts/pelt_colors.json", 'r') as read_file:
+            self.pelt_colors = ujson.loads(read_file.read())
+        with open("sprites/dicts/misc_colors.json", 'r') as read_file:
+            self.misc_colors = ujson.loads(read_file.read())
+        with open("sprites/dicts/pet_accessory_colors.json", 'r') as read_file:
+            self.pet_accessory_colors = ujson.loads(read_file.read())
 
     def spritesheet(self, a_file, name):
         """
@@ -117,7 +128,7 @@ class Sprites:
 
     def load_all(self):
         # get the width and height of the spritesheet
-        lineart = pygame.image.load('sprites/lineart.png')
+        lineart = pygame.image.load('sprites/lines.png')
         width, height = lineart.get_size()
         del lineart  # unneeded
 
@@ -136,10 +147,10 @@ class Sprites:
 
         for x in [
             'lines',
-            'base', 'basetail', 'dark', 'darkears', 'darkfade', 'darkforest', 'darktail',
+            'base', 'baseextra', 'dark', 'darkears', 'darkfade', 'darkforest', 'darktail',
             'extras', 'eyes', 'fadebg', 'herbs', 'highlights', 
-            'highlightsears', 'highlightstail', 'koriacc', 'lines',
-	'linetail', 'merle', 'merleears', 'merletail', 'mouth',
+            'highlightsears', 'highlightstail', 'koriacc',
+	'linetail', 'lineears', 'merle', 'merleears', 'merletail', 'mouth',
             'petacc', 'petaccbase', 'petaccmissing', 
             'petaccpatterns', 'points', 'pointsears', 'pointstail', 'red', 'redears', 'redtail',
             'scars', 'scarsmissing', 'shading', 'skin', 'starfade', 'starfog', 'tortieears',
@@ -154,13 +165,14 @@ class Sprites:
 
         # Line art
         self.make_group('lines', (0, 0), 'lines')
-        self.make_group('lineears', (0, 0), 'lineears')
-        self.make_group('linetail', (0, 0), 'linetail')
-        self.make_group('shaders', (0, 0), 'shaders')
+        self.make_group('lineears', (0, 0), 'linesears')
+        self.make_group('linetail', (0, 0), 'linestail')
+        self.make_group('shading', (0, 0), 'shading')
 
         # base pelt - to be expanded with extras later
         self.make_group('base', (0, 0), 'baseSOLID')
-        self.make_group('basetail', (0, 0), 'basetailSOLID')
+        self.make_group('baseextra', (0, 0), 'baseearsSOLID')
+        self.make_group('baseextra', (1, 0), 'basetailSOLID')
         self.make_group('mouth', (0, 0), 'mouth')
 
         # dead stuff
@@ -174,15 +186,17 @@ class Sprites:
             self.make_group('darkfade', (i, 0), f'darkfade{i}')
 
         # skin
-        for a, i in enumerate([|"SOLID", "BUTTERFLY", "DUDLEY", "SNOWNOSE", "SPECKLED"]):
+        for a, i in enumerate(["SOLID", "BUTTERFLY", "DUDLEY", "SNOWNOSE", "SPECKLED"]):
             self.make_group('skin', (a, 0), f'skin{i}')
+        for a, i in enumerate(["SOLID", "BUTTERFLY", "DUDLEY", "SNOWNOSE", "SPECKLED"]):
+            self.make_group('skin', (a, 1), f'earsskin{i}')
         # eyes
         for a, i in enumerate(["SCLERA", "BASE", "HIGHLIGHT"]):
             self.make_group('eyes', (a, 0), f'eye{i}')
 
         # White Patches
         white_patches = [["BACKLEG", "BEE", "BLAZE", "BLOTCH", "BLUETICK", "DAPPLES", "DIAMOND", "EXTREMEPIEBALD", "FLASH", "HALF"],
-            ["HEART", "HEAVYDALMATIAN", "HEELER", "HIGHLIGHT", "HOUND", "IRISH", "JACKAL", "KING", "LIGHTDALMATIAN", "LOCKET"],
+            ["HEART", "HEAVYDALMATIAN", "HEELER", "HIGHLIGHTS", "HOUND", "IRISH", "JACKAL", "KING", "LIGHTDALMATIAN", "LOCKET"],
             ["MOONRISE", "MUNSTERLANDER", "PIEBALD", "POINTED", "SNOWFLAKE", "SOCKS", "SPECKLES", "SPITZ", "SPLIT", "STAR"],
             ["STRIPE", "SUMMERFOX", "TAIL", "TICKING", "TOES", "TRIM", "URAJIRO", "WOLFTICKING"]]
         for row, patches in enumerate(white_patches):
@@ -206,14 +220,14 @@ class Sprites:
             self.make_group('pointstail', (a, 0), f'pointstail{i}')
             
         # Merles
-        merle_patches = [["BRIGHTLEAF", "BRINDLECLOUD", "DAPPLECLOUD", "DARKDAPPLE", "DAYSKY", "SEAFUR", "SHADOWSNEAK", "SILVERCLAW"],
+        merle_patches = [["BRIGHTLEAF", "BRINDLECLOUD", "DAPPLEPELT", "DARKDAPPLE", "DAYSKY", "SEAFUR", "SHADOWSNEAK", "SILVERCLAW"],
                               ["STORMSONG", "WILLOWLEAF"]]
         for row, patches in enumerate(merle_patches):
             for col, patch in enumerate(patches):
                 self.make_group('merle', (col, row), f'merle{patch}')
-        for a, i in enumerate(["SOLID", "BRIGHTLEAF", "BRINDLECLOUD", "DAPPLECLOUD", "DARKDAPPLE", "DAYSKY", "SEAFUR", "SHADOWSNEAK"]):
+        for a, i in enumerate(["SOLID", "BRIGHTLEAF", "BRINDLECLOUD", "DAPPLEPELT", "DARKDAPPLE", "DAYSKY", "SEAFUR", "SHADOWSNEAK"]):
             self.make_group('merleears', (a, 0), f'merleears{i}')
-        merle_tails = [["BRIGHTLEAF", "BRINDLECLOUD", "DAPPLECLOUD", "DARKDAPPLE", "DAYSKY", "SEAFUR", "SHADOWSNEAK", "SILVERCLAW"],
+        merle_tails = [["BRIGHTLEAF", "BRINDLECLOUD", "DAPPLEPELT", "DARKDAPPLE", "DAYSKY", "SEAFUR", "SHADOWSNEAK", "SILVERCLAW"],
                               ["STORMSONG", "WILLOWLEAF"]]
         for row, tails in enumerate(merle_tails):
             for col, tail in enumerate(tails):
@@ -236,14 +250,14 @@ class Sprites:
             ["STORMY", "SVALBARD", "TIMBER", "VIBRANT", "WINTER"]]
         for row, highlight in enumerate(highlights):
             for col, hl in enumerate(highlight):
-                self.make_group('highlights', (col, row), f'highlight{hl}')
+                self.make_group('highlights', (col, row), f'highlights{hl}')
         for a, i in enumerate(["EXTRA", "INNER", "AGOUTI", "CALI", "OPHELIA", "SVALBARD"]):
-            self.make_group('highlightsears', (a, 0), f'highlightears{i}')
+            self.make_group('highlightsears', (a, 0), f'highlightsears{i}')
         highlight_tails = [["AGOUTI", "ARCTIC", "ASPEN", "CALI", "FOXY", "GRIZZLE", "HUSKY", "MEXICAN"],
                               ["SEMISOLID", "SHEPHERD", "SVALBARD"]]
         for row, tails in enumerate(highlight_tails):
             for col, tail in enumerate(tails):
-                self.make_group('highlightstail', (col, row), f'highlighttail{tail}')
+                self.make_group('highlightstail', (col, row), f'highlightstail{tail}')
 
         # Dark Shading
         dark_shading = [["AGOUTI", "ARCTIC", "ASPEN", "BRINDLE", "CALI", "COLORPOINT", "FOXY", "GRAYWOLF"],
@@ -339,9 +353,9 @@ class Sprites:
                 self.make_group('petaccbase', (col, row), f'petbase{accessory}')
         for a, i in enumerate(["GENERAL", "BANDANABACK"]):
             self.make_group('petaccmissing', (a, 0), f'petmissing{i}')
-        pattern_petacc = [["plaidBANDANABACK", "swirlBANDANABACK"],
-                              ["plaidBANDANA", "swirlBANDANA"]]
-        for row, accessories in enumerate(base_petacc):
+        pattern_petacc = [["PLAIDBANDANABACK", "SWIRLBANDANABACK"],
+                              ["PLAIDBANDANA", "SWIRLBANDANA"]]
+        for row, accessories in enumerate(pattern_petacc):
             for col, accessory in enumerate(accessories):
                 self.make_group('petaccpatterns', (col, row), f'petpattern{accessory}')
         

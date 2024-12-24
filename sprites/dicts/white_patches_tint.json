@@ -1,5 +1,5 @@
 {
-  "colour_groups":
+  "color_groups":
   {
     "SPICE": "red",
 	"GINGER": "red",
@@ -50,22 +50,22 @@
 	"blue": ["bluewhite", "yellowwhite", "midblue", "darkblue"],
 	"lilac": ["bluewhite", "yellowwhite"]
   },
-  "tint_colours":
+  "tint_colors":
   {
-    "yellowwhite": [253, 248, 234],
-	"redwhite": [255,246,242],
-	"bluewhite": [250,251,255],
-	"midyellow": [246, 239, 219],
-	"midred": [254, 236, 228],
-	"midblue": [238, 240, 247],
-	"silveryellow": [244, 241, 232],
-	"silverred": [245, 231, 225],
-	"darkyellow": [239, 227, 192],
-	"darkred": [230, 206, 196],
-	"darkblue": [224, 227, 238],
-	"deepyellow": [228, 215, 177],
-	"deepred": [204, 181, 171],
-	"deepblue": [210, 212, 219],
+    "yellowwhite": "#FDF8EA",
+	"redwhite": "#FFF6F2",
+	"bluewhite": "#FAFBFF",
+	"midyellow": "#F6EFDB",
+	"midred": "#FEECE4",
+	"midblue": "#EEF0F7",
+	"silveryellow": "#F4F1E8",
+	"silverred": "#F5E7E1",
+	"darkyellow": "#EFE3C0",
+	"darkred": "#E6CEC4",
+	"darkblue": "#E0E3EE",
+	"deepyellow": "#E4D7B1",
+	"deepred": "#CCB5AB",
+	"deepblue": "#D2D4DB",
     "none": null
   }
 }

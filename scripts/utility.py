@@ -556,12 +556,12 @@ def create_new_cat_block(
                     )
                 else:  # completely new name
                     chosen_cat.name.give_prefix(
-                        eyes=chosen_cat.pelt.eye_colour,
-                        colour=chosen_cat.pelt.colour,
+                        eyes=chosen_cat.pelt.eye_color,
+                        colour=chosen_cat.pelt.color,
                         biome=game.clan.biome,
                     )
                     chosen_cat.name.give_suffix(
-                        pelt=chosen_cat.pelt.colour,
+                        pelt=chosen_cat.pelt.color,
                         biome=game.clan.biome,
                         tortiepattern=chosen_cat.pelt.tortiepattern,
                     )
@@ -2447,44 +2447,44 @@ def sprite_layer_dict(pelt_name, pelt_color, color_dict, white_tint, merle):
     no_red = ["ARCTIC", "SMOKEY", "WINTER", "SHEPHERD", "SABLE", "AGOUTI", "GRIZZLE", "SVALBARD", "COLORPOINT", "BRINDLE", "POINTS", "SEMISOLID", "SOLID", "HUSKY"]
     no_highlight = ["COLORPOINT", "BRINDLE", "POINTS", "SOLID"]
     no_dark_ears = ["OPHELIA", "ASPEN"]
-    no_highlight_ears = "SHEPHERD"
-    no_highlight_tail = ["GRAYWOLF", "OPHELIA", "RUNIC", "SABLE", "SMOKEY", "STORMY"]
+    no_highlight_ears = ["SHEPHERD", "SABLE"]
+    no_highlight_tail = ["GRAYWOLF", "OPHELIA", "RUNIC", "SABLE", "SMOKEY", "STORMY", "TIMBER", "VIBRANT", "WINTER"]
     
-    layer_dict["base"] = pelt_name.copy()
-    layer_dict["baseears"] = pelt_name.copy()
-    layer_dict["basetail"] = pelt_name.copy()
-    layer_dict["dark"] = pelt_name.copy()
+    layer_dict["base"] = pelt_name.upper()
+    layer_dict["baseears"] = pelt_name.upper()
+    layer_dict["basetail"] = pelt_name.upper()
+    layer_dict["dark"] = pelt_name.upper()
     
     if pelt_name in ["COLORPOINT", "POINTS"]:
         layer_dict["darktail"] = "SOLID"
     elif pelt_name in ["SHEPHERD", "STORMY"]:
         layer_dict["darktail"] = "STRIPE"
     else:
-        layer_dict["darktail"] = pelt_name.copy()
+        layer_dict["darktail"] = pelt_name.upper()
         
     if pelt_name not in no_dark_ears:
-        layer_dict["darkears"] = pelt_name.copy()
+        layer_dict["darkears"] = pelt_name.upper()
         if pelt_name in ["COLORPOINT", "POINTS", "SHEPHERD", "SOLID", "SEMISOLID"]:
             layer_dict["darkears"] = "MOST"
         elif pelt_name in ["SABLE", "HUSKY", "SMOKEY"]:
             layer_dict["darkears"] = "SHADED"
 
     if pelt_name not in no_highlight:
-        layer_dict["highlights"] = pelt_name.copy()
-        if pelt_name != no_highlights_ears:
-            layer_dict["highlightsears"] = pelt_name.copy()
+        layer_dict["highlights"] = pelt_name.upper()
+        if pelt_name not in no_highlight_ears:
+            layer_dict["highlightsears"] = pelt_name.upper()
             if pelt_name in ["FOXY", "GRAYWOLF", "GRIZZLE", "HUSKY", "MEXICAN", "RUNIC",
                                 "SEMISOLID", "SMOKEY", "STORMY", "TIMBER", "VIBRANT", "WINTER"]:
                 layer_dict["highlightsears"] = "INNER"
             elif pelt_name in ["ARCTIC", "ASPEN"]:
                 layer_dict["highlightsears"] = "EXTRA"
         if pelt_name not in no_highlight_tail:
-            layer_dict["highlightstail"] = pelt_name.copy()
+            layer_dict["highlightstail"] = pelt_name.upper()
 
     if pelt_name not in no_red:
-        layer_dict["red"] = pelt_name.copy()
-        layer_dict["redears"] = pelt_name.copy()
-        layer_dict["redtail"] = pelt_name.copy()
+        layer_dict["red"] = pelt_name.upper()
+        layer_dict["redears"] = pelt_name.upper()
+        layer_dict["redtail"] = pelt_name.upper()
         if pelt_name in ["GRAYWOLF", "MEXICAN", "RUNIC", "STORMY", "TIMBER", "VIBRANT"]:
             layer_dict["redears"] = "SOLID"
         elif pelt_name in ["CALI", "FOXY"]:
@@ -2503,7 +2503,10 @@ def sprite_layer_dict(pelt_name, pelt_color, color_dict, white_tint, merle):
     elif pelt_name == "RUNIC":
         layer_dict["highlightsmid"] = ["RUNIC", str(color_dict["colors"][pelt_color]["midlight"])]
     elif pelt_name == "HUSKY":
-        highlights_color = white_tint
+        if white_tint:
+            highlights_color = white_tint
+        else:
+            highlights_color = "#FFFFFF"
 
     for layer in layer_dict:
         if layer_dict[layer]:
@@ -2511,7 +2514,7 @@ def sprite_layer_dict(pelt_name, pelt_color, color_dict, white_tint, merle):
                 layer_dict[layer] = [str(layer_dict[layer]), str(base_color)]
             elif layer in ["dark", "darkears", "darktail"]:
                 layer_dict[layer] = [str(layer_dict[layer]), str(dark_color)]
-            elif layer in ["highlight", "highlightears", "highlighttail"]:
+            elif layer in ["highlights", "highlightsears", "highlightstail"]:
                 layer_dict[layer] = [str(layer_dict[layer]), str(highlights_color)]
             elif layer in ["red", "redears", "redtail"]:
                 layer_dict[layer] = [str(layer_dict[layer]), str(color_dict["colors"][pelt_color]["red"])]
@@ -2526,86 +2529,234 @@ def sprite_layer_dict(pelt_name, pelt_color, color_dict, white_tint, merle):
             layer_dict["merlered"] = False
         else:
             layer_dict["merlered"] = color_dict["colors"][pelt_color]["merlered"]
-
     return layer_dict
 
 def sprite_build(location,
                     cat_sprite,
-                    layer_list,
-                    base,
-                    highlights,
-                    dark,
-                    red,
+                    layer_order,
                     layers,
                     merle, # merle pattern, dilute, dark, red (or None)
-                    harlequin,
+                    harlequin_bool,
                     tint,
                     white_tint):
-    # removed dict, refer to specific layer types instead (eg red)
-    big_sprite = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+    big_sprite = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
     blit_layer_order = []
     location_name = ""
     if location != "base":
-        location_name = location.copy()
+        location_name = location
         
+    base = "base" + location_name
+    highlights = "highlights" + location_name
+    dark = "dark" + location_name
+    red = "red" + location_name
+
     if merle and layers["solid_black"]:
-        blit_layer_order.append(sprites.sprites[location + "SOLID" + cat_sprite].copy().convert_alpha())
+        blit_layer_order.append(sprites.sprites["base" + location_name + "SOLID" + cat_sprite].copy().convert_alpha())
         blit_layer_order.append(sprites.sprites["merle" + location_name + merle[0] + cat_sprite].copy().convert_alpha())
-        blit_layer_order[0].fill(merle[1])
-        blit_layer_order[1].fill(merle[2])
+        blit_layer_order[0].fill(layers["merledilute"], special_flags=pygame.BLEND_RGBA_MULT)
+        blit_layer_order[1].fill(layers["merledark"], special_flags=pygame.BLEND_RGBA_MULT)
     else:
         for x in layer_order:
-            if layers[x]:
-                if merle and not harlequin:
+            if layers[x + location_name]:
+                if merle and not harlequin_bool:
                     if "base" in x:
-                        if not merle[3]:
-                            blit_layer_order.append(sprites.sprites[location + "SOLID" + cat_sprite].copy().convert_alpha())
-                            blit_layer_order[0].fill(base)
+                        if not layers["merlered"]:
+                            blit_layer_order.append(sprites.sprites[base + "SOLID" + cat_sprite].copy().convert_alpha())
+                            blit_layer_order[0].fill(layers["base"][1], special_flags=pygame.BLEND_RGBA_MULT)
                         else:
-                            blit_layer_order.append(sprites.sprites[location + "SOLID" + cat_sprite].copy().convert_alpha())
-                            blit_layer_order[0].fill(base)
+                            blit_layer_order.append(sprites.sprites[base + "SOLID" + cat_sprite].copy().convert_alpha())
+                            blit_layer_order[0].fill(layers["base"][1], special_flags=pygame.BLEND_RGBA_MULT)
                             blit_layer_order.append(sprites.sprites["merle" + location_name + merle[0] + cat_sprite].copy().convert_alpha())
-                            blit_layer_order[1].fill(merle[3])
+                            blit_layer_order[1].fill(layers["merlered"], special_flags=pygame.BLEND_RGBA_MULT)
                     elif "dark" in x:
-                        if harlequin:
-                            blit_layer_order.append(sprites.sprites["dark" + location_name + dark[0] + cat_sprite].copy().convert_alpha())
-                            blit_layer_order[-1].fill(merle[2])
+                        if harlequin_bool:
+                            blit_layer_order.append(sprites.sprites[dark + dark[0] + cat_sprite].copy().convert_alpha())
+                            blit_layer_order[-1].fill(layers["merledark"], special_flags=pygame.BLEND_RGBA_MULT)
                         else:
-                            temp_dilute = sprites.sprites["dark" + location_name + dark[0] + cat_sprite].copy().convert_alpha()
-                            temp_dilute.fill(merle[1])
+                            # pre-make this entire layer and apply only the blit to the list bc it's pissed off
+                            temp_darkmerle = sprites.sprites[dark + layers[dark][0] + cat_sprite].copy().convert_alpha()
+                            temp_darkmerle.fill(layers["merledilute"], special_flags=pygame.BLEND_RGBA_MULT)
                             temp_dark = sprites.sprites["merle" + location_name + merle[0] + cat_sprite].copy().convert_alpha()
-                            temp_dark.fill(merle[2])
-                            temp_dark_blitted = temp_dark.blit(sprites.sprites["dark" + location_name + dark[0] + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
-                            blit_layer_order.append(temp_dilute)
-                            blit_layer_order.append(temp_dark_blitted)
+                            temp_dark.fill(layers["merledark"], special_flags=pygame.BLEND_RGBA_MULT)
+                            temp_dark.blit(sprites.sprites[dark + layers[dark][0] + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+                            temp_darkmerle.blit(temp_dark, (0, 0))
+                            blit_layer_order.append(temp_darkmerle)              
                     elif "red" in x:
-                        blit_layer_order.append(sprites.sprites["red" + location_name + red[0] + cat_sprite].copy().convert_alpha())
-                        blit_layer_order[-1].fill(red[1])
+                        blit_layer_order.append(sprites.sprites[red + layers[red][0] + cat_sprite].copy().convert_alpha())
+                        blit_layer_order[-1].fill(layers[red][1], special_flags=pygame.BLEND_RGBA_MULT)
                     elif "highlights" in x:
-                        blit_layer_order.append(sprites.sprites["red" + location_name + highlights[0] + cat_sprite].copy().convert_alpha())
-                        blit_layer_order[-1].fill(highlights[1])
+                        blit_layer_order.append(sprites.sprites[highlights + layers[highlights][0] + cat_sprite].copy().convert_alpha())
+                        blit_layer_order[-1].fill(layers[highlights][1], special_flags=pygame.BLEND_RGBA_MULT)
                 else:
-                    pelt_pattern = layers[x][0]
-                    pelt_color = layers[x][1]
-                    blit_layer_order.append(sprites.sprites[x + pelt_pattern + cat_sprite].copy().convert_alpha())
-                    blit_layer_order[-1].fill(pelt_color)
+                    pelt_pattern = layers[x + location_name][0]
+                    pelt_color = layers[x + location_name][1]
+                    if x != "base":
+                        blit_layer_order.append(sprites.sprites[x + location_name + pelt_pattern + cat_sprite].copy().convert_alpha())
+                    else:
+                        blit_layer_order.append(sprites.sprites["base" + location_name + "SOLID" + cat_sprite].copy().convert_alpha())
+                    blit_layer_order[-1].fill(pelt_color, special_flags=pygame.BLEND_RGBA_MULT)
 
-    if merle and harlequin:
+    if merle and harlequin_bool:
         temp_sprite = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
     for x in blit_layer_order:
-        if x and harlequin and merle:
-            temp_sprite.blit(blit_layer_order[x], (0, 0))
+        if x and harlequin_bool and merle:
+            temp_sprite.blit(x, (0, 0))
         else:
-            big_sprite.blit(blit_layer_order[x], (0, 0))
+            big_sprite.blit(x, (0, 0))
 
-    if harlequin and merle:
-        harlequin_base = sprites.sprites[location + "SOLID" + cat_sprite].copy().convert_alpha()
-        harlequin_base.fill(white_tint)
+    if tint:
+        tint_sprite = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+        tint_sprite.fill(tint[1])
+        if tint[0] == "DILUTE":
+            if harlequin_bool and merle:
+                temp_sprite.blit(tint_sprite, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
+            else:
+                big_sprite.blit(tint_sprite, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
+        else:
+            if harlequin_bool and merle:
+                temp_sprite.blit(tint_sprite, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+            else:
+                big_sprite.blit(tint_sprite, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+    if harlequin_bool and merle:
+        harlequin_base = sprites.sprites["base" + location_name + "SOLID" + cat_sprite].copy().convert_alpha()
+        if white_tint:
+            harlequin_base.fill(white_tint, special_flags=pygame.BLEND_RGBA_MULT)
         big_sprite.blit(harlequin_base, (0, 0))
         temp_sprite.blit(sprites.sprites["merle" + location_name + merle[0] + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
         big_sprite.blit(temp_sprite, (0, 0))
 
     return big_sprite
+
+def white_sprite_build(cat_sprite, white, colorpoint, location, tint):
+    location_name = ""
+    if location != "base":
+        location_name = location
+    sprite = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
+
+    if white:
+        sprite.blit(sprites.sprites['white' + location_name + white + cat_sprite].copy().convert_alpha(), (0, 0))
+    if colorpoint:
+        sprite.blit(sprites.sprites['points' + location_name + colorpoint + cat_sprite].copy().convert_alpha(), (0, 0))
+    if tint:
+        sprite.fill(tint, special_flags=pygame.BLEND_RGBA_MULT)
+
+    return sprite
+
+def skin_build(location, eyes, skin, skin_settings, cat_sprite):
+    finished_sprite = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
+    skin_color = ""
+    secondary_skin_color = ""
+    if skin_settings["EYEMATCH"]:
+        skin_color = sprites.misc_colors["eyes"][eyes]["base"]
+        if skin[0] != "SOLID":
+            secondary_skin_color = sprites.misc_colors["eyes"][eyes]["highlight"]
+    else:
+        skin_color = skin_settings[skin[1]][skin[2]]
+        if skin[0] != "SOLID":
+            secondary_skin_color = skin_settings[skin[3]][skin[4]]
+    if skin[0] == "SOLID":
+        skin_sprite = sprites.sprites[location + "skinSOLID" + cat_sprite].copy().convert_alpha()
+        skin_sprite.fill(skin_color, special_flags=pygame.BLEND_RGBA_MULT)
+        finished_sprite.blit(skin_sprite, (0, 0))
+    else:    
+        skin_sprite = sprites.sprites[location + "skinSOLID" + cat_sprite].copy().convert_alpha()
+        skin_sprite.fill(secondary_skin_color, special_flags=pygame.BLEND_RGBA_MULT)
+        secondary_skin_sprite = sprites.sprites[location + "skin" + skin[0] + cat_sprite].copy().convert_alpha()
+        secondary_skin_sprite.fill(skin_color, special_flags=pygame.BLEND_RGBA_MULT)
+        finished_sprite.blit(skin_sprite, (0, 0))
+        finished_sprite.blit(secondary_skin_sprite, (0, 0))
+    return finished_sprite
+
+def scars_build(eyes, skin, scars, skin_settings, scars_settings, cat_sprite):
+    finished_sprite = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
+    scar_color = ""
+    if scars_settings["SKINMATCH"]:
+        if skin[0] == "SOLID":
+            scar_color = skin_settings["skins"][skin[1]][skin[2]]
+        else:
+            scar_color = skin_settings["skins"][skin[3]][skin[4]]
+    elif scars_settings["EYEMATCH"]:
+        scar_color = sprites.misc_colors["eyes"][eyes]["highlight"]
+    else:
+        scar_color = scars_settings["CUSTOM"]
+    for x in scars:
+        finished_sprite.blit(sprites.sprites["scars" + x + cat_sprite], (0, 0))
+    finished_sprite.fill(scar_color, special_flags=pygame.BLEND_RGBA_MULT)
+    return finished_sprite
+
+def accessory_build(accessory_colors, accent_colors, accessory, eye_color, cat_sprite):
+    accessory_sprite = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA) 
+    if accessory[2]:
+        accessory_name = accessory[0]
+        accessory_color = accessory_colors[accessory[2]]["base"]
+        if accessory_name == "LEATHER":
+            accessory_color = accessory_colors[accessory[2]]["leatherbase"]
+        if accessory[0] == "BOW" and accessory_colors[accessory[2]]["bowlighten"]:
+            accessory_name = "BOWLIGHT"
+        elif accessory[0] in ["BELL", "RADIO", "LEATHER", "NYLON"]:
+            accessory_name = "COLLAR"
+        base_accessory = sprites.sprites["petbase" + accessory_name + cat_sprite].copy().convert_alpha()
+        base_accessory.fill(accessory_color, special_flags=pygame.BLEND_RGBA_MULT)
+        accessory_sprite.blit(base_accessory, (0, 0))
+        accessory_name = accessory[0]
+        accessory_color = accessory_colors[accessory[2]]
+
+        if accessory_name == "BOW":
+            accessory_sprite.blit(sprites.sprites["petbasehighlightBOW" + cat_sprite].copy().convert_alpha(), (0, 0))
+        if accessory[1] != "SOLID":
+            if accessory[1] == "SWIRL":
+                swirl_color = accessory_colors[accessory[2]]["bandanaswirl"]
+                if "#" not in swirl_color:
+                    swirl_color = accent_colors[swirl_color]
+                swirls = sprites.sprites["petpattern" + "SWIRL" + accessory_name + cat_sprite].copy().convert_alpha()
+                swirls.fill(swirl_color, special_flags=pygame.BLEND_RGBA_MULT)
+                accessory_sprite.blit(swirls, (0, 0))
+            else:
+                accessory_sprite.blit(sprites.sprites["petpattern" + accessory[1] + accessory_name + cat_sprite], (0, 0))
+        if accessory_name == "BOW":
+            accessory_sprite.blit(sprites.sprites["petbasehighlightBOW" + cat_sprite], (0, 0))
+        elif accessory_name == "HARNESS":
+            accent_sprite = sprites.sprites["petbaseaccentHARNESS" + cat_sprite].copy().convert_alpha()
+            accent_sprite.fill(accent_colors[accessory_color["harnessradioaccent"]], special_flags=pygame.BLEND_RGBA_MULT)
+            accessory_sprite.blit(accent_sprite, (0, 0))
+        if accessory_name in ["BELL", "LEATHER", "NYLON", "RADIO"]:
+            accessory_sprite.blit(sprites.sprites["petlinesCOLLAR" + cat_sprite].copy().convert_alpha(), (0, 0))
+            color_location = ""
+            accent_type = ""
+            if accessory_name in ["BELL", "LEATHER"]:
+                accent_type = "metal"
+                if accessory_name == "BELL":
+                    color_location = "bellnylonmetal"
+                else:
+                    color_location = "leathermetal"
+            elif accessory_name == "NYLON":
+                accent_type = "accent"
+                color_location = "nylonaccent"
+            elif accessory_name == "RADIO":
+                color_location = "harnessradioaccent"
+            accessory_accent_loc = accessory_colors[accessory[2]][color_location]
+            accessory_accent = sprites.sprites["petbase" + accent_type + accessory_name + cat_sprite].copy().convert_alpha()
+            accessory_accent.fill(accent_colors[accessory_accent_loc], special_flags=pygame.BLEND_RGBA_MULT)
+            accessory_sprite.blit(accessory_accent, (0, 0))
+            if accessory_name == "NYLON":
+                nylontag = sprites.sprites["petbasetagNYLON" + cat_sprite].copy().convert_alpha()
+                nylontag.fill(accent_colors[accessory_colors[accessory[2]]["bellnylonmetal"]], special_flags=pygame.BLEND_RGBA_MULT)
+                accessory_sprite.blit(nylontag, (0, 0))
+            accessory_sprite.blit(sprites.sprites["petlines" + accessory_name + cat_sprite].copy().convert_alpha(), (0, 0))
+        else:
+            accessory_sprite.blit(sprites.sprites["petlines" + accessory_name + cat_sprite].copy().convert_alpha(), (0, 0))
+    else:
+        if accessory[0] == "TOWEL":
+            accessory_sprite.blit(sprites.sprites["junk" + accessory[0] + cat_sprite].copy().convert_alpha(), (0, 0))
+        elif accessory [0] == "SILK CLOAK":
+            temp_acc = sprites.sprites["cloak" + accessory[0] + cat_sprite].copy().convert_alpha()
+            temp_acc.fill(sprites.misc_colors["eyes"][eye_color]["highlight"], special_flags=pygame.BLEND_RGBA_MULT)
+            accessory_sprite.blit(temp_acc, (0, 0))
+        else:
+            accessory_sprite.blit(sprites.sprites["natural" + accessory[0] + cat_sprite].copy().convert_alpha(), (0, 0))
+
+    return accessory_sprite
 
 def generate_sprite(
         cat,
@@ -2668,16 +2819,26 @@ def generate_sprite(
 
     # generating the sprite
     try:
+        ### cleanup will happen later pls excuse the disgusting mess in here
+        
         # what the frick is happening here
         # set up expectations for markings
         special_markings = ["RUNIC", "SEMISOLID", "SOLID", "HUSKY"]
         no_tortie_ears = "INKSPILL"
         no_tortie_tail = ["MINIMAL", "REDTAIL"]
+        solid_merle_ears = ["SILVERCLAW", "STORMSONG", "WILLOWLEAF"]
         no_white_ears = ["BEE", "BLAZE", "BLUETICK", "DIAMOND", "FLASH", "HALF", "HEART",
                          "HEAVYDALMATIAN", "HEELER", "HIGHLIGHT", "HOUND", "KING", "LOCKET", 
                          "MUNSTERLANDER", "SOCKS","SPECKLES", "STAR", "STRIPE", "TICKING",
                          "TOES", "TRIM", "WOLFTICKING"]
+        inner_white_ears = ["SUMMERFOX", "PIEBALD", "URAJIRO", "IRISH", "BLOTCH", "MOONRISE",
+                            "BACKLEG", "JACKAL", "SPITZ", "POINTED", "HIGHLIGHTS"]
         no_white_tail = ["FLASH", "HIGHLIGHT", "JACKAL", "SNOWFLAKE", "SOCKS", "TOES", "WOLFTICKING"]
+        white_modified_tail = {"UNDERTAIL": ["POINTED", "URAJIRO", "IRISH", "BLOTCH", "MOONRISE", "HIGHLIGHTS"],
+                                   "SOLIDTAIL": ["SUMMERFOX", "PIEBALD", "EXTREMEPIEBALD"],
+                                   "TIPTAIL": ["LOCKET", "TRIM", "STRIPE"],
+                                   "SMALLTAIL": ["HALF", "BACKLEG", "TAIL"],
+                                   "HALFTAIL": ["BLAZE", "HOUND"]}
         layer_highlight_dark = [[0, 2, 1], "ARCTIC", "GRIZZLE", "SVALBARD"]
         layer_red_highlight_dark = [[0, 3, 2, 1], "OPHELIA", "MEXICAN", "RUNIC", "ASPEN", "CALI", "FOXY"]
         layer_red_dark_highlight = [[0, 3, 1, 2], "GRAYWOLF", "TIMBER", "VIBRANT", "STORMY"]
@@ -2685,50 +2846,234 @@ def generate_sprite(
         layer_dark_highlight = [[0, 1, 2], "SEMISOLID", "SMOKEY", "WINTER", "HUSKY", "SHEPHERD", "SABLE", "AGOUTI"]
         layer_list = [layer_dark_highlight, layer_dark, layer_red_dark_highlight, layer_red_highlight_dark, layer_highlight_dark]
 
+        body_sprite = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
+        ear_sprite = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
+        tail_sprite = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
+        
         tortie = False
-        if cat.pelt.tortiepattern:
+        if cat.pelt.tortie:
             tortie = True
 
-        base_layers = ["base", "dark", "highlight", "red"]
+        base_layers = ["base", "dark", "highlights", "red"]
         ear_layers = ["baseears", "darkears", "highlightears", "redears"]
         tail_layers = ["basetail", "darktail", "highlightstail", "redtail"]
 
         order_layers = []
         tortie_order_layers = []
 
-        body_mod = {earscar = None
-                        tailscar = None}
+        scar_dict = {"earscar": None,
+                        "tailscar": None,
+                        "scars": None,
+                        "missing": None,
+                        "tailmissing": None,
+                        "earmissing": None}
+        if cat.pelt.scars:
+            scar_dict = {"earscar": [],
+                             "tailscar": [],
+                             "scars": [],
+                             "missing": [],
+                             "tailmissing": [],
+                             "earmissing": []}
+            for x in cat.pelt.scars:
+                if x == "NOEAR":
+                    scar_dict["earscar"] = "NOEAR"
+                elif x == "NOTAIL":
+                    scar_dict["tailscar"] = "NOTAIL"
+                elif x in ["FROSTFACE", "LEFTEAR", "NOLEFTEAR", "NORIGHTEAR", "RIGHTEAR"]:
+                    if scar_dict["earscar"] != "NOEAR":
+                        scar_dict["earmissing"].append(x)
+                        if x == "FROSTFACE":
+                            scar_dict["earscar"].append(x)
+                elif x in ["MANTAIL", "BURNTAIL", "FROSTTAIL", "HALFTAIL", "TAILSCAR"]:
+                    if scar_dict["tailscar"] != "NOTAIL":
+                        if x in ["MANTAIL", "BURNTAIL", "FROSTTAIL", "TAILSCAR", "BURNTAIL"]:
+                            scar_dict["tailscar"].append(x)
+                        if x in ["MANTAIL", "FROSTTAIL", "HALFTAIL", "TAILSCAR"]:
+                            scar_dict["tailmissing"].append(x)
+                        if x == "BURNTAIL":
+                            scar_dict["tailmissing"].append("HALFTAIL")
+                else:
+                    scar_dict["scars"].append(x)
+                if x in ["BURNBELLY", "NOPAW"]:
+                    scar_dict["missing"].append(x)
+                print(x)
+            for x in scar_dict:
+                if len(scar_dict[x]) == 0:
+                    scar_dict[x] = None
 
-        # skip pelt generation if dog is entirely white
-        # KORI pls use the color dict name when you get to it ty
-        if "ALBINO" not in cat.pelt.points and "WHITE" not in cat.pelt.white_patches:
-            base_dict = sprite_layer_dict(cat.pelt.pattern, cat.pelt.color, "game color dict", cat.pelt.white_tint, cat.pelt.merle)
+        pelt_tint = None
+        white_tint = None
+        if cat.pelt.tint:
+            if cat.pelt.tint in sprites.cat_tints["dilute_tint_colors"]:
+                pelt_tint = ["DILUTE", sprites.cat_tints["dilute_tint_colors"][cat.pelt.tint]]
+            else:
+                pelt_tint = [None, sprites.cat_tints["tint_colors"][cat.pelt.tint]]
+        if cat.pelt.white_patches_tint:
+            white_tint = sprites.white_patches_tints["tint_colors"][cat.pelt.white_patches_tint]
+
+        white_markings = None
+        if cat.pelt.white_patches or cat.pelt.points:
+            white_markings = [None, None]
+            if cat.pelt.white_patches:
+                white_markings[0] = cat.pelt.white_patches
+            if cat.pelt.points:
+                white_markings[1] = cat.pelt.points
+
+        blit_list = [] # this is the final list to be blitted at the very end of the sprite process
+        if cat.pelt.points != "ALBINO" and cat.pelt.white_patches != "WHITE":
+            base_dict = sprite_layer_dict(cat.pelt.pattern.upper(), cat.pelt.color, sprites.pelt_colors, white_tint, cat.pelt.merle)
             if tortie:
-                tortie_dict = sprite_layer_dict(cat.pelt.tortiepattern, cat.pelt.tortiecolor, "game color dict", cat.pelt.white_tint, cat.pelt.merle)
+                tortie_dict = sprite_layer_dict(cat.pelt.tortiepattern.upper(), cat.pelt.tortiecolor, sprites.pelt_colors, white_tint, cat.pelt.merle)
 
             # find out the layer order, skipping first item
+            temp_order_layers = []
+            temp_tortie_order_layers = []
             for x in layer_list:
-                if base_dict["base"][0] in x[1: ]:
+                if base_dict["base"][0] in x:
                     temp_order_layers = x[0]
                     break
+            for x in temp_order_layers:
+                order_layers.append(base_layers[x])
             if tortie:
                 for x in layer_list:
-                    if tortie_dict["base"][0] in x[1: ]:
+                    if tortie_dict["base"][0] in x:
                         temp_tortie_order_layers = x[0]
                         break
+                for x in temp_tortie_order_layers:
+                    tortie_order_layers.append(base_layers[x])
+
+            if cat.pelt.merle:
+                ear_merle = cat.pelt.merle.copy()
+                if ear_merle[0] in solid_merle_ears:
+                    ear_merle[0] = "SOLID"
+            else:
+                ear_merle = None
+            body_sprite.blit(sprite_build("base", cat_sprite, order_layers, base_dict, cat.pelt.merle, cat.pelt.harlequin, pelt_tint, white_tint), (0, 0))
+            if tortie:
+                tortie_pelt = sprite_build("base", cat_sprite, order_layers, tortie_dict, cat.pelt.merle, cat.pelt.harlequin, pelt_tint, white_tint), (0, 0)
+                tortie_pelt.blit(sprites.sprites["tortie" + cat.pelt.tortie + cat.sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+                body_sprite.blit(tortie_pelt, (0, 0))
+            if white_markings:
+                body_sprite.blit(white_sprite_build(cat_sprite, white_markings[0], white_markings[1], "base", white_tint), (0, 0))
+            # add the body tint and append list
+            if scar_dict["earscar"] != "NOEAR":
+                ear_sprite.blit(sprite_build("ears", cat_sprite, order_layers, base_dict, ear_merle, cat.pelt.harlequin, pelt_tint, white_tint), (0, 0))
+                if tortie and cat.pelt.tortie != no_tortie_ears:
+                    tortie_pelt_ears = sprite_build("ears", cat_sprite, order_layers, tortie_dict, ear_merle, cat.pelt.harlequin, pelt_tint, white_tint), (0, 0)
+                    tortie_pelt_ears.blit(sprites.sprites["tortie" + cat.pelt.tortie + cat.sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+                    ear_sprite.blit(tortie_pelt_ears, (0, 0))
+                if white_markings:
+                    white_edit = white_markings.copy()
+                    if white_edit[0] and white_edit[0] in no_white_ears:
+                        white_edit[0] = None
+                    elif white_edit[0] in inner_white_ears:
+                        white_edit[0] = "INNEREARS"
+                    if white_edit[1] and white_edit[1] in ["SEPIA", "MINK", "POINT", "CLEAR"]:
+                        white_edit[1] = None
+                    if white_edit != [None, None]:
+                        ear_sprite.blit(white_sprite_build(cat_sprite, white_edit[0], white_edit[1], "ears", white_tint), (0, 0))
+            if scar_dict["tailscar"] != "NOTAIL":
+                tail_sprite.blit(sprite_build("tail", cat_sprite, order_layers, base_dict, cat.pelt.merle, cat.pelt.harlequin, pelt_tint, white_tint), (0, 0))
+                if tortie and cat.pelt.tortie not in no_tortie_tail:
+                    pass #blit onto the tail sprite pls
+                if white_markings:
+                    white_edit = white_markings.copy()
+                    if white_edit[0] and white_edit[0] in no_white_tail:
+                        white_edit[0] = None
+                    else:
+                        for x in white_modified_tail:
+                            if white_edit[0] in white_modified_tail[x]:
+                                white_edit[0] = str(x)
+                    if white_edit[1] and white_edit[1] in ["SEPIA", "MINK", "POINT", "CLEAR"]:
+                        white_edit[1] = None
+                    if white_edit != [None, None]:
+                        tail_sprite.blit(white_sprite_build(cat_sprite, white_edit[0], white_edit[1], "tail", white_tint), (0, 0))
         else:
-            # blit a white sprite layer
+            body_sprite.blit(sprites.sprites["baseSOLID" + cat_sprite].copy().convert_alpha(), (0, 0))
+            if white_tint:
+                body_sprite.fill(white_tint, special_flags=pygame.BLEND_RGBA_MULT)
+            if scar_dict["earscar"] != "NOEAR":
+                ear_sprite.blit(sprites.sprites["baseearsSOLID" + cat_sprite].copy().convert_alpha(), (0, 0))
+                if white_tint:
+                    ear_sprite.fill(white_tint, special_flags=pygame.BLEND_RGBA_MULT)
+            if scar_dict["tailscar"] != "NOTAIL":
+                tail_sprite.blit(sprites.sprites["basetailSOLID" + cat_sprite].copy().convert_alpha(), (0, 0))
+                if white_tint:
+                    tail_sprite.fill(white_tint, special_flags=pygame.BLEND_RGBA_MULT)
+
+        ear_accessory = True
+        if cat.pelt.accessory and cat.pelt.accessory[0] in ["RADIO", "COLLAR", "LEATHER", "NYLON", "BOW", "BELL", "BANDANA", "BANDANABACK", "SILK CLOAK", "TOWEL", "HARNESS"]:
+            ear_accessory = False
+        
+        new_sprite.blit(body_sprite, (0, 0))
+        
+        eye_sclera = sprites.sprites["eyeSCLERA" + cat_sprite].copy().convert_alpha()
+        if sprites.misc_colors["eyes_misc"]["EYEMATCH"]:
+            eye_sclera.fill(sprites.misc_colors["eyes"][cat.pelt.eye_color]["eyematch"], special_flags=pygame.BLEND_RGBA_MULT)
+        else:
+            eye_sclera.fill(sprites.misc_colors["eyes_misc"]["WHITE"], special_flags=pygame.BLEND_RGBA_MULT)
+        eye_base = sprites.sprites["eyeBASE" + cat_sprite].copy().convert_alpha()
+        eye_base.fill(sprites.misc_colors["eyes"][cat.pelt.eye_color]["base"], special_flags=pygame.BLEND_RGBA_MULT)
+        eye_highlight = sprites.sprites["eyeHIGHLIGHT" + cat_sprite].copy().convert_alpha()
+        eye_highlight.fill(sprites.misc_colors["eyes"][cat.pelt.eye_color]["highlight"], special_flags=pygame.BLEND_RGBA_MULT)
+        new_sprite.blit(eye_sclera, (0, 0))
+        new_sprite.blit(eye_base, (0, 0))
+        new_sprite.blit(eye_highlight, (0, 0))
+        
+        if cat_sprite in ["2", "11"]:
+            skin = cat.pelt.skin
+            mouth_color = ""
+            if sprites.misc_colors["scars"]["SKINMATCH"]:
+                if skin[0] == "SOLID":
+                    mouth_color = sprites.misc_colors["skins"][skin[1]][skin[2]]
+                else:
+                    mouth_color = sprites.misc_colors["skins"][skin[3]][skin[4]]
+            elif sprites.misc_colors["scars"]["EYEMATCH"]:
+                mouth_color = sprites.misc_colors["eyes"][cat.pelt.eye_color]["highlight"]
+            else:
+                mouth_color = sprites.misc_colors["scars"]["CUSTOM"]
+            mouth_sprite = sprites.sprites["mouth" + cat_sprite].copy().convert_alpha()
+            mouth_sprite.fill(mouth_color, special_flags=pygame.BLEND_RGBA_MULT)
+            new_sprite.blit(mouth_sprite, (0, 0))
             
-            # whole thing should be blitted like so:
-            # entirety of possible values stored a list. python does for x in list etc
-            # it will loop through, checking if the value is false (as in, nothing to blit)
-            # if it's not false, it'll blit that sprite piece onto new_sprite
-            # this is done for the base pelt, ears, then the tail (assuming scars do not render all possible
-            # values for ears and/or tail False. that'll be checked for before it runs)
-            # skins are added near the end, and masked off as needed for ear scars
+        new_sprite.blit(skin_build("", cat.pelt.eye_color, cat.pelt.skin, sprites.misc_colors["skins"], cat_sprite), (0, 0))
+        new_sprite.blit(sprites.sprites["lines" + cat_sprite].copy().convert_alpha(), (0, 0))
 
-            #AFTER pelts are blitted, scars, accessories, etc can be blitted on top
+        if scar_dict["scars"]:
+            new_sprite.blit(scars_build(cat.pelt.eye_color, cat.pelt.skin, scar_dict["scars"], sprites.misc_colors["skins"], sprites.misc_colors["scars"], cat_sprite), (0, 0))
+        if scar_dict["missing"]:
+            for x in scar_dict["missing"]:
+                new_sprite.blit(sprites.sprites["scarsmissing" + x + cat_sprite].copy().convert_alpha(), (0, 0), special_flags=pygame.BLEND_RGBA_MIN)
 
+        if cat.pelt.accessory and not ear_accessory:
+            if cat.pelt.accessory[0] in ["RADIO", "COLLAR", "LEATHER", "NYLON", "BOW", "BELL"]:
+                new_sprite.blit(sprites.sprites["petmissingGENERAL" + cat_sprite].copy().convert_alpha(), (0, 0), special_flags=pygame.BLEND_RGBA_MIN)
+            elif cat.pelt.accessory[0] == "BANDANABACK":
+                new_sprite.blit(sprites.sprites["petmissingBANDANABACK" + cat_sprite].copy().convert_alpha(), (0, 0), special_flags=pygame.BLEND_RGBA_MIN)
+            new_sprite.blit(accessory_build(sprites.pet_accessory_colors["colors"], sprites.pet_accessory_colors["accent_colors"], cat.pelt.accessory, cat.pelt.eye_color, cat_sprite), (0, 0))
+
+        if scar_dict["earscar"] != "NOEAR":       
+            ear_sprite.blit(skin_build("ears", cat.pelt.eye_color, cat.pelt.skin, sprites.misc_colors["skins"], cat_sprite), (0, 0))
+            ear_sprite.blit(sprites.sprites["linesears" + cat_sprite].copy().convert_alpha(), (0, 0))
+            if scar_dict["earscar"]:
+                ear_sprite.blit(scars_build(cat.pelt.eye_color, cat.pelt.skin, scar_dict["earscar"], sprites.misc_colors["skins"], sprites.misc_colors["scars"], cat_sprite), (0, 0))
+            if scar_dict["earmissing"]:
+                for x in scar_dict["earsmissing"]:
+                    ear_sprite.blit(sprites.sprites["scarsmissing" + x + cat_sprite].copy().convert_alpha(), (0, 0), special_flags=pygame.BLEND_RGBA_MIN)
+            new_sprite.blit(ear_sprite, (0, 0))
+
+        if scar_dict["tailscar"] != "NOTAIL":
+            tail_sprite.blit(sprites.sprites["linestail" + cat_sprite].copy().convert_alpha(), (0, 0))
+            if scar_dict["tailscar"]:
+                tail_sprite.blit(scars_build(cat.pelt.eye_color, cat.pelt.skin, scar_dict["tailscar"], sprites.misc_colors["skins"], sprites.misc_colors["scars"], cat_sprite), (0, 0))
+            if scar_dict["tailmissing"]:
+                for x in scar_dict["tailmissing"]:
+                    tail_sprite.blit(sprites.sprites["scarsmissing" + x + cat_sprite].copy().convert_alpha(), (0, 0), special_flags=pygame.BLEND_RGBA_MIN)
+            new_sprite.blit(tail_sprite, (0, 0))
+            
+        if cat.pelt.accessory and ear_accessory:
+            new_sprite.blit(accessory_build(sprites.pet_accessory_colors["colors"], sprites.pet_accessory_colors["accent_colors"], cat.pelt.accessory, cat.pelt.eye_color, cat_sprite), (0, 0))
+        
 
         # Apply fading fog
         if (

@@ -360,25 +360,26 @@ class HandleShortEvents:
             self.types.append("misc")
         acc_list = []
         possible_accs = getattr(self.chosen_event, "new_accessory", [])
-        if "WILD" in possible_accs:
-            acc_list.extend(pelts.wild_accessories)
-        if "PLANT" in possible_accs:
-            acc_list.extend(pelts.plant_accessories)
-        if "COLLAR" in possible_accs:
-            acc_list.extend(pelts.collars)
-        if "RADIO" in possible_accs:
-            acc_list.extend(Pelt.radiocollars)
-        if "HARNESS" in possible_accs:
-            acc_list.extend(Pelt.harnesses)
-        if "BANDANA" in possible_accs:
-            acc_list.extend(Pelt.bandanas)
 
         for acc in possible_accs:
-            if acc not in ["WILD", "PLANT", "COLLAR", "RADIO", "HARNESS", "BANDANA"]:
-                acc_list.append(acc)
+            acc_list.append(acc)
+
+        temp_acc = ["", None, None]
 
         if acc_list:
-            self.main_cat.pelt.accessory = random.choice(acc_list)
+            temp_acc[0] = random.choice(acc_list)
+
+        if temp_acc[0] in ["BANDANA", "BANDANABACK"]:
+            if random.randint(0, 2) == 1:
+                temp_acc[1] = "SOLID"
+            else:
+                temp_acc[1] = choice(Pelt.bandana_patterns)
+            temp_acc[2] = choice(Pelt.acc_potential_colors[random.choices(Pelt.pet_accessories_color_categories, weights=Pelt.acc_category_weights, k=1)[0]])
+        if temp_acc[0] in ["BELL", "BOW", "COLLAR", "LEATHER", "NYLON"]:
+            temp_acc[1] = "SOLID"
+            temp_acc[2] = choice(Pelt.acc_potential_colors[random.choices(Pelt.pet_accessories_color_categories, weights=Pelt.acc_category_weights, k=1)[0]])
+            
+        self.main_cat.pelt.accessory = temp_acc
 
     def handle_death(self):
         """

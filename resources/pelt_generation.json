@@ -1,14 +1,50 @@
 {
-    "pelt_categories": ["standardpelts", "northpelts", "southpelts", "darkpelts", "specialpelts"],
-    "pelt_color_categories": {
-        "categories": ["yellow", "gray", "black", "red", "dilute"],
+    "pelt_color_categories": ["yellow", "gray", "black", "red", "dilute"],
+    "eye_color_categories": ["yellow", "orange", "green", "gray", "brown", "blue", "purple", "red"],
+    "pelt_colors": {
         "yellow": ["HONEY", "FLAXEN", "CREAM", "PEARL", "GOLD", "BRASS", "SUNSTONE", "SUNNY", "DAISY", "PEACHY"],
         "gray": ["MIST", "ASH", "STEEL", "SILVER", "MOONSTONE", "SNOW", "GOSLING", "PYRITE"],
         "black": ["BLACK", "ONYX", "LUNA", "THISTLE", "VOID"],
         "red": ["SPICE", "GINGER", "COPPER", "REDWOOD"],
         "dilute": ["CHOCOLATE", "COCOA", "HAZELNUT", "BLUE", "SPRUCE", "FROST", "LILAC", "ISABELLA"]},
-    "eye_color_categories": {
-        "categories": ["yellow", "orange", "green", "gray", "brown", "blue", "purple", "red"],
+    "tortie_combos": {
+        "HONEY": ["FLAXEN", "CREAM", "PEARL", "BRASS", "SUNSTONE", "SUNNY", "DAISY", "PEACHY", "BLACK", "ONYX", "THISTLE", "VOID", "SPICE", "GINGER", "COPPER", "REDWOOD"],
+        "FLAXEN": ["HONEY", "CREAM", "PEARL", "BRASS", "SUNSTONE", "SUNNY", "DAISY", "PEACHY", "BLACK", "ONYX", "THISTLE", "VOID", "SPICE", "GINGER", "COPPER", "REDWOOD"],
+        "CREAM": ["FLAXEN", "HONEY", "PEARL", "BRASS", "SUNSTONE", "SUNNY", "DAISY", "PEACHY", "BLACK", "ONYX", "VOID", "SPICE", "GINGER", "COPPER", "REDWOOD"],
+        "PEARL": ["FLAXEN", "HONEY", "CREAM", "BRASS", "SUNSTONE", "SUNNY", "DAISY", "PEACHY", "BLACK", "ONYX", "VOID", "SPICE", "GINGER", "COPPER", "REDWOOD", "MIST", "ASH", "SILVER", "SNOW"],
+        "GOLD": ["HONEY", "FLAXEN", "CREAM", "PEARL", "BRASS", "SUNSTONE", "SUNNY", "DAISY", "PEACHY", "BLACK", "VOID"],
+        "BRASS": ["HONEY", "FLAXEN", "CREAM", "PEARL", "GOLD", "SUNSTONE", "SUNNY", "DAISY", "PEACHY", "THISTLE", "BLACK", "VOID"],
+        "SUNSTONE": ["HONEY", "FLAXEN", "CREAM", "PEARL", "GOLD", "BRASS", "SUNNY", "DAISY", "PEACHY", "BLACK", "VOID"],
+        "SUNNY": ["HONEY", "FLAXEN", "CREAM", "PEARL", "GOLD", "BRASS", "SUNSTONE", "DAISY", "PEACHY", "THISTLE", "BLACK", "VOID"],
+        "DAISY": ["HONEY", "FLAXEN", "CREAM", "PEARL", "GOLD", "BRASS", "SUNSTONE", "SUNNY", "PEACHY", "PYRITE", "GOSLING", "THISTLE", "BLACK", "VOID"],
+        "PEACHY": ["HONEY", "FLAXEN", "CREAM", "PEARL", "GOLD", "BRASS", "SUNSTONE", "SUNNY", "DAISY", "SPICE", "GINGER", "COPPER", "REDWOOD", "BLACK", "VOID"],
+        "MIST": ["PEARL", "ASH", "STEEL", "SILVER", "MOONSTONE", "SNOW", "GOSLING", "PYRITE", "VOID", "ONYX", "LUNA"],
+        "ASH": ["PEARL", "MIST", "STEEL", "SILVER", "MOONSTONE", "SNOW", "GOSLING", "PYRITE", "VOID", "ONYX", "LUNA"],
+        "STEEL": ["MIST", "ASH", "SILVER", "MOONSTONE", "SNOW", "GOSLING", "PYRITE", "VOID", "ONYX", "LUNA"],
+        "SILVER": ["PEARL", "MIST", "ASH", "STEEL", "MOONSTONE", "SNOW", "GOSLING", "PYRITE", "VOID", "ONYX", "LUNA"],
+        "MOONSTONE": ["MIST", "ASH", "STEEL", "SILVER", "SNOW", "GOSLING", "PYRITE", "VOID", "ONYX", "LUNA"],
+        "SNOW": ["PEARL", "MIST", "ASH", "STEEL", "SILVER", "MOONSTONE", "GOSLING", "PYRITE", "VOID", "ONYX", "LUNA"],
+        "GOSLING": ["MIST", "ASH", "STEEL", "SILVER", "MOONSTONE", "SNOW", "PYRITE", "VOID", "ONYX", "LUNA"],
+        "PYRITE": ["MIST", "ASH", "STEEL", "SILVER", "MOONSTONE", "SNOW", "GOSLING", "VOID", "ONYX", "LUNA"],
+        "BLACK": ["HONEY", "FLAXEN", "GOLD", "MIST", "ASH", "STEEL", "SILVER", "GOSLING", "SPICE", "GINGER", "REDWOOD"],
+        "ONYX": ["MIST", "ASH", "STEEL", "SILVER", "MOONSTONE", "SNOW"],
+        "LUNA": ["MIST", "ASH", "STEEL", "SILVER", "MOONSTONE", "SNOW"],
+        "THISTLE": ["GOSLING", "PYRITE", "PEARL", "DAISY", "COPPER", "GINGER"],
+        "VOID": ["STEEL", "GOSLING", "PYRITE", "SPICE", "REDWOOD", "HONEY"],
+        "SPICE": ["COPPER", "GINGER", "REDWOOD", "BLACK", "VOID", "HONEY", "GOLD", "PEACHY"],
+        "GINGER": ["SPICE", "COPPER", "REDWOOD", "BLACK", "VOID", "HONEY", "PEACHY"],
+        "COPPER": ["SPICE", "GINGER", "REDWOOD", "BLACK", "VOID", "HONEY", "PEACHY"],
+        "REDWOOD": ["SPICE", "GINGER", "COPPER", "VOID"],
+        "CHOCOLATE": ["HONEY", "FLAXEN", "CREAM", "PEARL", "DAISY", "SPICE", "GINGER", "REDWOOD", "COCOA", "HAZELNUT"],
+        "COCOA": ["GOLD", "PYRITE", "SPICE", "GINGER", "COPPER", "REDWOOD", "CHOCOLATE", "HAZELNUT"],
+        "HAZELNUT": ["HONEY", "FLAXEN", "CREAM", "SUNNY", "PEACHY", "SPICE", "GINGER", "COPPER", "REDWOOD", "CHOCOLATE", "COCOA"],
+        "BLUE": ["CREAM", "PEARL", "DAISY", "MIST", "ASH", "STEEL", "SILVER", "MOONSTONE", "SNOW", "SPRUCE", "FROST"],
+        "SPRUCE": ["CREAM", "PEARL", "DAISY", "MIST", "ASH", "STEEL", "SILVER", "MOONSTONE", "SNOW", "BLUE", "FROST", "GOSLING", "VOID"],
+        "FROST": ["MIST", "ASH", "STEEL", "SILVER", "MOONSTONE", "SNOW", "BLUE", "SPRUCE"],
+        "LILAC": ["DAISY", "MIST", "ASH", "SNOW", "MOONSTONE", "ISABELLA"],
+        "ISABELLA": ["DAISY", "MIST", "ASH", "SNOW", "MOONSTONE", "LILAC"]
+    },
+    "eye_colors": {
         "yellow": ["AMBER", "LEMON", "PALE", "SUNBEAM", "SUNLIGHT", "WHEAT"],
         "orange": ["HARVEST", "PEACH", "PUMPKIN", "TANGELO", "TWILIGHT"],
         "green": ["EMERALD", "FERN", "FOREST", "LEAF", "LIME", "MINT"],
@@ -56,9 +92,14 @@
         "blue": [4, 4, 10, 30, 1, 40, 10, 1],
         "purple": [1, 1, 1, 20, 2, 30, 40, 5],
         "red": [10, 20, 1, 5, 2, 2, 20, 40]},
+    "points_eyes": {
+        "BEW": ["ICE", "ICE"],
+        "ALBINO": ["LILAC", "ICE", "BUBBLEGUM", "PINK", "SCARLET", "RUBY"]
+    },
     "heterochromia_chance": {
         "base": 80,
         "parent": 10,
+        "points": 10,
         "merle": 60,
         "mid_white": 10,
         "high_white": 60},
@@ -77,5 +118,6 @@
         "merle": 8,
         "harlequin": 2,
         "colorpoint_genes": [145, 25, 15, 10, 4, 2],
-        "direct_inheritance": 15}
+        "direct_inheritance": 15,
+        "white_skin_category": "PINK"}
 }
