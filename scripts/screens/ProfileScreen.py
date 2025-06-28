@@ -25,50 +25,32 @@ from ..housekeeping.datadir import get_save_dir
 # ---------------------------------------------------------------------------- #
 #             change how accessory info displays on cat profiles               #
 # ---------------------------------------------------------------------------- #
-def accessory_display_name(cat):
-    accessory = cat.pelt.accessory
+def accessory_display_name(accessory):
+    acc_display = ""
+
+    if not accessory[1] and not accessory[2]:
+        accessory = accessory[0]
 
     if accessory is None:
         return ""
-    acc_display = accessory.lower()
+    
+    if type(accessory) == list:
+        # collars/multi layers
+        accessory_name = accessory[0]
+        accessory_pattern = accessory[1]
+        accessory_color = Pelt.pet_accessory_info[accessory[2]]["display"]
+        if accessory_name in ["BELL", "LEATHER", "NYLON", "RADIO"]:
+            accessory_name += " collar"
+        elif accessory_name == "BANDANABACK":
+            accessory_name = "bandana"
+        if accessory_pattern == "SOLID":
+            acc_display = f"{accessory_color} {accessory_name}"
+        else:
+            acc_display = f"{accessory_color} {accessory_pattern} {accessory_name}"
+    else:
+        acc_display = ACC_DISPLAY[accessory]["default"]
 
-    if accessory in Pelt.collars:
-        collar_colors = {
-            "crimson": "red",
-            "blue": "blue",
-            "yellow": "yellow",
-            "cyan": "cyan",
-            "red": "orange",
-            "lime": "lime",
-            "green": "green",
-            "rainbow": "rainbow",
-            "black": "black",
-            "spikes": "spiky",
-            "white": "white",
-            "pink": "pink",
-            "purple": "purple",
-            "multi": "multi",
-            "indigo": "indigo",
-        }
-        collar_color = next(
-            (color for color in collar_colors if acc_display.startswith(color)), None
-        )
-
-        if collar_color:
-            if acc_display.endswith("bow") and not collar_color == "rainbow":
-                acc_display = collar_colors[collar_color] + " bow"
-            elif acc_display.endswith("bell"):
-                acc_display = collar_colors[collar_color] + " bell collar"
-            else:
-                acc_display = collar_colors[collar_color] + " collar"
-
-    elif accessory in Pelt.wild_accessories:
-        if acc_display == 'blue feathers':
-            acc_display = 'bluebird feathers'
-        elif acc_display == 'red feathers':
-            acc_display = 'cardinal feathers'
-
-    return acc_display
+    return acc_display.lower()
 
 
 # ---------------------------------------------------------------------------- #
@@ -794,6 +776,7 @@ class ProfileScreen(Screens):
 
     def generate_column1(self, the_cat):
         """Generate the left column information"""
+        pelt = the_cat.pelt
         output = ""
         # SEX/GENDER
         if the_cat.genderalign is None or the_cat.genderalign == the_cat.gender:
@@ -804,7 +787,7 @@ class ProfileScreen(Screens):
         output += "\n"
 		
         #SPECIES
-        output += the_cat.pelt.species.lower()
+        output += pelt.species.lower()
         output += "\n"
 
         # AGE
@@ -818,11 +801,14 @@ class ProfileScreen(Screens):
         output += "\n"
 
         # PHYSICAL
-        output += 'physical: ' + the_cat.pelt.fun_traits[1]
+        output += 'physical: ' + pelt.fun_traits[1]
         output += "\n"
         
         # EYE COLOR
-        output += "eyes: " + str(the_cat.describe_eyes())
+        eye_color = Pelt.eye_info[pelt.eye_color]["display"]
+        if pelt.eye_color2:
+            eye_color += " and " + Pelt.eye_info[pelt.eye_color2]["display"]
+        output += "eyes: " + eye_color.lower()
         # NEWLINE ----------
         output += "\n"
 
@@ -831,44 +817,44 @@ class ProfileScreen(Screens):
         point_name = None
         merle_name = None
         if the_cat.pelt.points is not None:
-            point_name = the_cat.pelt.points.lower()
+            point_name = pelt.points.lower()
             if point_name == 'sepia' or point_name == 'mink' or point_name == 'clear':
                 point_name = point_name + 'point'
             elif point_name == 'point':
                 point_name = "graypoint"
             elif point_name == 'bew':
                 point_name = "ghost"
-        if the_cat.pelt.merle:
-            if the_cat.pelt.harlequin:
+        if pelt.merle:
+            if pelt.harlequin:
                 merle_name = 'harlequin'
             else:
                 merle_name = 'merle'
-        if point_name == None and merle_name == None:
-            output += 'pelt: ' + the_cat.pelt.name.lower()
-        elif point_name == 'bew' or point_name == 'albino':
+        if not point_name and not merle_name:
+            output += 'pelt: ' + pelt.pattern.lower()
+        elif point_name == 'ghost' or point_name == 'albino':
             output += 'pelt: ' + point_name
-        elif merle_name != None:
-            if point_name != None:
-                output += 'pelt: ' + merle_name + ' ' + the_cat.pelt.name.lower() + ' ' + point_name
+        elif merle_name:
+            if point_name:
+                output += 'pelt: ' + merle_name + ' ' + pelt.pattern.lower() + ' ' + point_name
             else:
-                output += 'pelt: ' + merle_name + ' ' + the_cat.pelt.name.lower()
+                output += 'pelt: ' + merle_name + ' ' + pelt.pattern.lower()
         else:
-            output += 'pelt: ' + the_cat.pelt.name.lower() + ' ' + point_name
+            output += 'pelt: ' + pelt.name.lower() + ' ' + point_name
         # NEWLINE ----------
         output += "\n"
 
         # PELT LENGTH
-        output += "fur length: " + the_cat.pelt.length
+        output += "fur length: " + pelt.length
         # NEWLINE ----------
         output += "\n"
 
         # SCENT
-        output += 'scent: ' + the_cat.pelt.fun_traits[0]
+        output += 'scent: ' + pelt.fun_traits[0]
 
         # ACCESSORY
-        if the_cat.pelt.accessory:
+        if pelt.accessory:
             output += "\n"
-            output += 'accessory: ' + str(ACC_DISPLAY[the_cat.pelt.accessory]["default"])
+            output += 'accessory: ' + accessory_display_name(pelt.accessory)
 
         # PARENTS
         all_parents = [Cat.fetch_cat(i) for i in the_cat.get_parents()]
@@ -891,9 +877,7 @@ class ProfileScreen(Screens):
 
         # MATE
         if len(the_cat.mate) > 0:
-            output += "\n"
-            
-            
+            output += "\n"         
             mate_names = []
             # Grab the names of only the first two, since that's all we will display
             for _m in the_cat.mate[:2]:

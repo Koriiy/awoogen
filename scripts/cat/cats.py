@@ -970,45 +970,6 @@ class Cat:
 
         return output
 
-    def describe_eyes(self):
-        """Get a human-readable description of this cat's eye color"""
-        color = str(self.pelt.eye_color).lower()
-        color2 = str(self.pelt.eye_color2).lower()
-
-        if color == "palegreen":
-            color = "pale green"
-        elif color == "darkblue":
-            color = "dark blue"
-        elif color == "paleblue":
-            color = "pale blue"
-        elif color == "paleyellow":
-            color = "pale yellow"
-        elif color == "heatherblue":
-            color = "heather blue"
-        elif color == "blue2":
-            color = "blue"
-        elif color == "sunlitice":
-            color = "sunlit ice"
-        elif color == "greenyellow":
-            color = "green-yellow"
-        if self.pelt.eye_color2:
-            if color2 == "palegreen":
-                color2 = "pale green"
-            if color2 == "darkblue":
-                color2 = "dark blue"
-            if color2 == "paleblue":
-                color2 = "pale blue"
-            if color2 == "paleyellow":
-                color2 = "pale yellow"
-            if color2 == "heatherblue":
-                color2 = "heather blue"
-            if color2 == "sunlitice":
-                color2 = "sunlit ice"
-            if color2 == "greenyellow":
-                color2 = "green-yellow"
-            color = color + " and " + color2
-        return color
-
     def convert_history(self, died_by, scar_events):
         """
         Handle old history save conversions
@@ -3387,12 +3348,11 @@ class Cat:
                 "points": self.pelt.points,
                 "white_patches_tint": self.pelt.white_patches_tint,
                 "pattern": self.pelt.pattern,
-                "tortie_base": self.pelt.tortiebase,
+                "tortie": self.pelt.tortie,
                 "tortie_color": self.pelt.tortiecolor,
                 "tortie_pattern": self.pelt.tortiepattern,
                 "merle": self.pelt.merle,
                 "harlequin": self.pelt.harlequin,
-                "merle_pattern": self.pelt.merle_pattern,
                 "fun_traits": self.pelt.fun_traits,
                 "skin": self.pelt.skin,
                 "tint": self.pelt.tint,

@@ -52,7 +52,6 @@ def json_load():
     # create new cat objects
     for i, cat in enumerate(cat_data):
         try:
-
             new_cat = Cat(
                 ID=cat["ID"],
                 prefix=cat["name_prefix"],
@@ -69,24 +68,10 @@ def json_load():
                 loading_cat=True,
             )
 
-            if cat["eye_color"] == "BLUE2":
-                cat["eye_color"] = "COBALT"
-            if cat["eye_color"] in ["BLUEYELLOW", "BLUEGREEN"]:
-                if cat["eye_color"] == "BLUEYELLOW":
-                    cat["eye_color2"] = "YELLOW"
-                elif cat["eye_color"] == "BLUEGREEN":
-                    cat["eye_color2"] = "GREEN"
-                cat["eye_color"] = "BLUE"
-            if "eye_color2" in cat:
-                if cat["eye_color2"] == "BLUE2":
-                    cat["eye_color2"] = "COBALT"
-
             new_cat.pelt = Pelt(
-                name=cat["pelt_name"],
                 length=cat["pelt_length"],
                 species=cat["species"],
                 species_mix=cat["species_mix"],
-                color=cat["pelt_color"],
                 eye_color=cat["eye_color"],
                 eye_color2=cat["eye_color2"] if "eye_color2" in cat else None,
                 paralyzed=cat["paralyzed"],
@@ -119,12 +104,13 @@ def json_load():
                 points_genes=cat["points_genes"] if "points_genes" in cat else ["C", "C"],
                 white_patches_tint=cat["white_patches_tint"] if "white_patches_tint" in cat else "offwhite",
                 white_patches=cat["white_patches"],
-                tortiebase=cat["tortie_base"],
+                tortie=cat["tortie"],
                 tortiecolor=cat["tortie_color"],
                 tortiepattern=cat["tortie_pattern"],
                 merle=cat["merle"] if "merle" in cat else None,
                 harlequin=cat["harlequin"] if "harlequin" in cat else False,
-                pattern=cat["pattern"],
+                pattern=cat["pattern"] if "pattern" in cat else cat["pelt_name"],
+                color=cat["color"] if "color" in cat else cat["pelt_color"],
                 skin=cat["skin"],
                 fun_traits=cat["fun_traits"] if "fun_traits" in cat else ["", "", ""],
                 tint=cat["tint"] if "tint" in cat else "none",
@@ -327,7 +313,7 @@ def csv_load(all_cats):
             # CAT: ID(0) - prefix:suffix(1) - gender(2) - status(3) - age(4) - trait(5) - parent1(6) - parent2(7) - mentor(8)
             # PELT: pelt(9) - color(10) - white(11) - length(12)
             # SPRITE: kitten(13) - apprentice(14) - warrior(15) - elder(16) - eye color(17) - reverse(18)
-            # - white patches(19) - pattern(20) - tortiebase(21) - tortiepattern(22) - tortiecolor(23) - skin(24) - skill(25) - NONE(26) - spec(27) - accessory(28) -
+            # - white patches(19) - pattern(20) - tortie(21) - tortiepattern(22) - tortiecolor(23) - skin(24) - skill(25) - NONE(26) - spec(27) - accessory(28) -
             # spec2(29) - moons(30) - mate(31)
             # dead(32) - SPRITE:dead(33) - exp(34) - dead for _ moons(35) - current apprentice(36)
             # (BOOLS, either TRUE OR FALSE) paralyzed(37) - no kits(38) - exiled(39)
@@ -399,7 +385,7 @@ def csv_load(all_cats):
                     "8There was an error loading cat # " + str(attr[0])
                 )
                 (
-                    the_cat.pelt.tortiebase,
+                    the_cat.pelt.tortie,
                     the_cat.pelt.tortiepattern,
                     the_cat.pelt.tortiecolor,
                 ) = (attr[21], attr[22], attr[23])

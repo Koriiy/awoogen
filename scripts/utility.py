@@ -9,7 +9,7 @@ TODO: Docs
 import logging
 import re
 from itertools import combinations
-from random import choice, choices, randint, random, sample, randrange
+from random import choice, choices, randint, random, sample, randrange, getrandbits
 from sys import exit as sys_exit
 from typing import List
 
@@ -763,19 +763,17 @@ def create_new_cat(
             # grab starting names and accs for loners/pets
             if pet:
                 name = choice(names.names_dict["loner_names"])
-                if choice([1, 2]) == 1:
-                    accessory = choice(choices(Pelt.every_acc_list, weights=(0, 0, 60, 0, 20, 20), k=1)[0])
-            elif (
-                    loner and choice([1, 2]) == 1
-            ):  # try to give name from full loner name list
+                if getrandbits(1):
+                    accessory = choice(Pelt.every_acc_list[2])
+            elif loner and getrandbits(1):  # try to give name from full loner name list
                 name = choice(names.names_dict["loner_names"])
-                if choice([0, 5]) <= 3:
-                    accessory = choice(choices(Pelt.every_acc_list, weights=(20, 20, 15, 30, 5, 10), k=1)[0])
+                if getrandbits(2):
+                    accessory = choice(choices(Pelt.every_acc_list, weights=(20, 20, 5), k=1)[0])
             else:
                 name = choice(
                     names.names_dict["normal_prefixes"])  # otherwise give name from prefix list (more nature-y names)
-                if choice([0, 5]) <= 3:
-                    accessory = choice(choices(Pelt.every_acc_list, weights=(20, 20, 15, 30, 5, 10), k=1)[0])
+                if getrandbits(2):
+                    accessory = choice(choices(Pelt.every_acc_list, weights=(20, 20, 5), k=1)[0])
 
             # now we make the cats
             if new_name:  # these cats get new names
@@ -820,8 +818,14 @@ def create_new_cat(
 
         # give em a collar if they got one
         if accessory:
-            new_cat.pelt.accessory = accessory
-
+            accessory_list = [accessory, None, None]
+            if accessory in Pelt.pet_accessories:
+                accessory_list[1] = "SOLID"
+                if accessory in ["BANDANA", "BANDANABACK"] and randint(1, 3) == 3:
+                    self.accessory[1] = choice(Pelt.bandana_patterns)
+                self.accessory[2] = choice(Pelt.acc_potential_colors[choices(Pelt.pet_accessories_color_categories, weights=Pelt.acc_category_weights, k=1)[0]])
+            new_cat.pelt.accessory = accessory_list
+            
         # give apprentice aged cat a mentor
         if new_cat.age == "adolescent":
             new_cat.update_mentor()
@@ -2132,17 +2136,29 @@ def event_text_adjust(
         )
         text = text.replace(list_type, str(sign_list))
 
+    if main_cat.pelt.accessory:
+        if main_cat.pelt.accessory[0] in Pelt.pet_accessories:
+            accessory_name = ""
+            if main_cat.pelt.accessory in ["BELL", "LEATHER", "NYLON", "RADIO"]:
+                accessory_name = main_cat.pelt.accessory + " collar"
+            elif main_cat.pelt.accessory == "BANDANABACK":
+                accessory_name = "bandana"
+            singular_display = accessory_name.lower()
+            if accessory_name == "HARNESS":
+                plural_display = "harnesses"
+            else:
+                plural_display = accessory_name.lower() + "s"
+        else:
+            singular_display = ACC_DISPLAY[main_cat.pelt.accessory[0]]["singular"]
+            plural_display = ACC_DISPLAY[main_cat.pelt.accessory[0]]["plural"]
+    
     # acc_plural (only works for main_cat's acc)
     if "acc_plural" in text:
-        text = text.replace(
-            "acc_plural", str(ACC_DISPLAY[main_cat.pelt.accessory]["plural"])
-        )
+        text = text.replace("acc_plural", plural_display)
 
     # acc_singular (only works for main_cat's acc)
     if "acc_singular" in text:
-        text = text.replace(
-            "acc_singular", str(ACC_DISPLAY[main_cat.pelt.accessory]["singular"])
-        )
+        text = text.replace("acc_singular", singular_display)
 
     if "given_herb" in text:
         if "_" in chosen_herb:
