@@ -2842,6 +2842,8 @@ def generate_sprite(
         special_markings = ["RUNIC", "SEMISOLID", "SOLID", "HUSKY"]
         no_tortie_ears = "INKSPILL"
         no_tortie_tail = ["MINIMAL", "REDTAIL"]
+        solid_tortie_ears = ["CAPE", "DIPPED", "PHANTOM", "SPLOTCH", "WATERFALL"]
+        solid_tortie_tail = ["CAPE", "DIPPED", "MINIMAL", "PUDDLES", "SHADOWSTEP"]
         solid_merle_ears = ["SILVERCLAW", "STORMSONG", "WILLOWLEAF"]
         no_white_ears = ["BEE", "BLAZE", "BLUETICK", "DIAMOND", "FLASH", "HALF", "HEART",
                          "HEAVYDALMATIAN", "HEELER", "HIGHLIGHT", "HOUND", "KING", "LOCKET", 
@@ -2869,6 +2871,9 @@ def generate_sprite(
         tortie = False
         if cat.pelt.tortie:
             tortie = True
+            tortie_pelt = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
+            tortie_pelt_ears = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
+            tortie_pelt_tail = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
 
         base_layers = ["base", "dark", "highlights", "red"]
         ear_layers = ["baseears", "darkears", "highlightears", "redears"]
@@ -2966,8 +2971,8 @@ def generate_sprite(
                 ear_merle = None
             body_sprite.blit(sprite_build("base", cat_sprite, order_layers, base_dict, cat.pelt.merle, cat.pelt.harlequin, pelt_tint, white_tint), (0, 0))
             if tortie:
-                tortie_pelt = sprite_build("base", cat_sprite, order_layers, tortie_dict, cat.pelt.merle, cat.pelt.harlequin, pelt_tint, white_tint), (0, 0)
-                tortie_pelt.blit(sprites.sprites["tortie" + cat.pelt.tortie + cat.sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+                tortie_pelt.blit(sprite_build("base", cat_sprite, tortie_order_layers, tortie_dict, cat.pelt.merle, cat.pelt.harlequin, pelt_tint, white_tint), (0, 0))
+                tortie_pelt.blit(sprites.sprites["tortie" + cat.pelt.tortie + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
                 body_sprite.blit(tortie_pelt, (0, 0))
             if white_markings:
                 body_sprite.blit(white_sprite_build(cat_sprite, white_markings[0], white_markings[1], "base", white_tint), (0, 0))
@@ -2975,8 +2980,9 @@ def generate_sprite(
             if scar_dict["earscar"] != "NOEAR":
                 ear_sprite.blit(sprite_build("ears", cat_sprite, order_layers, base_dict, ear_merle, cat.pelt.harlequin, pelt_tint, white_tint), (0, 0))
                 if tortie and cat.pelt.tortie != no_tortie_ears:
-                    tortie_pelt_ears = sprite_build("ears", cat_sprite, order_layers, tortie_dict, ear_merle, cat.pelt.harlequin, pelt_tint, white_tint), (0, 0)
-                    tortie_pelt_ears.blit(sprites.sprites["tortie" + cat.pelt.tortie + cat.sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+                    tortie_pelt_ears.blit(sprite_build("ears", cat_sprite, order_layers, tortie_dict, ear_merle, cat.pelt.harlequin, pelt_tint, white_tint), (0, 0))
+                    if cat.pelt.tortie not in solid_tortie_ears:
+                        tortie_pelt_ears.blit(sprites.sprites["tortieears" + cat.pelt.tortie + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
                     ear_sprite.blit(tortie_pelt_ears, (0, 0))
                 if white_markings:
                     white_edit = white_markings.copy()
@@ -2991,7 +2997,10 @@ def generate_sprite(
             if scar_dict["tailscar"] != "NOTAIL":
                 tail_sprite.blit(sprite_build("tail", cat_sprite, order_layers, base_dict, cat.pelt.merle, cat.pelt.harlequin, pelt_tint, white_tint), (0, 0))
                 if tortie and cat.pelt.tortie not in no_tortie_tail:
-                    pass #blit onto the tail sprite pls
+                    tortie_pelt_tail.blit(sprite_build("tail", cat_sprite, order_layers, tortie_dict, ear_merle, cat.pelt.harlequin, pelt_tint, white_tint), (0, 0))
+                    if cat.pelt.tortie not in solid_tortie_tail:
+                        tortie_pelt_tail.blit(sprites.sprites["tortietail" + cat.pelt.tortie + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+                    tail_sprite.blit(tortie_pelt_tail, (0, 0))
                 if white_markings:
                     white_edit = white_markings.copy()
                     if white_edit[0] and white_edit[0] in no_white_tail:

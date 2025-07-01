@@ -419,7 +419,11 @@ class Pelt:
                 print("Wildcard tortie!")
                 self.tortiepattern = random.choice(possible_pelt)
                 possible_pelt_colors.remove(self.color)
-                # KORI - fix to grab any color pls
+                # KORI - check for bugs
+                possible_colors = []
+                for pelt in sprites.pelt_generation["pelt_colors"]:
+                    for color in sprites.pelt_generation["pelt_colors"][pelt]:
+                        possible_colors.append(color)
                 self.tortiecolor = random.choice(possible_colors)
             else:
                 if random.randint(0, 10) <= 2:
@@ -474,15 +478,14 @@ class Pelt:
         if parents_white:
             for white in parents_white:
                 if white:
-                    print(white)
                     white_chance += 35
         white_chance += dog_influence * 5
         if random.randint(0, 10) > 8:
             white_chance += 10
         if white_chance > 100:
             white_bool = True
-        else:
-            white_bool = random.randint(0, 100) > white_chance
+        elif random.randint(0, 100) < white_chance:
+            white_bool = True
         if white_bool:
             weights = [0, 0, 0]
             weights = [55, 35, 10]
@@ -619,21 +622,14 @@ class Pelt:
         pink_solid = False
         merle_weights = [0, 0, 0, 0, 0]
         tortie_weights = [0, 0, 0, 0, 0]
-        ["SOLID", "BUTTERFLY", "DUDLEY", "SNOWNOSE", "SPECKLED"]
+        
         if self.points == "ALBINO" or self.points == "BEW":
-            possible_skins += [100, 0, 0, 0, 0]
+            possible_skins = [100, 0, 0, 0, 0]
             pink_solid = True
         elif self.points == "HIMALAYAN" and random.getrandbits(1):
             possible_skins = [100, 0, 0, 0, 0]
             pink_solid = True
-        elif not self.white_patches:
-            if self.merle:
-                merle_weights = [60, 20, 0, 0, 20]
-            else:
-                possible_skins = [90, 0, 5, 5, 0]
-            if self.tortie:
-                tortie_weights = [0, 10, 20, 20, 10]
-        else:
+        elif self.white_patches:
             if self.white_patches in high_white:
                 possible_skins = [80, 10, 0, 0, 10]
                 if random.getrandbits(1):
@@ -646,10 +642,17 @@ class Pelt:
                 merle_weights = [0, 30, 0, 10, 20]
             if self.tortie:
                 tortie_weights = [0, 10, 20, 20, 10]
+        else:
+            if self.merle:
+                merle_weights = [60, 20, 0, 0, 20]
+            else:
+                possible_skins = [90, 0, 5, 5, 0]
+            if self.tortie:
+                tortie_weights = [0, 10, 20, 20, 10]
         if self.merle or self.tortie:
             for index, weight in enumerate(possible_skins):
-                weight += merle_weights[index]
-                weight += tortie_weights[index]
+                possible_skins[index] += merle_weights[index]
+                possible_skins[index] += tortie_weights[index]
 
         # setting up the skin sprites
         # skin pattern, skin color category, skin color
