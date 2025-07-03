@@ -364,22 +364,41 @@ class HandleShortEvents:
         for acc in possible_accs:
             acc_list.append(acc)
 
-        temp_acc = ["", None, None]
+        final_acc = ["", None, None]
 
         if acc_list:
-            temp_acc[0] = random.choice(acc_list)
-
-        if temp_acc[0] in ["BANDANA", "BANDANABACK"]:
-            if random.randint(0, 2) == 1:
-                temp_acc[1] = "SOLID"
+            if len(acc_list) > 1:
+                temp_acc = random.choice(acc_list)
             else:
-                temp_acc[1] = choice(Pelt.bandana_patterns)
-            temp_acc[2] = choice(Pelt.acc_potential_colors[random.choices(Pelt.pet_accessories_color_categories, weights=Pelt.acc_category_weights, k=1)[0]])
-        if temp_acc[0] in ["BELL", "BOW", "COLLAR", "LEATHER", "NYLON"]:
-            temp_acc[1] = "SOLID"
-            temp_acc[2] = choice(Pelt.acc_potential_colors[random.choices(Pelt.pet_accessories_color_categories, weights=Pelt.acc_category_weights, k=1)[0]])
+                temp_acc = acc_list[0]
+
+        if temp_acc == "WILD":
+            final_acc[0] = random.choice(pelts.wild_accessories)
+        elif temp_acc == "PLANT":
+            final_acc[0] = random.choice(pelts.plant_accessories)
+        elif temp_acc == "natural":
+            if random.getrandbits(1):
+                final_acc[0] = random.choice(pelts.wild_accessories)
+            else:
+                final_acc[0] = random.choice(pelts.plant_accessories)
+        else:
+            if temp_acc == "COLLAR":
+                poss_collars = ["COLLAR", "BOW", "BELL", "LEATHER", "NYLON"]
+                final_acc[0] = random.choice(poss_collars)
+            else:
+                final_acc[0] = temp_acc
+
+        if final_acc[0] in ["BANDANA", "BANDANABACK"]:
+            if random.randint(0, 2) == 1:
+                final_acc[1] = "SOLID"
+            else:
+                final_acc[1] = random.choice(Pelt.bandana_patterns)
+            final_acc[2] = random.choice(Pelt.acc_potential_colors[random.choices(Pelt.pet_accessories_color_categories, weights=Pelt.acc_category_weights, k=1)[0]])
+        if final_acc[0] in ["BELL", "BOW", "COLLAR", "LEATHER", "NYLON", "RADIO", "HARNESS"]:
+            final_acc[1] = "SOLID"
+            final_acc[2] = random.choice(Pelt.acc_potential_colors[random.choices(Pelt.pet_accessories_color_categories, weights=Pelt.acc_category_weights, k=1)[0]])
             
-        self.main_cat.pelt.accessory = temp_acc
+        self.main_cat.pelt.accessory = final_acc
 
     def handle_death(self):
         """

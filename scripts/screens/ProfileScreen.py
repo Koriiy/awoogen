@@ -839,7 +839,7 @@ class ProfileScreen(Screens):
             else:
                 output += 'pelt: ' + merle_name + ' ' + pelt.pattern.lower()
         else:
-            output += 'pelt: ' + pelt.name.lower() + ' ' + point_name
+            output += 'pelt: ' + pelt.pattern.lower() + ' ' + point_name
         # NEWLINE ----------
         output += "\n"
 

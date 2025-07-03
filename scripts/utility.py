@@ -822,8 +822,8 @@ def create_new_cat(
             if accessory in Pelt.pet_accessories:
                 accessory_list[1] = "SOLID"
                 if accessory in ["BANDANA", "BANDANABACK"] and randint(1, 3) == 3:
-                    self.accessory[1] = choice(Pelt.bandana_patterns)
-                self.accessory[2] = choice(Pelt.acc_potential_colors[choices(Pelt.pet_accessories_color_categories, weights=Pelt.acc_category_weights, k=1)[0]])
+                    accessory_list[1] = choice(Pelt.bandana_patterns)
+                accessory_list[2] = choice(Pelt.acc_potential_colors[choices(Pelt.pet_accessories_color_categories, weights=Pelt.acc_category_weights, k=1)[0]])
             new_cat.pelt.accessory = accessory_list
             
         # give apprentice aged cat a mentor
